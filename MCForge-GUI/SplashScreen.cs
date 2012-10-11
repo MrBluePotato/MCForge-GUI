@@ -148,6 +148,12 @@ namespace MCForge.Gui
 			DialogResult = DialogResult.OK;
 			this.Close();
 		}
+		
+		[EventHandler()]
+		void OnLog(ServerLogEvent eventargs) {
+			DrawText(eventargs.getMessage());
+		}
+		
 		[EventHandler()]
 		void OnPluginLoad_All(PluginLoadEvent eventarg) {
 			DrawText("Loaded: " + eventarg.getPlugin().getName());
