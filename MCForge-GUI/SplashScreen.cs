@@ -131,9 +131,15 @@ namespace MCForge.Gui
 			DrawText("Setting up the server..");
 			new Thread(new ThreadStart(Program.console.Start)).Start();
 			while (Program.console.getServer() == null || Program.console.getServer().getEventSystem() == null) { Thread.Sleep(1); } //Wait till event system is up
-			DrawText("Loading Add-ons..");
 			Program.console.getServer().getEventSystem().registerEvents(this);
 		}
+		
+		void SplashScreen_FormClosing(object sender, FormClosingEventArgs e) {
+        	ServerLogEvent.getEventList().unregister(this);
+        	PluginLoadEvent.getEventList().unregister(this);
+        	CommandLoadEvent.getEventList().unregister(this); 
+        	ServerStartedEvent.getEventList().unregister(this);
+        }
 		#endregion
 		
 		

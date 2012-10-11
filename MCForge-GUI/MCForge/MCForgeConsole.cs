@@ -43,6 +43,7 @@ using net.mcforge.API;
 using net.mcforge.API.io;
 using net.mcforge.sql;
 using net.mcforge.server;
+using MCForge.Gui.SQL_PORT;
 
 namespace MCForge.Gui
 {
@@ -54,7 +55,7 @@ namespace MCForge.Gui
 		private Server server;
 		private ISQL sql;
 		public void Start() {
-			//sql = new MCForgeGUI.Console.SQL.SQLite();
+			sql = new MCForge.Gui.SQL_PORT.SQLite();
 			server = new Server("[MCForge] Default", 25565, "Welcome!");
 			server.Start(this, false);
 			server.getEventSystem().registerEvents(this);
