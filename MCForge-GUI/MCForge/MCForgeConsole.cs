@@ -33,45 +33,57 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 
  * User: Eddie
  * Date: 10/7/2012
- * Time: 5:46 PM
+ * Time: 2:32 PM
  * 
  */
 #endregion
 using System;
+using net.mcforge.groups;
+using net.mcforge.API;
+using net.mcforge.API.io;
 using net.mcforge.sql;
-using java.sql;
+using net.mcforge.server;
 
-namespace MCForgeGUI.Console.SQL
+namespace MCForge.Gui
 {
-	public class SQLite : ISQL
+	/// <summary>
+	/// The console for the server
+	/// </summary>
+	public class MCForgeConsole : net.mcforge.system.Console, Listener
 	{
-		//TODO Port SQLite
-		public void ExecuteQuery(string s) {
-			
+		private Server server;
+		private ISQL sql;
+		public void Start() {
+			//sql = new MCForgeGUI.Console.SQL.SQLite();
+			server = new Server("[MCForge] Default", 25565, "Welcome!");
+			server.Start(this, false);
+			server.getEventSystem().registerEvents(this);
+			server.startSQL(sql);
+		}
+		public override net.mcforge.groups.Group getGroup()
+		{
+			return net.mcforge.groups.Group.getDefault();
 		}
 		
-		public void ExecuteQuery(string[] s) {
-			
+		public override string getName()
+		{
+			return "Test";
 		}
 		
-		public void Connect(net.mcforge.server.Server s) {
-			
+		public override void sendMessage(string s)
+		{
+			server.Log(s);
 		}
 		
-		public void setPrefix(string s) {
-			
-		}
-		
-		public Connection getConnection() {
-			return null;
-		}
-		
-		public ResultSet fillData(string s) {
-			return null;
-		}
-		
-		public string getPrefix() {
+		public override string next()
+		{
+			//TODO Get input from somewhere..
 			return "";
+		}
+		
+		[EventHandler()]
+		public void testEvent(ServerLogEvent eventa) {
+			//TODO Create event to call
 		}
 	}
 }

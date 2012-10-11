@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{F88BC1E1-8D63-4EC8-80AF-FA5B73ABAED1}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MCForge.Gui</RootNamespace>
+    <AssemblyName>MCForge-GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto">
+      <HintPath>..\..\..\..\ikvm-7.1.4532.2\bin\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse">
+      <HintPath>..\..\..\..\ikvm-7.1.4532.2\bin\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\..\..\..\DLL\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="MCForge">
+      <HintPath>..\..\..\..\DLL\MCForge.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\MCForge-MCForge-Vanilla-321c054\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="sqlite3">
+      <HintPath>..\..\..\..\MCForge-MCForge-Vanilla-321c054\sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\MCForge-MCForge-Vanilla-321c054\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\AeroButton.cs" />
+    <Compile Include="Components\AeroButton.Designer.cs" />
+    <Compile Include="Components\AeroLabel.cs" />
+    <Compile Include="Components\ChatPreview.cs" />
+    <Compile Include="Components\ChatPreview.Designer.cs" />
+    <Compile Include="Components\ColoredListBox.cs" />
+    <Compile Include="Components\ColoredTextBox.cs" />
+    <Compile Include="Components\ColoredTextBox.Designer.cs" />
+    <Compile Include="Components\ColorRelatedButton.cs" />
+    <Compile Include="Components\ColorSelectionButton.cs" />
+    <Compile Include="Components\ColorSelectionButton.Designer.cs" />
+    <Compile Include="Components\GlassForm.cs" />
+    <Compile Include="Components\GlassToolStrip.cs" />
+    <Compile Include="Components\GlassToolStripMenuItem.cs" />
+    <Compile Include="Components\HintedTextbox.cs" />
+    <Compile Include="Components\HtmlReader.cs" />
+    <Compile Include="Components\Interfaces\IFormSharer.cs" />
+    <Compile Include="Components\MapBrowser.cs" />
+    <Compile Include="Components\MapBrowser.Designer.cs" />
+    <Compile Include="Components\SpaciousLabel.cs" />
+    <Compile Include="Components\SpaciousLabel.Designer.cs" />
+    <Compile Include="Components\ToolTipListBox.cs" />
+    <Compile Include="Dialogs\ColorSelectionDialog.cs" />
+    <Compile Include="Dialogs\ColorSelectionDialog.Designer.cs" />
+    <Compile Include="Dialogs\Command\CommandCreatorDialog.cs" />
+    <Compile Include="Dialogs\Command\CommandCreatorDialog.Designer.cs" />
+    <Compile Include="Dialogs\Command\Maker.cs" />
+    <Compile Include="Dialogs\Command\Maker.Designer.cs" />
+    <Compile Include="Dialogs\ErrorDialog.cs" />
+    <Compile Include="Dialogs\ErrorDialog.designer.cs" />
+    <Compile Include="Dialogs\NewsDialog.cs" />
+    <Compile Include="Dialogs\NewsDialog.Designer.cs" />
+    <Compile Include="Dialogs\PortToolsDialog.cs" />
+    <Compile Include="Dialogs\PortToolsDialog.designer.cs" />
+    <Compile Include="Dialogs\ServerSettingsDialog.cs" />
+    <Compile Include="Dialogs\ServerSettingsDialog.Designer.cs" />
+    <Compile Include="Dialogs\TextOnlyDialog.cs" />
+    <Compile Include="Dialogs\TextOnlyDialog.Designer.cs" />
+    <Compile Include="MCForge\MCForgeConsole.cs" />
+    <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
+    <Compile Include="MCForge\SQL_PORT\SQLite.cs" />
+    <Compile Include="SplashScreen.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAPI\AeroAPI.cs" />
+    <Compile Include="WindowsAPI\Utils\ColorRelation.cs" />
+    <Compile Include="WindowsAPI\Utils\Constants.cs" />
+    <Compile Include="WindowsAPI\Utils\GraphicsExtention.cs" />
+    <Compile Include="WindowsAPI\Utils\GuiSettings.cs" />
+    <Compile Include="WindowsAPI\Utils\InetUtils.cs" />
+    <Compile Include="WindowsAPI\Utils\Margins.cs" />
+    <Compile Include="WindowsAPI\Utils\Natives.cs" />
+    <Compile Include="WindowsAPI\Utils\RECT.cs" />
+    <Compile Include="WindowsAPI\Utils\TypeCollection.cs" />
+    <Compile Include="WindowsAPI\Utils\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\GlassForm.resx">
+      <DependentUpon>GlassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MapBrowser.resx">
+      <DependentUpon>MapBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ColorSelectionDialog.resx" />
+    <EmbeddedResource Include="Dialogs\Command\CommandCreatorDialog.resx" />
+    <EmbeddedResource Include="Dialogs\Command\Maker.resx" />
+    <EmbeddedResource Include="Dialogs\ErrorDialog.resx" />
+    <EmbeddedResource Include="Dialogs\NewsDialog.resx" />
+    <EmbeddedResource Include="Dialogs\PortToolsDialog.resx" />
+    <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx" />
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\Interfaces" />
+    <Folder Include="Components" />
+    <Folder Include="Dialogs" />
+    <Folder Include="Dialogs\Command" />
+    <Folder Include="MCForge" />
+    <Folder Include="MCForge\SQL_PORT" />
+    <Folder Include="WindowsAPI" />
+    <Folder Include="WindowsAPI\Utils" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

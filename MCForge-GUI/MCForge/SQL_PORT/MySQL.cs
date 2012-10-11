@@ -32,41 +32,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
  * User: Eddie
- * Date: 10/7/2012
- * Time: 5:42 PM
+ * Date: 10/11/2012
+ * Time: 5:32 PM
  * 
  */
 #endregion
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using MCForgeGUI.Console;
-using System.Windows.Forms;
 
-namespace MCForgeGUI
+namespace MCForge.Gui.SQL_PORT
 {
 	/// <summary>
-	/// Description of MainForm.
+	/// Description of MySQL.
 	/// </summary>
-	public partial class MainForm : Form
+	public class MySQL
 	{
-		MCForgeConsole console = new MCForgeConsole();
-		public MainForm()
+		public MySQL()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-		
-		void Button1Click(object sender, EventArgs e)
-		{
-			console.Start();
-			MessageBox.Show("Started!", "Started!");
 		}
 	}
 }

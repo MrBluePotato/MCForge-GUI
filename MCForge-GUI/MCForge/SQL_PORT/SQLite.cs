@@ -32,61 +32,49 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
  * User: Eddie
- * Date: 10/7/2012
- * Time: 5:42 PM
+ * Date: 10/11/2012
+ * Time: 5:32 PM
  * 
  */
 #endregion
 using System;
-using System.IO;
-using net.mcforge.API;
-using net.mcforge.server;
-using net.mcforge.system.updater;
-using net.mcforge.API.io;
-using java.lang;
-using java.util;
-using IKVM.Attributes;
-using System.Runtime.CompilerServices;
-using MCForgeGUI.Console.SQL;
+using java.sql;
 using net.mcforge.sql;
+using net.mcforge.server;
 
-namespace MCForgeGUI.Console
+namespace MCForge.Gui.SQL_PORT
 {
-	public class MCForgeConsole : net.mcforge.system.Console, Listener
+	/// <summary>
+	/// SQLite port
+	/// </summary>
+	public class SQLite : ISQL
 	{
-		private Server server;
-		private ISQL sql;
-		public void Start() {
-			sql = new MCForgeGUI.Console.SQL.SQLite();
-			server = new Server("[MCForge] Default", 25565, "Welcome!");
-			server.Start(this, false);
-			server.getEventSystem().registerEvents(this);
-			server.startSQL(sql);
-		}
-		public override net.mcforge.groups.Group getGroup()
-		{
-			return net.mcforge.groups.Group.getDefault();
+		public void Connect(Server server) {
+			
 		}
 		
-		public override string getName()
-		{
-			return "Test";
+		public void ExecuteQuery(string command) {
+			
 		}
 		
-		public override void sendMessage(string s)
-		{
-			server.Log(s);
+		public void ExecuteQuery(string[] commands) {
+			
 		}
 		
-		public override string next()
-		{
-			//TODO Get input from somewhere..
-			return "";
+		public ResultSet fillData(string command) {
+			return null;
 		}
 		
-		[EventHandler()]
-		public void testEvent(ServerLogEvent eventa) {
-			//TODO Create event to call
+		public Connection getConnection() {
+			return null;
+		}
+		
+		public string getPrefix() {
+			return "mcforge";
+		}
+		
+		public void setPrefix(string prefix) {
+			
 		}
 	}
 }

@@ -33,20 +33,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 
  * User: Eddie
  * Date: 10/7/2012
- * Time: 5:42 PM
+ * Time: 2:26 PM
  * 
  */
 #endregion
 using System;
 using System.Windows.Forms;
 
-namespace MCForgeGUI
+namespace MCForge.Gui
 {
-	/// <summary>
-	/// Class with program entry point.
-	/// </summary>
 	internal sealed class Program
 	{
+		private static MCForgeConsole mc = new MCForgeConsole();
+		public static MCForgeConsole console {
+			get {
+				return mc;
+			}
+		}
 		/// <summary>
 		/// Program entry point.
 		/// </summary>
@@ -55,7 +58,7 @@ namespace MCForgeGUI
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			Application.Run(new SplashScreen());
 		}
 		
 	}
