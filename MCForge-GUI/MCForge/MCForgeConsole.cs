@@ -38,6 +38,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  */
 #endregion
 using System;
+using System.Runtime.CompilerServices;
 using net.mcforge.groups;
 using net.mcforge.API;
 using net.mcforge.API.io;
@@ -54,34 +55,49 @@ namespace MCForge.Gui
 	{
 		private Server server;
 		private ISQL sql;
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public void Start() {
-			sql = new MCForge.Gui.SQL_PORT.SQLite();
 			server = new Server("[MCForge] Default", 25565, "Welcome!");
 			server.Start(this, false);
+			if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
+				sql = new MCForge.Gui.SQL_PORT.SQLite();
+			else {
+				sql = new MCForge.Gui.SQL_PORT.MySQL();
+				((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
+				((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
+				((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
+			}
 			server.getEventSystem().registerEvents(this);
 			server.startSQL(sql);
 		}
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override net.mcforge.groups.Group getGroup()
 		{
 			return net.mcforge.groups.Group.getDefault();
 		}
 		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override string getName()
 		{
 			return "Test";
 		}
 		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override void sendMessage(string s)
 		{
 			server.Log(s);
 		}
 		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override string next()
 		{
 			//TODO Get input from somewhere..
 			return "";
 		}
 		
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		[EventHandler()]
 		public void testEvent(ServerLogEvent eventa) {
 			//TODO Create event to call

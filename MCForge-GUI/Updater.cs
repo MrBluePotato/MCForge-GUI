@@ -32,35 +32,46 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
  * User: Eddie
- * Date: 10/11/2012
- * Time: 5:32 PM
+ * Date: 10/12/2012
+ * Time: 4:20 PM
  * 
  */
 #endregion
 using System;
-using java.sql;
-using java.io;
-using net.mcforge.sql;
-using net.mcforge.server;
-using System.Windows.Forms;
+using System.Threading;
+using System.Net;
 
-namespace MCForge.Gui.SQL_PORT
+namespace MCForge.Gui
 {
 	/// <summary>
-	/// SQLite port
+	/// Description of Updater.
 	/// </summary>
-	public class SQLite : net.mcforge.sql.SQLite
+	public class Updater
 	{
-		private Server server;
-		private const string PATH = "jdbc:sqlite:MCForge.db";
-		public override void Connect(Server server) {
-			this.server = server;
-			try {
-				if (!new File("MCForge.db").exists())
-					new File("MCForge.db").createNewFile();
-				DriverManager.registerDriver(new org.sqlite.JDBC());
-				connection = DriverManager.getConnection(PATH);
-			} catch { }
+		private const string VERSION = "6.0.0";
+		public Updater()
+		{
+		}
+		
+		public bool checkUpdates() {
+			string last = "";
+			using (WebClient wc = new WebClient()) {
+				last = wc.DownloadString("http://update.mcforge.net/VERSION_2/GUI/current.txt");
+			}
+			return last != VERSION;
+		}
+		
+		public void downloadUpdates(SplashScreen parent) {
+			string[] files;
+			using (WebClient wc = new WebClient()) {
+				parent.DrawText("Getting file list..");
+				files = wc.DownloadString("http://update.mcforge.net/VERSION_2/GUI/files.txt").Split(':');
+				foreach (string s in files) {
+					//FIXME This will throw a error because MCForge.dll is in use. Need to fix
+					parent.DrawText("Downloading " + s.Split('/')[1] + "...");
+					wc.DownloadFile("http://update.mcforge.net/VERSION_2/GUI/" + s, s.Split('/')[1]);
+				}
+			}
 		}
 	}
 }

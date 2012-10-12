@@ -38,16 +38,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  */
 #endregion
 using System;
+using java.sql;
+using java.io;
+using net.mcforge.sql;
+using net.mcforge.server;
+using System.Windows.Forms;
 
 namespace MCForge.Gui.SQL_PORT
 {
-	/// <summary>
-	/// Description of MySQL.
-	/// </summary>
-	public class MySQL
+	public class MySQL : net.mcforge.sql.MySQL
 	{
-		public MySQL()
+		private Server server;
+		public override void Connect(Server server)
 		{
+			this.server = server;
+			try {
+				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+				connection = DriverManager.getConnection(getURL() + DB, username, pass);
+			} catch { }
 		}
 	}
 }

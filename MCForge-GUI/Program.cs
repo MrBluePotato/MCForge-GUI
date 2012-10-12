@@ -38,13 +38,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  */
 #endregion
 using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace MCForge.Gui
 {
 	internal sealed class Program
 	{
-		private static MCForgeConsole mc = new MCForgeConsole();
+		private static MCForgeConsole mc;
 		public static MCForgeConsole console {
 			get {
 				return mc;
@@ -59,6 +60,11 @@ namespace MCForge.Gui
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new SplashScreen());
+		}
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static void Set() {
+			mc = new MCForgeConsole();
 		}
 		
 	}

@@ -40,6 +40,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -115,11 +116,8 @@ namespace MCForge.Gui
 			}
 		}
 		void SplashScreen_Load(object sender, EventArgs e) {
-			if (!AeroAPI.CanUseAero) {
-				new Thread(Program.console.Start).Start();
-				DialogResult = DialogResult.OK;
-				this.Close();
-			}
+			if (!AeroAPI.CanUseAero)
+				NoAreoStart();
 		}
 		
 		private void SplashScreen_Shown(object sender, EventArgs e) {
@@ -127,18 +125,17 @@ namespace MCForge.Gui
 			if (!AeroAPI.CanUseAero)
 				return; //Just incase
 			
-			
-			DrawText("Setting up the server..");
-			new Thread(new ThreadStart(Program.console.Start)).Start();
-			while (Program.console.getServer() == null || Program.console.getServer().getEventSystem() == null) { Thread.Sleep(1); } //Wait till event system is up
-			Program.console.getServer().getEventSystem().registerEvents(this);
+			Updater u = new Updater();
+			DrawText("Checking for updates...");
+			if (u.checkUpdates()) {
+				DrawText("Downloading updates...");
+				u.downloadUpdates(this);
+			}
+			StartServer();
 		}
 		
 		void SplashScreen_FormClosing(object sender, FormClosingEventArgs e) {
-        	ServerLogEvent.getEventList().unregister(this);
-        	PluginLoadEvent.getEventList().unregister(this);
-        	CommandLoadEvent.getEventList().unregister(this); 
-        	ServerStartedEvent.getEventList().unregister(this);
+			UnregisterEvents();
         }
 		#endregion
 		
@@ -173,7 +170,36 @@ namespace MCForge.Gui
 		
 		
 		#region Helpers
-		void DrawText(string text) {
+		
+		/*
+		 These methods are here to prevent the runtime
+         from loading the required DLL files until the Updater has done its job  
+		*/
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private void NoAreoStart() {
+			new Thread(Program.console.Start).Start();
+			DialogResult = DialogResult.OK;
+			this.Close();
+		}
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private void StartServer() {
+			DrawText("Setting up the server..");
+			new Thread(new ThreadStart(Program.console.Start)).Start();
+			while (Program.console.getServer() == null || Program.console.getServer().getEventSystem() == null) { Thread.Sleep(1); } //Wait till event system is up
+			Program.console.getServer().getEventSystem().registerEvents(this);
+		}
+		
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private void UnregisterEvents() {
+			ServerLogEvent.getEventList().unregister(this);
+        	PluginLoadEvent.getEventList().unregister(this);
+        	CommandLoadEvent.getEventList().unregister(this); 
+        	ServerStartedEvent.getEventList().unregister(this);
+		}
+		
+		public void DrawText(string text) {
 			if ( !Natives.CanUseAero )
 				return;
 
