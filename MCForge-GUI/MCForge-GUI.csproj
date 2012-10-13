@@ -32,31 +32,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.Util.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Util.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.API">
-      <HintPath>..\..\..\..\DLL\IKVM.OpenJDK.XML.API.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.API.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Crypto">
-      <HintPath>..\..\..\..\ikvm-7.1.4532.2\bin\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Parse">
-      <HintPath>..\..\..\..\ikvm-7.1.4532.2\bin\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.Parse.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.Runtime">
-      <HintPath>..\..\..\..\DLL\IKVM.Runtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\IKVM.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="MCForge">
-      <HintPath>..\..\..\..\DLL\MCForge.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\MCForge.dll</HintPath>
     </Reference>
     <Reference Include="mysql-connector-java-5.1.21-bin">
       <HintPath>..\..\..\..\..\DLL\mysql-connector-java-5.1.21-bin.dll</HintPath>
