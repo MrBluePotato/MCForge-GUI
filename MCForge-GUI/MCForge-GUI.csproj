@@ -32,37 +32,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.Util.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.Util.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.API">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.API.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.XML.API.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Crypto">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Parse">
-      <HintPath>..\..\..\..\..\DLL\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+      <HintPath>..\DLL\IKVM.OpenJDK.XML.Parse.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.Runtime">
-      <HintPath>..\..\..\..\..\DLL\IKVM.Runtime.dll</HintPath>
+      <HintPath>..\DLL\IKVM.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="MCForge">
-      <HintPath>..\..\..\..\..\DLL\MCForge.dll</HintPath>
+      <HintPath>..\DLL\MCForge.dll</HintPath>
     </Reference>
     <Reference Include="mysql-connector-java-5.1.21-bin">
-      <HintPath>..\..\..\..\..\DLL\mysql-connector-java-5.1.21-bin.dll</HintPath>
+      <HintPath>..\DLL\mysql-connector-java-5.1.21-bin.dll</HintPath>
     </Reference>
     <Reference Include="sqlite">
-      <HintPath>..\..\..\..\..\DLL\sqlite.dll</HintPath>
+      <HintPath>..\DLL\sqlite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -83,48 +83,96 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\AeroButton.cs" />
+    <Compile Include="Components\AeroButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\AeroButton.Designer.cs" />
-    <Compile Include="Components\AeroLabel.cs" />
-    <Compile Include="Components\ChatPreview.cs" />
+    <Compile Include="Components\AeroLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ChatPreview.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\ChatPreview.Designer.cs" />
-    <Compile Include="Components\ColoredListBox.cs" />
-    <Compile Include="Components\ColoredTextBox.cs" />
+    <Compile Include="Components\ColoredListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ColoredTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\ColoredTextBox.Designer.cs" />
-    <Compile Include="Components\ColorRelatedButton.cs" />
-    <Compile Include="Components\ColorSelectionButton.cs" />
+    <Compile Include="Components\ColorRelatedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ColorSelectionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\ColorSelectionButton.Designer.cs" />
-    <Compile Include="Components\GlassForm.cs" />
-    <Compile Include="Components\GlassToolStrip.cs" />
-    <Compile Include="Components\GlassToolStripMenuItem.cs" />
-    <Compile Include="Components\HintedTextbox.cs" />
-    <Compile Include="Components\HtmlReader.cs" />
+    <Compile Include="Components\GlassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GlassToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\GlassToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\HintedTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\HtmlReader.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\Interfaces\IFormSharer.cs" />
-    <Compile Include="Components\MapBrowser.cs" />
+    <Compile Include="Components\MapBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\MapBrowser.Designer.cs" />
-    <Compile Include="Components\SpaciousLabel.cs" />
+    <Compile Include="Components\SpaciousLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\SpaciousLabel.Designer.cs" />
-    <Compile Include="Components\ToolTipListBox.cs" />
-    <Compile Include="Dialogs\ColorSelectionDialog.cs" />
+    <Compile Include="Components\ToolTipListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ColorSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ColorSelectionDialog.Designer.cs" />
-    <Compile Include="Dialogs\Command\CommandCreatorDialog.cs" />
+    <Compile Include="Dialogs\Command\CommandCreatorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\Command\CommandCreatorDialog.Designer.cs" />
-    <Compile Include="Dialogs\Command\Maker.cs" />
+    <Compile Include="Dialogs\Command\Maker.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\Command\Maker.Designer.cs" />
-    <Compile Include="Dialogs\ErrorDialog.cs" />
+    <Compile Include="Dialogs\ErrorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ErrorDialog.designer.cs" />
-    <Compile Include="Dialogs\NewsDialog.cs" />
+    <Compile Include="Dialogs\NewsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\NewsDialog.Designer.cs" />
-    <Compile Include="Dialogs\PortToolsDialog.cs" />
+    <Compile Include="Dialogs\PortToolsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\PortToolsDialog.designer.cs" />
-    <Compile Include="Dialogs\ServerSettingsDialog.cs" />
+    <Compile Include="Dialogs\ServerSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ServerSettingsDialog.Designer.cs" />
-    <Compile Include="Dialogs\TextOnlyDialog.cs" />
+    <Compile Include="Dialogs\TextOnlyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\TextOnlyDialog.Designer.cs" />
     <Compile Include="MCForge\MCForgeConsole.cs" />
     <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
     <Compile Include="MCForge\SQL_PORT\SQLite.cs" />
-    <Compile Include="SplashScreen.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreen.Designer.cs">
@@ -161,15 +209,6 @@
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\Interfaces" />
-    <Folder Include="Components" />
-    <Folder Include="Dialogs" />
-    <Folder Include="Dialogs\Command" />
-    <Folder Include="MCForge" />
-    <Folder Include="MCForge\SQL_PORT" />
-    <Folder Include="WindowsAPI" />
-    <Folder Include="WindowsAPI\Utils" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
