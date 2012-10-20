@@ -16,10 +16,16 @@ public abstract class Window extends Canvas implements Tick, Listener {
 	private Render render;
 	
 	public Window(Server system) {
+		if (system == null)
+			return;
 		this.system = system;
 		this.system.getEventSystem().registerEvents(this);
 		render = new Render(this);
 		system.Add(this);
+	}
+	
+	public Window() {
+		
 	}
 	
 	public abstract void init();

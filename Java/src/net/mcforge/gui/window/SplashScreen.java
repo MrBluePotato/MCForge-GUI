@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -26,6 +27,7 @@ public class SplashScreen extends Window implements Listener {
 	private BufferedImage splash;
 	private String currentString;
 	private static final Random rand = new Random();
+	private ArrayList<String> logs = new ArrayList<String>();
 	public SplashScreen(Server system) {
 		super(system);
 		// TODO Auto-generated constructor stub
@@ -95,6 +97,7 @@ public class SplashScreen extends Window implements Listener {
 		}
 		else
 			setText(event.getMessage());
+		logs.add(event.getRawMessage());
 	}
 	
 	@EventHandler
@@ -111,8 +114,7 @@ public class SplashScreen extends Window implements Listener {
 		ServerLogEvent.getEventList().unregister(this);
 		CommandLoadEvent.getEventList().unregister(this);
 		ServerStartedEvent.getEventList().unregister(this);
-		//TODO Launch the console
-		System.exit(0);
+		Main.INSTANCE.showConsole(logs.toArray(new String[logs.size()]));
 	}
 
 	@Override
