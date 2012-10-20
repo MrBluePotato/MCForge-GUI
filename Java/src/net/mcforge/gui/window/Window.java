@@ -26,6 +26,7 @@ public abstract class Window extends Canvas implements Tick, Listener {
 	
 	public void onLoad() {
 		render.start();
+		init();
 	}
 	
 	public void onUnload() {
@@ -33,6 +34,10 @@ public abstract class Window extends Canvas implements Tick, Listener {
 	}
 	
 	public abstract String getName();
+	
+	public abstract int defaultWidth();
+	
+	public abstract int defaultHeight();
 	
 	public abstract void draw(onDrawEvent event);
 	
