@@ -40,12 +40,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 using System;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using MCForge.Gui.Forms;
 
 namespace MCForge.Gui
 {
 	internal sealed class Program
 	{
-		private static MCForgeConsole mc;
+		private static MCForgeConsole mc = new MCForgeConsole();
 		public static MCForgeConsole console {
 			get {
 				return mc;
@@ -59,12 +60,17 @@ namespace MCForge.Gui
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new SplashScreen());
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static void Set() {
-			mc = new MCForgeConsole();
+            SplashScreen ss = new SplashScreen();
+			Application.Run(ss);
+            ss.Dispose();
+            Application.Run(new FormMainScreen());
+
+            if (mc.getServer().Running)
+            {
+                mc.getServer().Stop();
+                //ServerSettings.Save();
+                //GuiSettings.Save();
+            }
 		}
 		
 	}

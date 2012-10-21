@@ -37,6 +37,9 @@
     <Reference Include="IKVM.OpenJDK.Jdbc">
       <HintPath>..\DLL\IKVM.OpenJDK.Jdbc.dll</HintPath>
     </Reference>
+    <Reference Include="IKVM.OpenJDK.Security">
+      <HintPath>..\DLL\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
     <Reference Include="IKVM.OpenJDK.Text">
       <HintPath>..\DLL\IKVM.OpenJDK.Text.dll</HintPath>
     </Reference>
@@ -167,13 +170,19 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\TextOnlyDialog.Designer.cs" />
-    <Compile Include="MCForge\CommandPort\Command.cs" />
-    <Compile Include="MCForge\CommandPort\CommandKeywords.cs" />
-    <Compile Include="MCForge\CommandPort\CommandList.cs" />
-    <Compile Include="MCForge\CommandPort\CommandOtherPerms.cs" />
+    <Compile Include="FormMainScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMainScreen.Designer.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MCForge\MCForgeConsole.cs" />
     <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
     <Compile Include="MCForge\SQL_PORT\SQLite.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,21 +218,26 @@
     <EmbeddedResource Include="Dialogs\NewsDialog.resx" />
     <EmbeddedResource Include="Dialogs\PortToolsDialog.resx" />
     <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx" />
+    <EmbeddedResource Include="FormMainScreen.resx" />
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\Interfaces" />
-    <Folder Include="Components" />
-    <Folder Include="Dialogs" />
-    <Folder Include="Dialogs\Command" />
-    <Folder Include="MCForge" />
-    <Folder Include="MCForge\CommandPort" />
-    <Folder Include="MCForge\SQL_PORT" />
-    <Folder Include="WindowsAPI" />
-    <Folder Include="WindowsAPI\Utils" />
+    <None Include="Resource\hirez_mcforge.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resource\MCForge.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\mcforge_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\preview_image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -53,6 +53,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Diagnostics;
 using System.Threading;
 using MCForge.Gui.Components;
+using MCForge.Gui.Properties;
 using net.mcforge.API.plugin;
 using net.mcforge.API.io;
 using net.mcforge.server;
@@ -72,20 +73,23 @@ namespace MCForge.Gui
 	public partial class SplashScreen : AeroForm, Listener
 	{
 		private string LogMessage;
-		private string devs = "ohai";
+		private string[] devlist = new string[] { "Dmitchell", "501st_commander", "Lavoaster", "Alem_Zupa", "bemacized", "Shade2010", "edh649", "hypereddie10", "Gamemakergm", "Serado", "Wouto1997", "cazzar", "givo" };
+		private string devs;
 		private readonly static Font DrawingFont;
-		//private readonly static Bitmap HammerBitmap;
-		//private readonly static Bitmap MCForgeBitmap;
+		private readonly static Bitmap HammerBitmap;
+		private readonly static Bitmap MCForgeBitmap;
 		static SplashScreen() {
 			DrawingFont = new Font("Arial", Constants.DEV_TEXT_SIZE, FontStyle.Regular);
+            HammerBitmap = Resource.hirez_mcforge;
+            MCForgeBitmap = Resource.mcforge_text;
 		}
 		
 		public SplashScreen() {
 			InitializeComponent();
 			GlassArea = ClientRectangle;
-			LogMessage = "Loading MCForge v6.0.0";
-			
+			LogMessage = "Loading MCForge v6.0.0";			
 			Paint += new PaintEventHandler(PaintEvent);
+			devs = GenerateDevList();
 		}
 		
 		#region Form Events
@@ -104,8 +108,8 @@ namespace MCForge.Gui
 
 				gLogPath.AddString(LogMessage, DrawingFont.FontFamily, (int)FontStyle.Bold, Constants.LOG_TEXT_SIZE, new Point(Constants.PADDING, Height - 65 - Constants.PADDING), StringFormat.GenericDefault);
 
-				//e.Graphics.DrawImage(HammerBitmap, Constants.PADDING, Constants.PADDING, Constants.LOGO_WIDTH, Constants.LOGO_HEIGHT);
-				//e.Graphics.DrawImage(MCForgeBitmap, Constants.LOGO_WIDTH + Constants.PADDING, Constants.PADDING, Constants.TEXT_WIDTH, Constants.TEXT_HEIGHT);
+				e.Graphics.DrawImage(HammerBitmap, Constants.PADDING, Constants.PADDING, Constants.LOGO_WIDTH, Constants.LOGO_HEIGHT);
+				e.Graphics.DrawImage(MCForgeBitmap, Constants.LOGO_WIDTH + Constants.PADDING, Constants.PADDING, Constants.TEXT_WIDTH, Constants.TEXT_HEIGHT);
 				e.Graphics.FillPath(brush, gDevPath);
 				e.Graphics.FillPath(brush, gLogPath);
 
@@ -212,6 +216,29 @@ namespace MCForge.Gui
 
 			Refresh();
 		}
+		private string GenerateDevList() {
+            var devList = devlist;
+            var compiledString = "";
+
+            float curr = Constants.LOGO_WIDTH + Constants.PADDING;
+
+            using ( var g = CreateGraphics() )
+                for ( int i = 0; i < devList.Length; i++ ) {
+
+                    float len = g.MeasureString(devList[i], DrawingFont).Width;
+
+                    if ( curr + len + 30 >= Width - Constants.PADDING ) {
+                        compiledString += devList[i] + ",\n";
+                        curr = ( Constants.LOGO_WIDTH + Constants.PADDING );
+                    }
+                    else {
+                        compiledString += devList[i] + ", ";
+                        curr += len;
+                    }
+                }
+
+            return compiledString;
+        }
 		#endregion
 		
 	}

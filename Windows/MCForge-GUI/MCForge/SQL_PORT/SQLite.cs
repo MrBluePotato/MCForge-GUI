@@ -60,7 +60,9 @@ namespace MCForge.Gui.SQL_PORT
 					new File("MCForge.db").createNewFile();
 				DriverManager.registerDriver(new org.sqlite.JDBC());
 				connection = DriverManager.getConnection(PATH);
-			} catch { }
+			} catch (java.sql.SQLException e) {
+                System.Diagnostics.Trace.WriteLine(e.ToString());
+            }
 		}
 	}
 }

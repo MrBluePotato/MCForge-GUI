@@ -45,6 +45,7 @@ using net.mcforge.API.io;
 using net.mcforge.sql;
 using net.mcforge.server;
 using MCForge.Gui.SQL_PORT;
+using net.mcforge.chat;
 
 namespace MCForge.Gui
 {
@@ -55,6 +56,7 @@ namespace MCForge.Gui
 	{
 		private Server server;
 		private ISQL sql;
+        private Messages chat;
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public void Start() {
@@ -70,7 +72,18 @@ namespace MCForge.Gui
 			}
 			server.getEventSystem().registerEvents(this);
 			server.startSQL(sql);
+            chat = new Messages(server);
 		}
+
+        public void SendOpMessage(string message)
+        {
+            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            {
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                if (player.getGroup().isOP)
+                    chat.sendMessage(message, player.getName());
+            }
+        }
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override net.mcforge.groups.Group getGroup()
@@ -102,5 +115,12 @@ namespace MCForge.Gui
 		public void testEvent(ServerLogEvent eventa) {
 			//TODO Create event to call
 		}
-	}
+
+        internal void restart()
+        {
+            server.Stop();
+            System.Threading.Thread.Sleep(100);
+            Start();
+        }
+    }
 }
