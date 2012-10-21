@@ -52,6 +52,7 @@ namespace MCForge.Gui
 				return mc;
 			}
 		}
+        public static bool running = true;
 		/// <summary>
 		/// Program entry point.
 		/// </summary>
@@ -63,7 +64,10 @@ namespace MCForge.Gui
             SplashScreen ss = new SplashScreen();
 			Application.Run(ss);
             ss.Dispose();
-            Application.Run(new FormMainScreen());
+            while (running)
+            {
+                LaunchConsole();
+            }
 
             if (mc.getServer().Running && mc.getServer() != null)
             {
@@ -71,6 +75,12 @@ namespace MCForge.Gui
             }
             Environment.Exit(0);
 		}
+
+        [STAThread]
+        public static void LaunchConsole()
+        {
+            Application.Run(new FormMainScreen());
+        }
 		
 	}
 }

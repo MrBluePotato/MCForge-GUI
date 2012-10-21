@@ -341,5 +341,15 @@ namespace MCForge.Gui.Forms {
 
         #endregion
 
+        private void FormMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LevelLoadEvent.getEventList().unregister(this);
+            LevelUnloadEvent.getEventList().unregister(this);
+            PlayerDisconnectEvent.getEventList().unregister(this);
+            PlayerConnectEvent.getEventList().unregister(this);
+            ServerLogEvent.getEventList().unregister(this);
+            Program.running = false;
+        }
+
     }
 }
