@@ -24,6 +24,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
+using MCForge.Core;
 using System.Net.Sockets;
 
 namespace MCForge.Gui.Dialogs {
@@ -168,9 +169,7 @@ namespace MCForge.Gui.Dialogs {
         }
 
         void mWorkerForwarder_DoWork( object sender, DoWorkEventArgs e ) {
-            //TODO Add UPnP!
-            
-        	/*int port = ( int ) ( ( object[] ) e.Argument )[ 0 ];
+            int port = ( int ) ( ( object[] ) e.Argument )[ 0 ];
             bool adding = ( bool ) ( ( object[] ) e.Argument )[ 1 ];
             try {
                 if ( !UPnP.CanUseUpnp ) {
@@ -193,7 +192,7 @@ namespace MCForge.Gui.Dialogs {
             catch {
                 e.Result = 2;
                 return;
-            }*/
+            }
         }
 
         void mWorkerForwarder_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e ) {

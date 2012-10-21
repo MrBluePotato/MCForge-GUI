@@ -141,40 +141,64 @@
     <Compile Include="Dialogs\ColorSelectionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ColorSelectionDialog.Designer.cs" />
+    <Compile Include="Dialogs\ColorSelectionDialog.Designer.cs">
+      <DependentUpon>ColorSelectionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Command\CommandCreatorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\Command\CommandCreatorDialog.Designer.cs" />
+    <Compile Include="Dialogs\Command\CommandCreatorDialog.Designer.cs">
+      <DependentUpon>CommandCreatorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Command\Maker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\Command\Maker.Designer.cs" />
+    <Compile Include="Dialogs\Command\Maker.Designer.cs">
+      <DependentUpon>Maker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ErrorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ErrorDialog.designer.cs" />
+    <Compile Include="Dialogs\ErrorDialog.designer.cs">
+      <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\NewsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\NewsDialog.Designer.cs" />
+    <Compile Include="Dialogs\NewsDialog.Designer.cs">
+      <DependentUpon>NewsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PlayerManagerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PlayerManagerDialog.Designer.cs">
+      <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\PortToolsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PortToolsDialog.designer.cs" />
+    <Compile Include="Dialogs\PortToolsDialog.designer.cs">
+      <DependentUpon>PortToolsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ServerSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ServerSettingsDialog.Designer.cs" />
+    <Compile Include="Dialogs\ServerSettingsDialog.Designer.cs">
+      <DependentUpon>ServerSettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\TextOnlyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TextOnlyDialog.Designer.cs" />
+    <Compile Include="Dialogs\TextOnlyDialog.Designer.cs">
+      <DependentUpon>TextOnlyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMainScreen.Designer.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="FormMainScreen.Designer.cs">
+      <DependentUpon>FormMainScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldMethods.cs" />
     <Compile Include="MCForge\MCForgeConsole.cs" />
     <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
     <Compile Include="MCForge\SQL_PORT\SQLite.cs" />
@@ -202,6 +226,7 @@
     <Compile Include="WindowsAPI\Utils\Natives.cs" />
     <Compile Include="WindowsAPI\Utils\RECT.cs" />
     <Compile Include="WindowsAPI\Utils\TypeCollection.cs" />
+    <Compile Include="WindowsAPI\Utils\UPnP.cs" />
     <Compile Include="WindowsAPI\Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,14 +236,33 @@
     <EmbeddedResource Include="Components\MapBrowser.resx">
       <DependentUpon>MapBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ColorSelectionDialog.resx" />
-    <EmbeddedResource Include="Dialogs\Command\CommandCreatorDialog.resx" />
-    <EmbeddedResource Include="Dialogs\Command\Maker.resx" />
-    <EmbeddedResource Include="Dialogs\ErrorDialog.resx" />
-    <EmbeddedResource Include="Dialogs\NewsDialog.resx" />
-    <EmbeddedResource Include="Dialogs\PortToolsDialog.resx" />
-    <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx" />
-    <EmbeddedResource Include="FormMainScreen.resx" />
+    <EmbeddedResource Include="Dialogs\ColorSelectionDialog.resx">
+      <DependentUpon>ColorSelectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Command\CommandCreatorDialog.resx">
+      <DependentUpon>CommandCreatorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Command\Maker.resx">
+      <DependentUpon>Maker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ErrorDialog.resx">
+      <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewsDialog.resx">
+      <DependentUpon>NewsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PlayerManagerDialog.resx">
+      <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PortToolsDialog.resx">
+      <DependentUpon>PortToolsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx">
+      <DependentUpon>TextOnlyDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainScreen.resx">
+      <DependentUpon>FormMainScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

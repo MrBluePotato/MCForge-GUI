@@ -32,7 +32,12 @@ namespace MCForge.Gui
 
         public static void UniversalChat(string message)
         {
+            
+        }
 
+        public static net.mcforge.iomodel.Player Find(string player)
+        {
+            return Program.console.getServer().findPlayer(player);
         }
     }
 }
