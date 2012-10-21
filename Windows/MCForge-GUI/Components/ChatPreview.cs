@@ -7,12 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using MCForge.Gui.WindowsAPI.Utils;
+using MCForge.Gui.Properties;
 
 namespace MCForge.Gui.Components {
     public partial class ChatPreview : Control {
 
         private bool _drawBackground = true;
-        private Image _background;
+        private Image _background = (Image)Resource.preview_image;
 
 
         private TextSection[] _sections;
@@ -20,7 +21,7 @@ namespace MCForge.Gui.Components {
         private static readonly Font MinecraftFont;
 
         static ChatPreview() {
-            //MinecraftFont = new Font( MCForge.World.Drawing.Fonts.Minecraft, 16 );
+            MinecraftFont = new Font( MCForge.World.Drawing.Fonts.Minecraft, 16 );
 
             //Colors found at http://wiki.vg/Classic_Protocol#Color_Codes
             //Must be in order from 0-f

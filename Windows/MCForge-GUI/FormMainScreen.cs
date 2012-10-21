@@ -316,13 +316,13 @@ namespace MCForge.Gui.Forms {
 
 
         private void mapManagerToolStripMenuItem_Click(object sender, EventArgs e) {
-            //using ( var maps = new MapManagerDialog() )
-            //    maps.ShowDialog();
+            using ( var maps = new MapManagerDialog() )
+                maps.ShowDialog();
         }
 
         private void newsToolStripMenuItem_Click(object sender, EventArgs e) {
-            //using ( var news = new NewsDialog() )
-            //    news.ShowDialog();
+            using ( var news = new NewsDialog() )
+                news.ShowDialog();
         }
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -340,5 +340,6 @@ namespace MCForge.Gui.Forms {
         }
 
         #endregion
+
     }
 }

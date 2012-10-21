@@ -39,6 +39,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 #endregion
 using System;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using net.mcforge.groups;
 using net.mcforge.API;
 using net.mcforge.API.io;
@@ -46,34 +47,42 @@ using net.mcforge.sql;
 using net.mcforge.server;
 using MCForge.Gui.SQL_PORT;
 using net.mcforge.chat;
+using MCForge.Gui.Dialogs;
+using net.mcforge.world;
+using System.Collections.Generic;
+using java.lang;
+using java.io;
 
 namespace MCForge.Gui
 {
-	/// <summary>
-	/// The console for the server
-	/// </summary>
-	public class MCForgeConsole : net.mcforge.system.Console, Listener
-	{
-		private Server server;
-		private ISQL sql;
+    /// <summary>
+    /// The console for the server
+    /// </summary>
+    public class MCForgeConsole : net.mcforge.system.Console, Listener
+    {
+        private Server server;
+        private ISQL sql;
         private Messages chat;
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public void Start() {
-			server = new Server("[MCForge] Default", 25565, "Welcome!");
-			server.Start(this, false);
-			if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
-				sql = new MCForge.Gui.SQL_PORT.SQLite();
-			else {
-				sql = new MCForge.Gui.SQL_PORT.MySQL();
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
-			}
-			server.getEventSystem().registerEvents(this);
-			server.startSQL(sql);
+        private string lastmessage;
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public void Start()
+        {
+            server = new Server("[MCForge] Default", 25565, "Welcome!");
+            server.Start(this, false);
+            if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
+                sql = new MCForge.Gui.SQL_PORT.SQLite();
+            else
+            {
+                sql = new MCForge.Gui.SQL_PORT.MySQL();
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
+            }
+            server.getEventSystem().registerEvents(this);
+            server.startSQL(sql);
             chat = new Messages(server);
-		}
+        }
 
         public void SendOpMessage(string message)
         {
@@ -85,41 +94,67 @@ namespace MCForge.Gui
             }
         }
 
+        public List<string> getUnloadedLevelList()
+        {
+            List<string> levels = new List<string>();
+            File levelList = new File("levels");
+            File[] list = levelList.listFiles();
+            foreach (File f in list)
+            {
+                string name = f.getName().Split('.')[0];
+                if (getServer().getLevelHandler().findLevel(name) == null)
+                    levels.Add(name);
+            }
+            return levels;
+        }
+
         public void SendGlobalMessage(string message)
         {
             chat.serverBroadcast(message);
         }
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override net.mcforge.groups.Group getGroup()
-		{
-			return net.mcforge.groups.Group.getDefault();
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override string getName()
-		{
-			return "Test";
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override void sendMessage(string s)
-		{
-			server.Log(s);
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override string next()
-		{
-			//TODO Get input from somewhere..
-			return "";
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		[EventHandler()]
-		public void testEvent(ServerLogEvent eventa) {
-			//TODO Create event to call
-		}
+
+        public int getPlayerCount(Level l)
+        {
+            int total = 0;
+            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            {
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                if (player.getLevel() == l)
+                    total++;
+            }
+            return total;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override net.mcforge.groups.Group getGroup()
+        {
+            return net.mcforge.groups.Group.getDefault();
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override string getName()
+        {
+            return "Console";
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override void sendMessage(string s)
+        {
+            lastmessage = s;
+            server.Log(s);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override string next()
+        {
+            return InputDialog.showDialog("Question", lastmessage, "Submit");
+        }
+
+        public override bool nextBoolean()
+        {
+            DialogResult result = MessageBox.Show(lastmessage, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            return result == DialogResult.Yes;
+        }
 
         internal void restart()
         {
