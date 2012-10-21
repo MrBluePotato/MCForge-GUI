@@ -24,7 +24,7 @@ namespace MCForge.Gui.Dialogs {
 
         //---Level Event Handlers -------------------------------
         [EventHandler()]
-        void OnAllLevelsLoad_Normal(LevelUnloadEvent eventargs) {
+        void OnAllLevelsLoad_Normal(LevelLoadEvent eventargs) {
             if (lstUnloaded.Items.Contains(eventargs.getLevel().name))
                 lstUnloaded.Items.Remove(eventargs.getLevel().name);
 
@@ -110,24 +110,54 @@ namespace MCForge.Gui.Dialogs {
         private void dtaLoaded_CellClick(object sender, DataGridViewCellEventArgs e) {
             switch ( e.ColumnIndex ) {
                 case 4: //Unload 
-                    Program.console.getServer().getLevelHandler().findLevel(dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString()).unload(Program.console.getServer(), true);
+                    Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString()));
                 break;
 
                 case 5: //Reload
                 string name = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Program.console.getServer().getLevelHandler().findLevel(name).unload(Program.console.getServer(), true);
+                Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(name));
                 Program.console.getServer().getLevelHandler().loadLevel("levels/" + name + ".ggs");
                 break;
 
                 case 6: //Delete
                 if ( MessageBox.Show("Are you sure you want to delete this level?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes ) {
                     string levelName = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Program.console.getServer().getLevelHandler().findLevel(levelName).unload(Program.console.getServer(), true);
+                    Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(levelName));
                     File.Delete("levels/" + levelName + ".ggs");
                 }
                 break;
 
             }
+        }
+
+        private void btnCreateLevel_Click(object sender, EventArgs e)
+        {
+            string name = InputDialog.showDialog("Name?", "What will the level name be?", "Submit");
+            while (Program.console.getServer().getLevelHandler().findLevel(name) != null)
+                name = InputDialog.showDialog("Name?", "A level with that name already exists..Try a different name.", "Try again");
+            int x = int.Parse(InputDialog.showDialog("Size?", "What will the width be?", "Submit"));
+            int y = int.Parse(InputDialog.showDialog("Size?", "What will the height be?", "Submit"));
+            int z = int.Parse(InputDialog.showDialog("Size?", "What will the depth be?", "Submit"));
+            Program.console.getServer().getLevelHandler().newLevel(name, (short)x, (short)y, (short)z);
+            MessageBox.Show("Success! The level " + name + " was created!", "Level created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            if (lstUnloaded.SelectedIndex == -1)
+            {
+                btnLoad.Enabled = false;
+                return;
+            }
+            string file = "levels/" + lstUnloaded.Items[lstUnloaded.SelectedIndex] + ".ggs";
+            Program.console.getServer().getLevelHandler().loadLevel(file);
+        }
+
+        private void lstUnloaded_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnLoad.Enabled = !(lstUnloaded.SelectedIndex == -1);
+            btnDelete.Enabled = !(lstUnloaded.SelectedIndex == -1);
+            btnBackup.Enabled = !(lstUnloaded.SelectedIndex == -1);
         }
 
     }
