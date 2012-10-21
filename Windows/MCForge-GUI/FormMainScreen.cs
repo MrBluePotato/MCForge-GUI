@@ -67,6 +67,8 @@ namespace MCForge.Gui.Forms {
                 Height = 0
             };
 
+            Program.console.getServer().getEventSystem().registerEvents(this);
+
             Invalidate();
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
@@ -149,10 +151,10 @@ namespace MCForge.Gui.Forms {
                 }
             }
             else if ( e.KeyCode == Keys.Down ) {
-                cmbChatType.SelectedIndex = cmbChatType.SelectedIndex + ( cmbChatType.Items.Count == 1 ? 0 : cmbChatType.SelectedIndex + 1 );
+                cmbChatType.SelectedIndex = (cmbChatType.SelectedIndex == cmbChatType.Items.Count - 1 ? 0 : cmbChatType.SelectedIndex + ( cmbChatType.Items.Count == 1 ? 0 : cmbChatType.SelectedIndex + 1 ));
             }
             else if ( e.KeyCode == Keys.Up ) {
-                cmbChatType.SelectedIndex = ( cmbChatType.SelectedIndex == 0 ? cmbChatType.Items.Count - 1 : cmbChatType.SelectedIndex - 1 );
+                cmbChatType.SelectedIndex = ( cmbChatType.SelectedIndex == 0 || cmbChatType.SelectedIndex == -1 ? (cmbChatType.Items.Count == 0 ? 0 : cmbChatType.Items.Count - 1) : cmbChatType.SelectedIndex - 1 );
             }
 
         }
@@ -186,7 +188,7 @@ namespace MCForge.Gui.Forms {
                 lstLevels.Items.Add(sender.Name);
 
         }*/
-
+        [EventHandler()]
         void PlayerDisconnect(PlayerDisconnectEvent eventargs)
         {
             if (InvokeRequired)
@@ -197,7 +199,7 @@ namespace MCForge.Gui.Forms {
             lstPlayers.RemoveIfExists(eventargs.getPlayer().getName());
         }
 
-
+        [EventHandler()]
         void OnPlayerConnect(PlayerConnectEvent eventargs)
         {
             if (InvokeRequired)
@@ -221,6 +223,7 @@ namespace MCForge.Gui.Forms {
             txtLog.AppendLog(Environment.NewLine);
         }*/
 
+        [EventHandler()]
         void LoggedEvent(ServerLogEvent eventarg)
         {
             if (InvokeRequired)
