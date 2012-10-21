@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MCForge.Gui;
 
-namespace MCForge.Gui
+namespace MCForge
 {
     public class Logger
     {
@@ -22,17 +23,17 @@ namespace MCForge.Gui
     {
         public static void UniversalChatOps(string message)
         {
-
+            Program.console.SendOpMessage(message);
         }
 
         public static void UniversalChatAdmins(string message)
         {
-
+            Program.console.SendOpMessage(message);
         }
 
         public static void UniversalChat(string message)
         {
-            
+            Program.console.SendGlobalMessage(message);
         }
 
         public static net.mcforge.iomodel.Player Find(string player)

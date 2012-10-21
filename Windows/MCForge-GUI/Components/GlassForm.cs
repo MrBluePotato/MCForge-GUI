@@ -129,10 +129,8 @@ namespace MCForge.Gui.Components {
 
             if (m.Msg == AeroAPI.WM_NCHITTEST && m.Result.ToInt32() == AeroAPI.HTCLIENT) {
                 uint lparam = (uint)m.LParam.ToInt32();
-                ushort x = (ushort)lparam;
-                ushort y = (ushort)(lparam >> 16);
 
-                var point = this.PointToClient(new Point(x, y));
+                var point = this.PointToClient(new Point((int)lparam, (int)(lparam >> 16)));
                 if (!_glassArea.IsTouchingGlass(point)) {
                     m.Result = (IntPtr)AeroAPI.HTCAPTION;
                     return;
