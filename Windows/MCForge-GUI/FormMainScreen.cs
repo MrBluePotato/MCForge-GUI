@@ -167,27 +167,28 @@ namespace MCForge.Gui.Forms {
 
         //TODO Add these events!
 
-        /*void OnAllLevelsUnload_Normal(Level sender, API.Events.LevelLoadEventArgs args) {
-            if ( InvokeRequired ) {
-                BeginInvoke((MethodInvoker)delegate { OnAllLevelsUnload_Normal(sender, args); });
+        [EventHandler()]
+        void OnLevelLoad(LevelLoadEvent eventargs) {
+            if (InvokeRequired) {
+                BeginInvoke((MethodInvoker)delegate { OnLevelLoad(eventargs); });
                 return;
             }
-
-            if ( lstLevels.Items.Contains(sender.Name) )
-                lstLevels.Items.Remove(sender.Name);
-
+            if (!lstLevels.Items.Contains(eventargs.getLevel().name))
+                lstLevels.Items.Add(eventargs.getLevel().name);
         }
 
-        void OnAllLevelsLoad_Normal(Level sender, API.Events.LevelLoadEventArgs args) {
-            if ( InvokeRequired ) {
-                BeginInvoke((MethodInvoker)delegate { OnAllLevelsLoad_Normal(sender, args); });
+        [EventHandler()]
+        void OnLevelUnload(LevelUnloadEvent eventargs)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate { OnLevelUnload(eventargs); });
                 return;
             }
+            if (lstLevels.Items.Contains(eventargs.getLevel().name))
+                lstLevels.Items.Remove(eventargs.getLevel().name);
+        }
 
-            if ( !lstLevels.Items.Contains(sender.Name) )
-                lstLevels.Items.Add(sender.Name);
-
-        }*/
         [EventHandler()]
         void PlayerDisconnect(PlayerDisconnectEvent eventargs)
         {
