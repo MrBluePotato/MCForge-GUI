@@ -84,6 +84,11 @@ namespace MCForge.Gui
                     chat.sendMessage(message, player.getName());
             }
         }
+
+        public void SendGlobalMessage(string message)
+        {
+            chat.serverBroadcast(message);
+        }
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override net.mcforge.groups.Group getGroup()
