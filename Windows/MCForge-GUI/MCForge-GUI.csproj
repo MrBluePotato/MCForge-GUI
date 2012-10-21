@@ -31,10 +31,11 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.OpenJDK.Core">
@@ -95,28 +96,36 @@
     <Compile Include="Components\AeroButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\AeroButton.Designer.cs" />
+    <Compile Include="Components\AeroButton.Designer.cs">
+      <DependentUpon>AeroButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\AeroLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Components\ChatPreview.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\ChatPreview.Designer.cs" />
+    <Compile Include="Components\ChatPreview.Designer.cs">
+      <DependentUpon>ChatPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ColoredListBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Components\ColoredTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\ColoredTextBox.Designer.cs" />
+    <Compile Include="Components\ColoredTextBox.Designer.cs">
+      <DependentUpon>ColoredTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ColorRelatedButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Components\ColorSelectionButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\ColorSelectionButton.Designer.cs" />
+    <Compile Include="Components\ColorSelectionButton.Designer.cs">
+      <DependentUpon>ColorSelectionButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\GlassForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,11 +145,15 @@
     <Compile Include="Components\MapBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\MapBrowser.Designer.cs" />
+    <Compile Include="Components\MapBrowser.Designer.cs">
+      <DependentUpon>MapBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\SpaciousLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\SpaciousLabel.Designer.cs" />
+    <Compile Include="Components\SpaciousLabel.Designer.cs">
+      <DependentUpon>SpaciousLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ToolTipListBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -198,6 +211,7 @@
     <Compile Include="Dialogs\TextOnlyDialog.Designer.cs">
       <DependentUpon>TextOnlyDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fonts\Fonts.cs" />
     <Compile Include="FormMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +292,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fonts\Minecraft\minecraft.ttf" />
+    <None Include="Fonts\Ubuntu\Ubuntu.ttf" />
     <None Include="Resource\hirez_mcforge.png" />
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +304,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource\preview_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\Minecraft\LICENSE.txt" />
+    <Content Include="Fonts\Minecraft\README.txt" />
+    <Content Include="Fonts\Ubuntu\CONTRIBUTING.txt" />
+    <Content Include="Fonts\Ubuntu\copyright.txt" />
+    <Content Include="Fonts\Ubuntu\LICENCE.txt" />
+    <Content Include="Fonts\Ubuntu\TRADEMARKS.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

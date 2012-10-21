@@ -20,7 +20,7 @@ namespace MCForge.Gui.Components {
         private static readonly Font MinecraftFont;
 
         static ChatPreview() {
-            //MinecraftFont = new Font( MCForge.World.Drawing.Fonts.Minecraft, 16 );
+            MinecraftFont = new Font( MCForge.World.Drawing.Fonts.Minecraft, 16 );
 
             //Colors found at http://wiki.vg/Classic_Protocol#Color_Codes
             //Must be in order from 0-f

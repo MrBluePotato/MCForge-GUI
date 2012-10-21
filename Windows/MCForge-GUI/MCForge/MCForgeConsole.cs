@@ -99,7 +99,7 @@ namespace MCForge.Gui
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override string getName()
 		{
-			return "Test";
+			return "Console";
 		}
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
@@ -113,12 +113,6 @@ namespace MCForge.Gui
 		{
 			//TODO Get input from somewhere..
 			return "";
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		[EventHandler()]
-		public void testEvent(ServerLogEvent eventa) {
-			//TODO Create event to call
 		}
 
         internal void restart()
