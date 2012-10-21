@@ -65,12 +65,11 @@ namespace MCForge.Gui
             ss.Dispose();
             Application.Run(new FormMainScreen());
 
-            if (mc.getServer().Running)
+            if (mc.getServer().Running && mc.getServer() != null)
             {
                 mc.getServer().Stop();
-                //ServerSettings.Save();
-                //GuiSettings.Save();
             }
+            Environment.Exit(0);
 		}
 		
 	}

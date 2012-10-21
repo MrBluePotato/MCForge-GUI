@@ -32,5 +32,10 @@ namespace MCForge.Gui.Dialogs {
             i.ShowDialog();
             return result;
         }
+
+        private void InputDialog_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

@@ -98,6 +98,7 @@
             // 
             // InputDialog
             // 
+            this.AcceptButton = this.buttonSubmit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -111,6 +112,7 @@
             this.MinimizeBox = false;
             this.Name = "InputDialog";
             this.Text = "InputDialog";
+            this.Load += new System.EventHandler(this.InputDialog_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
