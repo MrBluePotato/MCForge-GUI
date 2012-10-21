@@ -7,12 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using MCForge.Gui.WindowsAPI.Utils;
+using MCForge.Gui.Properties;
 
 namespace MCForge.Gui.Components {
     public partial class ChatPreview : Control {
 
         private bool _drawBackground = true;
-        private Image _background;
+        private Image _background = (Image)Resource.preview_image;
 
 
         private TextSection[] _sections;

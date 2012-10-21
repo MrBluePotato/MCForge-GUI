@@ -48,6 +48,10 @@ using net.mcforge.server;
 using MCForge.Gui.SQL_PORT;
 using net.mcforge.chat;
 using MCForge.Gui.Dialogs;
+using net.mcforge.world;
+using System.Collections.Generic;
+using java.lang;
+using java.io;
 
 namespace MCForge.Gui
 {
@@ -90,9 +94,35 @@ namespace MCForge.Gui
             }
         }
 
+        public List<string> getUnloadedLevelList()
+        {
+            List<string> levels = new List<string>();
+            File levelList = new File("levels");
+            File[] list = levelList.listFiles();
+            foreach (File f in list)
+            {
+                string name = f.getName().Split('.')[0];
+                if (getServer().getLevelHandler().findLevel(name) == null)
+                    levels.Add(name);
+            }
+            return levels;
+        }
+
         public void SendGlobalMessage(string message)
         {
             chat.serverBroadcast(message);
+        }
+
+        public int getPlayerCount(Level l)
+        {
+            int total = 0;
+            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            {
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                if (player.getLevel() == l)
+                    total++;
+            }
+            return total;
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]

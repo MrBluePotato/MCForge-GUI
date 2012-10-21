@@ -1,4 +1,5 @@
-﻿namespace MCForge.Gui.Forms {
+﻿using MCForge.Gui.WindowsAPI.Utils;
+namespace MCForge.Gui.Forms {
     partial class FormMainScreen {
         /// <summary>
         /// Required designer variable.
@@ -90,7 +91,7 @@
             this.glassMenu.Name = "glassMenu";
             this.glassMenu.Padding = new System.Windows.Forms.Padding(6, 7, 0, 2);
             this.glassMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.glassMenu.Size = new System.Drawing.Size(779, 28);
+            this.glassMenu.Size = new System.Drawing.Size(772, 28);
             this.glassMenu.TabIndex = 1;
             this.glassMenu.Text = "glassMenuStrip1";
             // 
@@ -165,14 +166,14 @@
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
@@ -237,41 +238,41 @@
             // unloadAllToolStripMenuItem
             // 
             this.unloadAllToolStripMenuItem.Name = "unloadAllToolStripMenuItem";
-            this.unloadAllToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.unloadAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unloadAllToolStripMenuItem.Text = "Unload All";
             // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reloadAllToolStripMenuItem.Text = "Unload Empty";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // reloadAllToolStripMenuItem1
             // 
             this.reloadAllToolStripMenuItem1.Name = "reloadAllToolStripMenuItem1";
-            this.reloadAllToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.reloadAllToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.reloadAllToolStripMenuItem1.Text = "Reload All";
             // 
             // reloadEmptyToolStripMenuItem
             // 
             this.reloadEmptyToolStripMenuItem.Name = "reloadEmptyToolStripMenuItem";
-            this.reloadEmptyToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.reloadEmptyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reloadEmptyToolStripMenuItem.Text = "Reload Empty";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // mapManagerToolStripMenuItem
             // 
             this.mapManagerToolStripMenuItem.Name = "mapManagerToolStripMenuItem";
-            this.mapManagerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.mapManagerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapManagerToolStripMenuItem.Text = "Map Manager";
             this.mapManagerToolStripMenuItem.Click += new System.EventHandler(this.mapManagerToolStripMenuItem_Click);
             // 
@@ -442,7 +443,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 572);
+            this.ClientSize = new System.Drawing.Size(772, 572);
             this.Controls.Add(this.lstLevels);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lstPlayers);

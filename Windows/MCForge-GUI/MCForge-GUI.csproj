@@ -187,6 +187,12 @@
     <Compile Include="Dialogs\InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\MapManagerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MapManagerDialog.designer.cs">
+      <DependentUpon>MapManagerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\NewsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapManagerDialog.resx">
+      <DependentUpon>MapManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewsDialog.resx">
       <DependentUpon>NewsDialog.cs</DependentUpon>
