@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MCForge.Gui.Forms;
-using net.mcforge.server;
+using MCForge.Gui;
 
-namespace MCForge.Gui
+namespace MCForge
 {
     public class Logger
     {
@@ -22,26 +21,19 @@ namespace MCForge.Gui
 
     public class Player
     {
-        private static Server s = Program.console.getServer();
         public static void UniversalChatOps(string message)
         {
-            java.util.ArrayList players = s.players;
-            for (int i = 0; i < players.size(); i++) {
-                net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)players.get(i);
-                if (p.getGroup().permissionlevel >= 50) {
-                    p.sendMessage(message);
-                }
-            }
+            Program.console.SendOpMessage(message);
         }
 
         public static void UniversalChatAdmins(string message)
         {
-
+            Program.console.SendOpMessage(message);
         }
 
         public static void UniversalChat(string message)
         {
-            
+            Program.console.SendGlobalMessage(message);
         }
 
         public static net.mcforge.iomodel.Player Find(string player)

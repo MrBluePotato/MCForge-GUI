@@ -91,12 +91,32 @@ namespace MCForge.Gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] minecraft {
+            get {
+                object obj = ResourceManager.GetObject("minecraft", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap preview_image {
             get {
                 object obj = ResourceManager.GetObject("preview_image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Ubuntu {
+            get {
+                object obj = ResourceManager.GetObject("Ubuntu", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
