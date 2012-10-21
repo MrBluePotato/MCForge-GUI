@@ -50,32 +50,34 @@ using net.mcforge.chat;
 
 namespace MCForge.Gui
 {
-	/// <summary>
-	/// The console for the server
-	/// </summary>
-	public class MCForgeConsole : net.mcforge.system.Console, Listener
-	{
-		private Server server;
-		private ISQL sql;
+    /// <summary>
+    /// The console for the server
+    /// </summary>
+    public class MCForgeConsole : net.mcforge.system.Console, Listener
+    {
+        private Server server;
+        private ISQL sql;
         private Messages chat;
         private string lastmessage;
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public void Start() {
-			server = new Server("[MCForge] Default", 25565, "Welcome!");
-			server.Start(this, false);
-			if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
-				sql = new MCForge.Gui.SQL_PORT.SQLite();
-			else {
-				sql = new MCForge.Gui.SQL_PORT.MySQL();
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
-				((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
-			}
-			server.getEventSystem().registerEvents(this);
-			server.startSQL(sql);
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public void Start()
+        {
+            server = new Server("[MCForge] Default", 25565, "Welcome!");
+            server.Start(this, false);
+            if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
+                sql = new MCForge.Gui.SQL_PORT.SQLite();
+            else
+            {
+                sql = new MCForge.Gui.SQL_PORT.MySQL();
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
+                ((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
+            }
+            server.getEventSystem().registerEvents(this);
+            server.startSQL(sql);
             chat = new Messages(server);
-		}
+        }
 
         public void SendOpMessage(string message)
         {
@@ -91,32 +93,32 @@ namespace MCForge.Gui
         {
             chat.serverBroadcast(message);
         }
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override net.mcforge.groups.Group getGroup()
-		{
-			return net.mcforge.groups.Group.getDefault();
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override string getName()
-		{
-			return "Console";
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override void sendMessage(string s)
-		{
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override net.mcforge.groups.Group getGroup()
+        {
+            return net.mcforge.groups.Group.getDefault();
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override string getName()
+        {
+            return "Console";
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override void sendMessage(string s)
+        {
             lastmessage = s;
-			server.Log(s);
-		}
-		
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public override string next()
-		{
-			//TODO Get input from somewhere..
-			return "";
-		}
+            server.Log(s);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override string next()
+        {
+            //TODO Get input from somewhere..
+            return "";
+        }
 
         public override bool nextBoolean()
         {
