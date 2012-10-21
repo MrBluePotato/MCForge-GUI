@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainScreen));
             this.glassMenu = new MCForge.Gui.Components.GlassMenuStrip();
             this.serverToolStripMenuItem = new MCForge.Gui.Components.GlassToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,6 +36,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.utilitiesToolStripMenuItem = new MCForge.Gui.Components.GlassToolStripMenuItem();
             this.portToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plToolStripMenuItem = new MCForge.Gui.Components.GlassToolStripMenuItem();
             this.kickAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kickNonopsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +69,6 @@
             this.txtMessage = new MCForge.Gui.Components.HintedTextbox();
             this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
             this.lstLevels = new System.Windows.Forms.ListBox();
-            this.makerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glassMenu.SuspendLayout();
             this.ctxLogStrip.SuspendLayout();
             this.SuspendLayout();
@@ -108,25 +109,25 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
@@ -164,9 +165,16 @@
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
+            // 
+            // makerToolStripMenuItem
+            // 
+            this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.makerToolStripMenuItem.Text = "Maker";
+            this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
             // plToolStripMenuItem
             // 
@@ -430,13 +438,6 @@
             this.lstLevels.Size = new System.Drawing.Size(260, 276);
             this.lstLevels.TabIndex = 11;
             // 
-            // makerToolStripMenuItem
-            // 
-            this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.makerToolStripMenuItem.Text = "Maker";
-            this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
-            // 
             // FormMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +449,8 @@
             this.Controls.Add(this.cmbChatType);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.glassMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMainScreen";
             this.Text = "MCForge 6";
             this.Load += new System.EventHandler(this.FormMainScreen_Load);

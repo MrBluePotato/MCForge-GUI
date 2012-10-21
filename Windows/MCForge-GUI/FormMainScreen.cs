@@ -279,8 +279,8 @@ namespace MCForge.Gui.Forms {
         #region Main Menu
 
         private void portToolsToolStripMenuItem_Click(object sender, EventArgs e) {
-            //using ( var pTools = new PortToolsDialog() )
-            //    pTools.ShowDialog();
+            using ( var pTools = new PortToolsDialog() )
+                pTools.ShowDialog();
         }
 
 
@@ -307,10 +307,10 @@ namespace MCForge.Gui.Forms {
         }
 
         private void playerManagerToolStripMenuItem_Click(object sender, EventArgs e) {
-            /*using ( var dialog = new PlayerManagerDialog() )
+            using ( var dialog = new PlayerManagerDialog() )
                 if ( dialog.ShowDialog() == System.Windows.Forms.DialogResult.Yes ) {
                     //TODO: Save
-                }*/
+                }
         }
 
 
