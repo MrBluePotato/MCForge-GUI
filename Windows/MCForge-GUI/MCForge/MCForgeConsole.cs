@@ -39,6 +39,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 #endregion
 using System;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using net.mcforge.groups;
 using net.mcforge.API;
 using net.mcforge.API.io;
@@ -57,6 +58,7 @@ namespace MCForge.Gui
 		private Server server;
 		private ISQL sql;
         private Messages chat;
+        private string lastmessage;
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public void Start() {
@@ -105,6 +107,7 @@ namespace MCForge.Gui
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public override void sendMessage(string s)
 		{
+            lastmessage = s;
 			server.Log(s);
 		}
 		
@@ -114,6 +117,12 @@ namespace MCForge.Gui
 			//TODO Get input from somewhere..
 			return "";
 		}
+
+        public override bool nextBoolean()
+        {
+            DialogResult result = MessageBox.Show(lastmessage, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            return result == DialogResult.Yes;
+        }
 
         internal void restart()
         {
