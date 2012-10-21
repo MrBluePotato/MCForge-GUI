@@ -47,6 +47,7 @@ using net.mcforge.sql;
 using net.mcforge.server;
 using MCForge.Gui.SQL_PORT;
 using net.mcforge.chat;
+using MCForge.Gui.Dialogs;
 
 namespace MCForge.Gui
 {
@@ -116,8 +117,7 @@ namespace MCForge.Gui
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override string next()
         {
-            //TODO Get input from somewhere..
-            return "";
+            return InputDialog.showDialog("Question", lastmessage, "Submit");
         }
 
         public override bool nextBoolean()
