@@ -72,6 +72,7 @@
             this.lstPlayers.FormattingEnabled = true;
             this.lstPlayers.Location = new System.Drawing.Point(7, 20);
             this.lstPlayers.Name = "lstPlayers";
+            this.lstPlayers.SelectedItem = "";
             this.lstPlayers.Size = new System.Drawing.Size(230, 485);
             this.lstPlayers.TabIndex = 0;
             this.lstPlayers.SelectedIndexChanged += new System.EventHandler(this.lstPlayers_SelectedIndexChanged);
@@ -178,6 +179,7 @@
             this.btnEditRank.TabIndex = 44;
             this.btnEditRank.Text = "Edit Rank";
             this.btnEditRank.UseVisualStyleBackColor = true;
+            this.btnEditRank.Click += new System.EventHandler(this.btnEditRank_Click);
             // 
             // txtRank
             // 
@@ -210,6 +212,7 @@
             this.btnEditMap.TabIndex = 41;
             this.btnEditMap.Text = "Edit Map";
             this.btnEditMap.UseVisualStyleBackColor = true;
+            this.btnEditMap.Click += new System.EventHandler(this.btnEditMap_Click);
             // 
             // txtTitle
             // 
@@ -341,6 +344,7 @@
             this.btnColor.TabIndex = 29;
             this.btnColor.Text = "Purple";
             this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // txtStatus
             // 
@@ -393,6 +397,8 @@
             this.Controls.Add(this.grpPlayerList);
             this.Name = "PlayerManagerDialog";
             this.Text = "PlayerManagerDialog";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlayerManagerDialog_FormClosed);
+            this.Load += new System.EventHandler(this.PlayerManagerDialog_Load);
             this.grpPlayerList.ResumeLayout(false);
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();

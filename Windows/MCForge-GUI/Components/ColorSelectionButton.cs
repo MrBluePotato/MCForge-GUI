@@ -13,7 +13,8 @@ namespace MCForge.Gui.Components {
     public partial class ColorSelectionButton : Button {
 
         private ColorRelation _relation;
-
+        public delegate void RelationChanged();
+        public event RelationChanged OnColorRelationChanged;
 
         [Browsable( false )]
         public ColorRelation Relation {
@@ -56,6 +57,8 @@ namespace MCForge.Gui.Components {
                 return;
 
             Relation = dialog.Relation;
+            if (OnColorRelationChanged != null)
+                OnColorRelationChanged();
         }
 
     }
