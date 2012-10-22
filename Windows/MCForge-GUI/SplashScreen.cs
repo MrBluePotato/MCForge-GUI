@@ -63,6 +63,7 @@ using net.mcforge.groups;
 using MCForge.Gui.Dialogs;
 using MCForge.Gui.WindowsAPI;
 using MCForge.Gui.WindowsAPI.Utils;
+using System.Net;
 
 
 namespace MCForge.Gui
@@ -135,6 +136,11 @@ namespace MCForge.Gui
 				DrawText("Downloading updates...");
 				u.downloadUpdates(this);
 			}
+            DrawText("Getting Changelog...");
+            using (WebClient c = new WebClient())
+            {
+                c.DownloadFile(Program.ChangeLogDownload, "ChangeLog.txt");
+            }
 			StartServer();
 		}
 		

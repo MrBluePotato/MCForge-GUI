@@ -82,6 +82,7 @@ namespace MCForge.Gui
             server.getEventSystem().registerEvents(this);
             server.startSQL(sql);
             chat = new Messages(server);
+            Program.running = true;
         }
 
         public void SendOpMessage(string message)

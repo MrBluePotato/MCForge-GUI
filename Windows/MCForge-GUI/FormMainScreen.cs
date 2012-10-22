@@ -89,9 +89,6 @@ namespace MCForge.Gui.Forms {
             Logger.Log("&6Warning: Running MCForge in Debug mode. Results may vary.");
 #endif
 
-            //if ( !String.IsNullOrWhiteSpace(Server.) )
-            //    Logger.Log(Server.URL);
-
         }
 
         private void FormMainScreen_Shown(object sender, EventArgs e) {
@@ -213,17 +210,6 @@ namespace MCForge.Gui.Forms {
             lstPlayers.AddIfNotExist(color, eventargs.getPlayer().getName());
         }
 
-        /*void Logger_OnRecieveErrorLog(object sender, ErrorLogEventArgs e) {
-            if ( InvokeRequired ) {
-                BeginInvoke((MethodInvoker)delegate { Logger_OnRecieveErrorLog(sender, e); });
-                return;
-            }
-
-            txtLog.AppendLog("&4\t------[Error]-----" + Environment.NewLine);
-            txtLog.AppendLog("&4\t" + e.Message + Environment.NewLine);
-            txtLog.AppendLog(Environment.NewLine);
-        }*/
-
         [EventHandler()]
         void LoggedEvent(ServerLogEvent eventarg)
         {
@@ -290,7 +276,7 @@ namespace MCForge.Gui.Forms {
         }
 
         private void reportAProblemToolStripMenuItem_Click(object sender, EventArgs e) {
-            Process.Start("http://www.mcforge.net/forums/forumdisplay.php?fid=5");
+            Process.Start("http://www.mcforge.net/community/tracker/project-1-mcforge/");
         }
 
         private void documentationToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -303,7 +289,7 @@ namespace MCForge.Gui.Forms {
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e) {
             _restarting = true;
-            Close();
+            //Close();
             Program.console.restart();
         }
 
@@ -326,11 +312,11 @@ namespace MCForge.Gui.Forms {
         }
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e) {
-            //using ( TextOnlyDialog dialog = new TextOnlyDialog() ) {
-            //    dialog.Text = "ChangeLog";
-            //    dialog.ContentText = "Logs of change\nLogs of changyyy\nOMGESUS";
-            //    dialog.ShowDialog();
-            //}
+            using ( TextOnlyDialog dialog = new TextOnlyDialog() ) {
+                dialog.Text = "ChangeLog";
+                dialog.ContentText = System.IO.File.ReadAllText("ChangeLog.txt");
+                dialog.ShowDialog();
+            }
         }
 
         private void makerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -340,6 +326,16 @@ namespace MCForge.Gui.Forms {
         }
 
         #endregion
+
+        private void FormMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LevelLoadEvent.getEventList().unregister(this);
+            LevelUnloadEvent.getEventList().unregister(this);
+            PlayerDisconnectEvent.getEventList().unregister(this);
+            PlayerConnectEvent.getEventList().unregister(this);
+            ServerLogEvent.getEventList().unregister(this);
+            Program.running = false;
+        }
 
     }
 }
