@@ -70,8 +70,16 @@ namespace MCForge.Gui.Forms {
             this.txtMessage = new MCForge.Gui.Components.HintedTextbox();
             this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
             this.lstLevels = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.glassMenu.SuspendLayout();
             this.ctxLogStrip.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // glassMenu
@@ -385,10 +393,10 @@ namespace MCForge.Gui.Forms {
             this.txtLog.BackColor = System.Drawing.Color.White;
             this.txtLog.ContextMenuStrip = this.ctxLogStrip;
             this.txtLog.ForeColor = System.Drawing.Color.Black;
-            this.txtLog.Location = new System.Drawing.Point(13, 44);
+            this.txtLog.Location = new System.Drawing.Point(6, 19);
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(488, 494);
+            this.txtLog.Size = new System.Drawing.Size(488, 416);
             this.txtLog.TabIndex = 5;
             this.txtLog.Text = "";
             // 
@@ -419,37 +427,89 @@ namespace MCForge.Gui.Forms {
             // 
             // lstPlayers
             // 
-            this.lstPlayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstPlayers.FormattingEnabled = true;
-            this.lstPlayers.ItemHeight = 17;
-            this.lstPlayers.Location = new System.Drawing.Point(507, 326);
+            this.lstPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lstPlayers.ItemHeight = 18;
+            this.lstPlayers.Location = new System.Drawing.Point(6, 19);
             this.lstPlayers.Name = "lstPlayers";
             this.lstPlayers.SelectedItem = "";
-            this.lstPlayers.Size = new System.Drawing.Size(260, 242);
+            this.lstPlayers.Size = new System.Drawing.Size(239, 184);
             this.lstPlayers.TabIndex = 9;
+            this.lstPlayers.SelectedIndexChanged += new System.EventHandler(this.lstPlayers_SelectedIndexChanged);
+            this.lstPlayers.Leave += new System.EventHandler(this.lstPlayers_Leave);
             // 
             // lstLevels
             // 
             this.lstLevels.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstLevels.FormattingEnabled = true;
             this.lstLevels.ItemHeight = 16;
-            this.lstLevels.Location = new System.Drawing.Point(507, 44);
+            this.lstLevels.Location = new System.Drawing.Point(6, 19);
             this.lstLevels.Name = "lstLevels";
-            this.lstLevels.Size = new System.Drawing.Size(260, 276);
+            this.lstLevels.Size = new System.Drawing.Size(238, 244);
             this.lstLevels.TabIndex = 11;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(13, 44);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(488, 21);
+            this.textBox1.TabIndex = 12;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtLog);
+            this.groupBox1.Location = new System.Drawing.Point(10, 71);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(500, 441);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Console";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(10, 518);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(500, 50);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Commands";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lstLevels);
+            this.groupBox3.Location = new System.Drawing.Point(516, 44);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(251, 276);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Levels";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lstPlayers);
+            this.groupBox4.Location = new System.Drawing.Point(516, 326);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(251, 237);
+            this.groupBox4.TabIndex = 12;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Players";
             // 
             // FormMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 572);
-            this.Controls.Add(this.lstLevels);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.lstPlayers);
             this.Controls.Add(this.cmbChatType);
-            this.Controls.Add(this.txtLog);
             this.Controls.Add(this.glassMenu);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMainScreen";
@@ -460,6 +520,9 @@ namespace MCForge.Gui.Forms {
             this.glassMenu.ResumeLayout(false);
             this.glassMenu.PerformLayout();
             this.ctxLogStrip.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,6 +575,11 @@ namespace MCForge.Gui.Forms {
         private Components.ColoredListBox lstPlayers;
         private System.Windows.Forms.ListBox lstLevels;
         private System.Windows.Forms.ToolStripMenuItem makerToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
 
 
     }

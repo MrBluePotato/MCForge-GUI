@@ -112,6 +112,7 @@ namespace MCForge.Gui
         public void SendGlobalMessage(string message)
         {
             chat.serverBroadcast(message);
+            sendMessage(message);
         }
 
         public int getPlayerCount(Level l)

@@ -32,10 +32,29 @@ using net.mcforge.world;
 using net.mcforge.iomodel;
 using net.mcforge.server;
 using net.mcforge.API.plugin;
+using net.mcforge.groups;
+using net.mcforge.chat;
 
 namespace MCForge.Gui.Forms {
     public partial class FormMainScreen : AeroForm, IFormSharer, Listener {
+        private net.mcforge.iomodel.Player _current;
 
+        public net.mcforge.iomodel.Player CurrentPlayer
+        {
+            get
+            {
+                return _current;
+            }
+            set
+            {
+                if (value == null)
+                    resetToolbar();
+                else
+                    updateToolbar();
+                _current = value;
+            }
+        }
+                    
         private static Server Server
         {
             get
@@ -47,6 +66,7 @@ namespace MCForge.Gui.Forms {
 
         public FormMainScreen() {
             InitializeComponent();
+            ExternalInitializeComponent();
         }
 
         protected override void OnPaint(PaintEventArgs e) {
@@ -88,13 +108,39 @@ namespace MCForge.Gui.Forms {
 #if DEBUG
             Logger.Log("&6Warning: Running MCForge in Debug mode. Results may vary.");
 #endif
+            new System.Threading.Thread(waitForURL).Start();
 
+        }
+
+        private void waitForURL()
+        {
+            while (!System.IO.File.Exists("url.txt"))
+            {
+                System.Threading.Thread.Sleep(3000);
+            }
+            setURL(System.IO.File.ReadAllText("url.txt"));
+        }
+
+        private void setURL(string url)
+        {
+            if (InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate { setURL(url); });
+                return;
+            }
+            textBox1.Text = url;
         }
 
         private void FormMainScreen_Shown(object sender, EventArgs e) {
             //if ( GuiSettings.GetSettingBoolean(GuiSettings.SHOW_NEWS_KEY) )
             using ( var news = new NewsDialog() )
                news.ShowDialog();
+        }
+
+
+        private void textBox1_DoubleClick(object sender, System.EventArgs e)
+        {
+            textBox1.SelectAll();
         }
 
         private void txtMessage_KeyDown(object sender, KeyEventArgs e) {
@@ -154,6 +200,16 @@ namespace MCForge.Gui.Forms {
                 cmbChatType.SelectedIndex = ( cmbChatType.SelectedIndex == 0 || cmbChatType.SelectedIndex == -1 ? (cmbChatType.Items.Count == 0 ? 0 : cmbChatType.Items.Count - 1) : cmbChatType.SelectedIndex - 1 );
             }
 
+        }
+
+        private void FormMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LevelLoadEvent.getEventList().unregister(this);
+            LevelUnloadEvent.getEventList().unregister(this);
+            PlayerDisconnectEvent.getEventList().unregister(this);
+            PlayerConnectEvent.getEventList().unregister(this);
+            ServerLogEvent.getEventList().unregister(this);
+            Program.running = false;
         }
 
         #endregion
@@ -327,15 +383,192 @@ namespace MCForge.Gui.Forms {
 
         #endregion
 
-        private void FormMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        #region Player Menu Changer
+        private void lstPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LevelLoadEvent.getEventList().unregister(this);
-            LevelUnloadEvent.getEventList().unregister(this);
-            PlayerDisconnectEvent.getEventList().unregister(this);
-            PlayerConnectEvent.getEventList().unregister(this);
-            ServerLogEvent.getEventList().unregister(this);
-            Program.running = false;
+            if (lstPlayers.SelectedIndex == -1)
+            {
+                CurrentPlayer = null;
+                return;
+            }
+            string name = lstPlayers.Items[lstPlayers.SelectedIndex].ToString();
+            CurrentPlayer = Program.console.getServer().findPlayer(name);
         }
 
+        private void updateToolbar() {
+            this.glassMenu.Items.Clear();
+            this.glassMenu.Items.AddRange(new ToolStripItem[] {
+                this.serverToolStripMenuItem,
+                this.ranks,
+                this.moderate, 
+                this.titles,
+                this.mapsToolStripMenuItem,
+                this.helpToolStripMenuItem
+            });
+        }
+
+        private void resetToolbar() {
+            this.glassMenu.Items.Clear();
+            this.glassMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serverToolStripMenuItem,
+            this.pluginsToolStripMenuItem,
+            this.utilitiesToolStripMenuItem,
+            this.plToolStripMenuItem,
+            this.mapsToolStripMenuItem,
+            this.helpToolStripMenuItem});
+        }
+
+        //===Player Tooltip Items===
+        GlassToolStripMenuItem ranks = new GlassToolStripMenuItem();
+        ToolStripMenuItem promote = new ToolStripMenuItem();
+        ToolStripMenuItem demote = new ToolStripMenuItem();
+        ToolStripMenuItem setrank = new ToolStripMenuItem();
+
+        GlassToolStripMenuItem moderate = new GlassToolStripMenuItem();
+        ToolStripMenuItem mute = new ToolStripMenuItem();
+        ToolStripMenuItem kick = new ToolStripMenuItem();
+        ToolStripMenuItem ban = new ToolStripMenuItem();
+        ToolStripMenuItem ipban = new ToolStripMenuItem();
+       
+
+        GlassToolStripMenuItem titles = new GlassToolStripMenuItem();
+        ToolStripMenuItem settitle = new ToolStripMenuItem();
+
+        private void lstPlayers_Leave(object sender, EventArgs e)
+        {
+            lstPlayers.SelectedIndex = -1;
+        }
+
+        private void ExternalInitializeComponent()
+        {
+            this.ranks.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                 this.promote,
+                 this.demote,
+                 this.setrank
+             });
+            this.ranks.GradiantColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.ranks.Name = "rank";
+            this.ranks.Text = "Rank";
+            this.ranks.Size = new System.Drawing.Size(58, 19);
+            this.promote.Size = new System.Drawing.Size(128, 22);
+            this.promote.Name = "promote";
+            this.promote.Text = "Promote";
+            this.promote.Click += promote_Click;
+            this.demote.Size = new System.Drawing.Size(128, 22);
+            this.demote.Name = "demote";
+            this.demote.Text = "Demote";
+            this.demote.Click += demote_Click;
+            this.setrank.Size = new System.Drawing.Size(128, 22);
+            this.setrank.Name = "setrank";
+            this.setrank.Text = "Set Rank";
+            this.setrank.Click += setrank_Click;
+
+            this.moderate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                mute,
+                kick,
+                ban,
+                ipban
+            });
+            this.moderate.GradiantColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.moderate.Name = "moderate";
+            this.moderate.Text = "Moderation";
+            this.moderate.Size = new System.Drawing.Size(58, 19);
+            this.mute.Size = new System.Drawing.Size(128, 22);
+            this.mute.Name = "mute";
+            this.mute.Text = "Mute";
+            this.kick.Size = new System.Drawing.Size(128, 22);
+            this.kick.Name = "kick";
+            this.kick.Text = "Kick";
+            this.ban.Size = new System.Drawing.Size(128, 22);
+            this.ban.Name = "ban";
+            this.ban.Text = "Ban";
+            this.ipban.Size = new System.Drawing.Size(128, 22);
+            this.ipban.Name = "ipban";
+            this.ipban.Text = "IP Ban";
+
+
+            this.titles.GradiantColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.titles.Name = "title";
+            this.titles.Text = "Title";
+            this.titles.Size = new System.Drawing.Size(56, 19);
+        }
+
+        void setrank_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Program.console.sendMessage("Type the name of the rank to promote the player to.");
+            string name = Program.console.next();
+            while (Group.find(name) == null)
+            {
+                Program.console.sendMessage("That rank doesnt exists..\n\rType the name of the rank to promote the player to.");
+                name = Program.console.next();
+            }
+            Group g = Group.find(name);
+            CurrentPlayer.setGroup(g);
+            CurrentPlayer.sendMessage("You are now ranked " + g.name + ChatColor.White + ", type /help for your new set of commands.");
+            Program.console.SendGlobalMessage(CurrentPlayer.getDisplayName() + ChatColor.White + "'s rank was set to " + g.name);
+            Program.console.SendGlobalMessage("&6Congratulations!");
+        }
+
+        void demote_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Group startGroup = CurrentPlayer.getGroup();
+            if (startGroup == null)
+                return;
+            int perms = startGroup.permissionlevel;
+            Group highabove = null;
+            for (int i = 0; i < Group.getGroupList().size(); i++)
+            {
+                Group g = (Group)Group.getGroupList().get(i);
+                if (g.permissionlevel < startGroup.permissionlevel)
+                {
+                    if (highabove == null) { highabove = g; }
+                    if (highabove.permissionlevel < g.permissionlevel) { highabove = g; }
+                }
+            }
+            if (highabove == null) return;
+            CurrentPlayer.setGroup(highabove);
+            CurrentPlayer.sendMessage("You are now ranked " + highabove.name + ChatColor.White + ", type /help for your new set of commands.");
+            Program.console.SendGlobalMessage(CurrentPlayer.getDisplayName() + ChatColor.White + "'s rank was set to " + highabove.name);
+            Program.console.SendGlobalMessage("&6Congratulations!");
+        }
+
+        void promote_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Group startGroup = CurrentPlayer.getGroup();
+            if (startGroup == null)
+                return;
+            int perms = startGroup.permissionlevel;
+            Group lowestabove = null;
+            for (int i = 0; i < Group.getGroupList().size(); i++)
+            {
+                Group g = (Group)Group.getGroupList().get(i);
+                if (g.permissionlevel > startGroup.permissionlevel)
+                {
+                    if (lowestabove == null) { lowestabove = g; }
+                    if (lowestabove.permissionlevel > g.permissionlevel) { lowestabove = g; }
+                }
+            }
+            if (lowestabove == null) return;
+            CurrentPlayer.setGroup(lowestabove);
+            CurrentPlayer.sendMessage("You are now ranked " + lowestabove.name + ChatColor.White + ", type /help for your new set of commands.");
+            Program.console.SendGlobalMessage(CurrentPlayer.getDisplayName() + ChatColor.White + "'s rank was set to " + lowestabove.name);
+            Program.console.SendGlobalMessage("&6Congratulations!");
+        }
+        #endregion
     }
 }
