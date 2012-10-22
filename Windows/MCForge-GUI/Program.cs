@@ -53,6 +53,8 @@ namespace MCForge.Gui
 			}
 		}
         public static bool running = true;
+
+        public static string ChangeLogDownload = "http://www.mcforge.net/changelog.txt";
 		/// <summary>
 		/// Program entry point.
 		/// </summary>

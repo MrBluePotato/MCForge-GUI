@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MCForge.Gui.Components;
-using MCForge.Gui.WindowsAPI.Utils;
+using MCForge.Gui.WindowsAPI;
 
 namespace MCForge.Gui.Dialogs {
     public partial class TextOnlyDialog : AeroForm {
@@ -27,31 +27,45 @@ namespace MCForge.Gui.Dialogs {
 
         private void TextOnlyDialog_Load(object sender, EventArgs e) {
 
-            if ( Natives.CanUseAero ) {
+            if (AeroAPI.CanUseAero)
+            {
 
                 this.GlassArea = new Rectangle {
-                    Location = label1.Location,
-                    Width = label1.Location.X, 
-                    Height = label1.Location.Y + 30
+                    Location = textBox1.Location,
+                    Width = textBox1.Location.X,
+                    Height = textBox1.Location.Y + 30
                 };
-
+                this.button1.Visible = false;
                 Invalidate();
             }
             else {
-                label1.BackColor = BackColor;
-                label1.Padding = new Padding();
+                textBox1.BackColor = BackColor;
+                textBox1.Padding = new Padding();
+                this.aeroButton1.Visible = false;
             }
 
-            label1.Text = ContentText;
+            ContentText = ContentText.Replace("\n", "\r\n");
+            textBox1.Text = ContentText;
+            textBox1.Multiline = true;
+            textBox1.ReadOnly = true;
         }
 
         protected override void OnPaint(PaintEventArgs e) {
-            if ( !Natives.CanUseAero ) {
+            if (!AeroAPI.CanUseAero) {
                 base.OnPaint(e);
                 return;
             }
-
             e.Graphics.Clear(Color.Black);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aeroButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }
