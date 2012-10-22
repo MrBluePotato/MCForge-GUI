@@ -137,6 +137,7 @@
             this.Controls.Add(this.grpUnloaded);
             this.Name = "MapManagerDialog";
             this.Text = "MapManagerDialog";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapManagerDialog_FormClosed);
             this.Load += new System.EventHandler(this.MapManagerDialog_Load);
             this.grpUnloaded.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

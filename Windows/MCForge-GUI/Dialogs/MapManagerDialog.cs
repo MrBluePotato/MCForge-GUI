@@ -160,5 +160,11 @@ namespace MCForge.Gui.Dialogs {
             btnBackup.Enabled = !(lstUnloaded.SelectedIndex == -1);
         }
 
+        private void MapManagerDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LevelLoadEvent.getEventList().unregister(this);
+            LevelUnloadEvent.getEventList().unregister(this);
+        }
+
     }
 }

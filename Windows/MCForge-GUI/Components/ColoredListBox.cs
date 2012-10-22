@@ -76,7 +76,7 @@ namespace MCForge.Gui.Components {
         /// <param name="color">The color.</param>
         /// <param name="text">The text.</param>
         public void AddIfNotExist(char color, string text) {
-            for ( int i = 0; i < Items.Count; i++ ) {
+            for ( int i = 0; i < Items.Count;  i++ ) {
                 var item = Items[i] as ColoredItem;
 
                 if ( item == null )
