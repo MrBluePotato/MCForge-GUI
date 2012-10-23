@@ -251,6 +251,8 @@ namespace MCForge.Gui.Forms {
                 return;
             }
             lstPlayers.RemoveIfExists(eventargs.getPlayer().getName());
+            if (eventargs.getPlayer() == CurrentPlayer)
+                CurrentPlayer = null;
         }
 
         [EventHandler()]
@@ -479,18 +481,57 @@ namespace MCForge.Gui.Forms {
             this.kick.Size = new System.Drawing.Size(128, 22);
             this.kick.Name = "kick";
             this.kick.Text = "Kick";
+            this.kick.Click += kick_Click;
             this.ban.Size = new System.Drawing.Size(128, 22);
             this.ban.Name = "ban";
             this.ban.Text = "Ban";
+            this.ban.Click += ban_Click;
             this.ipban.Size = new System.Drawing.Size(128, 22);
             this.ipban.Name = "ipban";
             this.ipban.Text = "IP Ban";
+            this.ipban.Click += ipban_Click;
 
 
             this.titles.GradiantColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.titles.Name = "title";
             this.titles.Text = "Title";
             this.titles.Size = new System.Drawing.Size(56, 19);
+        }
+
+        void ipban_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Program.console.sendMessage("Please provide a reason.");
+            string reason = Program.console.next();
+            //TODO Request ban
+        }
+
+        void ban_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Program.console.sendMessage("Please provide a reason.");
+            string reason = Program.console.next();
+            //TODO Request ban
+        }
+
+        void kick_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlayer == null)
+            {
+                resetToolbar();
+                return;
+            }
+            Program.console.sendMessage("Please provide a reason.");
+            string reason = Program.console.next();
+            CurrentPlayer.kick(reason);
         }
 
         void setrank_Click(object sender, EventArgs e)
