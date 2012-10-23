@@ -73,7 +73,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewsDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "NewsDialog";
+            this.Text = "News ";
             this.Load += new System.EventHandler(this.NewsDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
