@@ -427,6 +427,7 @@ namespace MCForge.Gui.Forms {
             // 
             // lstPlayers
             // 
+            this.lstPlayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstPlayers.FormattingEnabled = true;
             this.lstPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;

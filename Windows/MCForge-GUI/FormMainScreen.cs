@@ -36,7 +36,7 @@ using net.mcforge.groups;
 using net.mcforge.chat;
 
 namespace MCForge.Gui.Forms {
-    public partial class FormMainScreen : AeroForm, IFormSharer, Listener {
+    public partial class  FormMainScreen : AeroForm, IFormSharer, Listener {
         private net.mcforge.iomodel.Player _current;
 
         public net.mcforge.iomodel.Player CurrentPlayer
@@ -507,7 +507,7 @@ namespace MCForge.Gui.Forms {
             }
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
-            //TODO Request ban
+            CurrentPlayer.ipBan(Program.console, reason);
         }
 
         void ban_Click(object sender, EventArgs e)
@@ -519,7 +519,7 @@ namespace MCForge.Gui.Forms {
             }
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
-            //TODO Request ban
+            CurrentPlayer.ban(Program.console, reason);
         }
 
         void kick_Click(object sender, EventArgs e)
