@@ -23,9 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ServerSettingsDialog
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ServerSettingsDialog";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "ServerSettingsDialog";
+            this.Text = "Server settings";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

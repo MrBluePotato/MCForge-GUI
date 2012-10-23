@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorSelectionDialog));
             this.btnBlack = new MCForge.Gui.Components.ColorRelatedButton();
             this.btnDarkBlue = new MCForge.Gui.Components.ColorRelatedButton();
             this.btnDarkGreen = new MCForge.Gui.Components.ColorRelatedButton();
@@ -251,8 +252,7 @@
             // 
             // chatPreview1
             // 
-            //this.chatPreview1.Background = global::MCForge.Gui.Properties.Resources.preview_image;
-            //this.chatPreview1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.chatPreview1.Background = ((System.Drawing.Image)(resources.GetObject("chatPreview1.Background")));
             this.chatPreview1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatPreview1.Location = new System.Drawing.Point(13, 178);
             this.chatPreview1.Name = "chatPreview1";
@@ -305,7 +305,7 @@
             this.Controls.Add(this.btnDarkBlue);
             this.Controls.Add(this.btnBlack);
             this.Name = "ColorSelectionDialog";
-            this.Text = "ColorSelectionDialog";
+            this.Text = "Select color";
             this.Load += new System.EventHandler(this.ColorSelectionDialog_Load);
             this.ResumeLayout(false);
 

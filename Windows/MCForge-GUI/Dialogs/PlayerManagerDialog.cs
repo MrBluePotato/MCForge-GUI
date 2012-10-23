@@ -140,5 +140,23 @@ namespace MCForge.Gui.Dialogs {
 
         }
 
+        private void btnKick_Click(object sender, EventArgs e)
+        {
+            if (selectedPlayer == null)
+                return;
+            Program.console.sendMessage("Please provide a reason.");
+            string reason = Program.console.next();
+            selectedPlayer.kick(reason);
+        }
+
+        private void btnBan_Click(object sender, EventArgs e)
+        {
+            if (selectedPlayer == null)
+                return;
+            Program.console.sendMessage("Please provide a reason.");
+            string reason = Program.console.next();
+            //TODO Add ban request handler
+        }
+
     }
 }

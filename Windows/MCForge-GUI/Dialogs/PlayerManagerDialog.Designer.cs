@@ -129,7 +129,7 @@
             this.txtUndo.ForeColor = System.Drawing.Color.Gray;
             this.txtUndo.Hint = "Undo Amount";
             this.txtUndo.HintColor = System.Drawing.Color.Gray;
-            this.txtUndo.Location = new System.Drawing.Point(137, 394);
+            this.txtUndo.Location = new System.Drawing.Point(137, 247);
             this.txtUndo.Name = "txtUndo";
             this.txtUndo.Size = new System.Drawing.Size(107, 20);
             this.txtUndo.TabIndex = 48;
@@ -140,7 +140,7 @@
             // 
             this.btnUndo.Enabled = false;
             this.btnUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUndo.Location = new System.Drawing.Point(250, 392);
+            this.btnUndo.Location = new System.Drawing.Point(250, 245);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(75, 23);
             this.btnUndo.TabIndex = 47;
@@ -151,23 +151,25 @@
             // 
             this.btnBan.Enabled = false;
             this.btnBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBan.Location = new System.Drawing.Point(64, 392);
+            this.btnBan.Location = new System.Drawing.Point(64, 245);
             this.btnBan.Name = "btnBan";
             this.btnBan.Size = new System.Drawing.Size(49, 23);
             this.btnBan.TabIndex = 46;
             this.btnBan.Text = "Ban";
             this.btnBan.UseVisualStyleBackColor = true;
+            this.btnBan.Click += new System.EventHandler(this.btnBan_Click);
             // 
             // btnKick
             // 
             this.btnKick.Enabled = false;
             this.btnKick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKick.Location = new System.Drawing.Point(9, 392);
+            this.btnKick.Location = new System.Drawing.Point(9, 245);
             this.btnKick.Name = "btnKick";
             this.btnKick.Size = new System.Drawing.Size(49, 23);
             this.btnKick.TabIndex = 45;
             this.btnKick.Text = "Kick";
             this.btnKick.UseVisualStyleBackColor = true;
+            this.btnKick.Click += new System.EventHandler(this.btnKick_Click);
             // 
             // btnEditRank
             // 
@@ -219,7 +221,7 @@
             this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(55, 188);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(90, 20);
+            this.txtTitle.Size = new System.Drawing.Size(159, 20);
             this.txtTitle.TabIndex = 40;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -396,7 +398,7 @@
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.grpPlayerList);
             this.Name = "PlayerManagerDialog";
-            this.Text = "PlayerManagerDialog";
+            this.Text = "Player Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlayerManagerDialog_FormClosed);
             this.Load += new System.EventHandler(this.PlayerManagerDialog_Load);
             this.grpPlayerList.ResumeLayout(false);

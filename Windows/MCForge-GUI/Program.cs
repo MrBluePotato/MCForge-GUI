@@ -41,6 +41,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using MCForge.Gui.Forms;
+using System.IO;
 
 namespace MCForge.Gui
 {
@@ -61,6 +62,7 @@ namespace MCForge.Gui
 		[STAThread]
 		private static void Main(string[] args)
 		{
+            File.Delete("url.txt");
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             SplashScreen ss = new SplashScreen();
