@@ -25,10 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.grpPlayerList = new System.Windows.Forms.GroupBox();
-            this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
             this.grpInfo = new System.Windows.Forms.GroupBox();
-            this.btnTitleColor = new MCForge.Gui.Components.ColorSelectionButton(this.components);
-            this.txtUndo = new MCForge.Gui.Components.HintedTextbox();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnBan = new System.Windows.Forms.Button();
             this.btnKick = new System.Windows.Forms.Button();
@@ -45,13 +42,16 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtChat = new MCForge.Gui.Components.HintedTextbox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnColor = new MCForge.Gui.Components.ColorSelectionButton(this.components);
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnTitleColor = new MCForge.Gui.Components.ColorSelectionButton(this.components);
+            this.txtUndo = new MCForge.Gui.Components.HintedTextbox();
+            this.txtChat = new MCForge.Gui.Components.HintedTextbox();
+            this.btnColor = new MCForge.Gui.Components.ColorSelectionButton(this.components);
+            this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
             this.grpPlayerList.SuspendLayout();
             this.grpInfo.SuspendLayout();
             this.SuspendLayout();
@@ -65,17 +65,6 @@
             this.grpPlayerList.TabIndex = 0;
             this.grpPlayerList.TabStop = false;
             this.grpPlayerList.Text = "Players";
-            // 
-            // lstPlayers
-            // 
-            this.lstPlayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lstPlayers.FormattingEnabled = true;
-            this.lstPlayers.Location = new System.Drawing.Point(7, 20);
-            this.lstPlayers.Name = "lstPlayers";
-            this.lstPlayers.SelectedItem = "";
-            this.lstPlayers.Size = new System.Drawing.Size(230, 485);
-            this.lstPlayers.TabIndex = 0;
-            this.lstPlayers.SelectedIndexChanged += new System.EventHandler(this.lstPlayers_SelectedIndexChanged);
             // 
             // grpInfo
             // 
@@ -111,36 +100,11 @@
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
             // 
-            // btnTitleColor
-            // 
-            this.btnTitleColor.Enabled = false;
-            this.btnTitleColor.Location = new System.Drawing.Point(220, 188);
-            this.btnTitleColor.Name = "btnTitleColor";
-            this.btnTitleColor.Relation = null;
-            this.btnTitleColor.Size = new System.Drawing.Size(97, 23);
-            this.btnTitleColor.TabIndex = 49;
-            this.btnTitleColor.Text = "colorSelectionButton1";
-            this.btnTitleColor.UseVisualStyleBackColor = true;
-            // 
-            // txtUndo
-            // 
-            this.txtUndo.Enabled = false;
-            this.txtUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUndo.ForeColor = System.Drawing.Color.Gray;
-            this.txtUndo.Hint = "Undo Amount";
-            this.txtUndo.HintColor = System.Drawing.Color.Gray;
-            this.txtUndo.Location = new System.Drawing.Point(137, 394);
-            this.txtUndo.Name = "txtUndo";
-            this.txtUndo.Size = new System.Drawing.Size(107, 20);
-            this.txtUndo.TabIndex = 48;
-            this.txtUndo.Text = "Undo Amount";
-            this.txtUndo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnUndo
             // 
             this.btnUndo.Enabled = false;
             this.btnUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUndo.Location = new System.Drawing.Point(250, 392);
+            this.btnUndo.Location = new System.Drawing.Point(250, 245);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(75, 23);
             this.btnUndo.TabIndex = 47;
@@ -151,23 +115,25 @@
             // 
             this.btnBan.Enabled = false;
             this.btnBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBan.Location = new System.Drawing.Point(64, 392);
+            this.btnBan.Location = new System.Drawing.Point(64, 245);
             this.btnBan.Name = "btnBan";
             this.btnBan.Size = new System.Drawing.Size(49, 23);
             this.btnBan.TabIndex = 46;
             this.btnBan.Text = "Ban";
             this.btnBan.UseVisualStyleBackColor = true;
+            this.btnBan.Click += new System.EventHandler(this.btnBan_Click);
             // 
             // btnKick
             // 
             this.btnKick.Enabled = false;
             this.btnKick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKick.Location = new System.Drawing.Point(9, 392);
+            this.btnKick.Location = new System.Drawing.Point(9, 245);
             this.btnKick.Name = "btnKick";
             this.btnKick.Size = new System.Drawing.Size(49, 23);
             this.btnKick.TabIndex = 45;
             this.btnKick.Text = "Kick";
             this.btnKick.UseVisualStyleBackColor = true;
+            this.btnKick.Click += new System.EventHandler(this.btnKick_Click);
             // 
             // btnEditRank
             // 
@@ -219,7 +185,7 @@
             this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(55, 188);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(90, 20);
+            this.txtTitle.Size = new System.Drawing.Size(159, 20);
             this.txtTitle.TabIndex = 40;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -308,20 +274,6 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "Chat:";
             // 
-            // txtChat
-            // 
-            this.txtChat.Enabled = false;
-            this.txtChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChat.ForeColor = System.Drawing.Color.Gray;
-            this.txtChat.Hint = "Send message or command";
-            this.txtChat.HintColor = System.Drawing.Color.Gray;
-            this.txtChat.Location = new System.Drawing.Point(46, 464);
-            this.txtChat.Multiline = true;
-            this.txtChat.Name = "txtChat";
-            this.txtChat.Size = new System.Drawing.Size(271, 37);
-            this.txtChat.TabIndex = 31;
-            this.txtChat.Text = "Send message or command";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -332,19 +284,6 @@
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 30;
             this.label2.Text = "Color: ";
-            // 
-            // btnColor
-            // 
-            this.btnColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnColor.Enabled = false;
-            this.btnColor.Location = new System.Drawing.Point(220, 12);
-            this.btnColor.Name = "btnColor";
-            this.btnColor.Relation = null;
-            this.btnColor.Size = new System.Drawing.Size(97, 23);
-            this.btnColor.TabIndex = 29;
-            this.btnColor.Text = "Purple";
-            this.btnColor.UseVisualStyleBackColor = false;
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // txtStatus
             // 
@@ -385,6 +324,69 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnTitleColor
+            // 
+            this.btnTitleColor.Enabled = false;
+            this.btnTitleColor.Location = new System.Drawing.Point(220, 188);
+            this.btnTitleColor.Name = "btnTitleColor";
+            this.btnTitleColor.Relation = null;
+            this.btnTitleColor.Size = new System.Drawing.Size(97, 23);
+            this.btnTitleColor.TabIndex = 49;
+            this.btnTitleColor.Text = "colorSelectionButton1";
+            this.btnTitleColor.UseVisualStyleBackColor = true;
+            // 
+            // txtUndo
+            // 
+            this.txtUndo.Enabled = false;
+            this.txtUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUndo.ForeColor = System.Drawing.Color.Gray;
+            this.txtUndo.Hint = "Undo Amount";
+            this.txtUndo.HintColor = System.Drawing.Color.Gray;
+            this.txtUndo.Location = new System.Drawing.Point(137, 247);
+            this.txtUndo.Name = "txtUndo";
+            this.txtUndo.Size = new System.Drawing.Size(107, 20);
+            this.txtUndo.TabIndex = 48;
+            this.txtUndo.Text = "Undo Amount";
+            this.txtUndo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtChat
+            // 
+            this.txtChat.Enabled = false;
+            this.txtChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChat.ForeColor = System.Drawing.Color.Gray;
+            this.txtChat.Hint = "Send message or command";
+            this.txtChat.HintColor = System.Drawing.Color.Gray;
+            this.txtChat.Location = new System.Drawing.Point(46, 464);
+            this.txtChat.Multiline = true;
+            this.txtChat.Name = "txtChat";
+            this.txtChat.Size = new System.Drawing.Size(271, 37);
+            this.txtChat.TabIndex = 31;
+            this.txtChat.Text = "Send message or command";
+            // 
+            // btnColor
+            // 
+            this.btnColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnColor.Enabled = false;
+            this.btnColor.Location = new System.Drawing.Point(220, 12);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Relation = null;
+            this.btnColor.Size = new System.Drawing.Size(97, 23);
+            this.btnColor.TabIndex = 29;
+            this.btnColor.Text = "Purple";
+            this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // lstPlayers
+            // 
+            this.lstPlayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lstPlayers.FormattingEnabled = true;
+            this.lstPlayers.Location = new System.Drawing.Point(7, 20);
+            this.lstPlayers.Name = "lstPlayers";
+            this.lstPlayers.SelectedItem = "";
+            this.lstPlayers.Size = new System.Drawing.Size(230, 485);
+            this.lstPlayers.TabIndex = 0;
+            this.lstPlayers.SelectedIndexChanged += new System.EventHandler(this.lstPlayers_SelectedIndexChanged);
             // 
             // PlayerManagerDialog
             // 
