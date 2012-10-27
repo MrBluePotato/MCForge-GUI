@@ -137,5 +137,17 @@ namespace MCForge.Gui.Components {
                 }
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // AeroForm
+            // 
+            this.ClientSize = new System.Drawing.Size(460, 381);
+            this.Name = "AeroForm";
+            this.ResumeLayout(false);
+
+        }
     }
 }

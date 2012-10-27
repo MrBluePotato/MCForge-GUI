@@ -116,6 +116,7 @@
             this.dtaLoaded.Size = new System.Drawing.Size(597, 583);
             this.dtaLoaded.TabIndex = 0;
             this.dtaLoaded.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtaLoaded_CellClick);
+            this.dtaLoaded.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtaLoaded_CellContentClick);
             // 
             // btnCreateLevel
             // 

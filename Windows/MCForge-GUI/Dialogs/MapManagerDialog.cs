@@ -166,5 +166,10 @@ namespace MCForge.Gui.Dialogs {
             LevelUnloadEvent.getEventList().unregister(this);
         }
 
+        private void dtaLoaded_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }
