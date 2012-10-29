@@ -155,7 +155,7 @@ namespace MCForge.Gui.Dialogs {
                 return;
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
-            //TODO Add ban request handler
+            selectedPlayer.ban(Program.console, reason);
         }
 
     }

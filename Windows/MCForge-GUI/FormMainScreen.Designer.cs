@@ -75,6 +75,7 @@ namespace MCForge.Gui.Forms {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.serverListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glassMenu.SuspendLayout();
             this.ctxLogStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -165,7 +166,8 @@ namespace MCForge.Gui.Forms {
             // 
             this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.portToolsToolStripMenuItem,
-            this.makerToolStripMenuItem});
+            this.makerToolStripMenuItem,
+            this.serverListToolStripMenuItem});
             this.utilitiesToolStripMenuItem.GradiantColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 19);
@@ -174,14 +176,14 @@ namespace MCForge.Gui.Forms {
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
@@ -427,6 +429,7 @@ namespace MCForge.Gui.Forms {
             // 
             // lstPlayers
             // 
+            this.lstPlayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstPlayers.FormattingEnabled = true;
             this.lstPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -496,6 +499,13 @@ namespace MCForge.Gui.Forms {
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Players";
+            // 
+            // serverListToolStripMenuItem
+            // 
+            this.serverListToolStripMenuItem.Name = "serverListToolStripMenuItem";
+            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverListToolStripMenuItem.Text = "Server List";
+            this.serverListToolStripMenuItem.Click += new System.EventHandler(this.serverListToolStripMenuItem_Click);
             // 
             // FormMainScreen
             // 
@@ -580,6 +590,7 @@ namespace MCForge.Gui.Forms {
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ToolStripMenuItem serverListToolStripMenuItem;
 
 
     }

@@ -36,7 +36,7 @@ using net.mcforge.groups;
 using net.mcforge.chat;
 
 namespace MCForge.Gui.Forms {
-    public partial class FormMainScreen : AeroForm, IFormSharer, Listener {
+    public partial class  FormMainScreen : AeroForm, IFormSharer, Listener {
         private net.mcforge.iomodel.Player _current;
 
         public net.mcforge.iomodel.Player CurrentPlayer
@@ -79,7 +79,9 @@ namespace MCForge.Gui.Forms {
         #region Gui Event Handlers
 
 
-        private void FormMainScreen_Load(object sender, EventArgs e) {
+        private void FormMainScreen_Load(object sender, EventArgs e)
+        {
+            this.MaximizeBox = false;
             this.GlassArea = new Rectangle {
                 X = 0,
                 Y = glassMenu.Height,
@@ -135,6 +137,14 @@ namespace MCForge.Gui.Forms {
             //if ( GuiSettings.GetSettingBoolean(GuiSettings.SHOW_NEWS_KEY) )
             using ( var news = new NewsDialog() )
                news.ShowDialog();
+        }
+
+        private void openServers()
+        {
+            using (ServerList sl = new ServerList())
+            {
+                sl.ShowDialog();
+            }
         }
 
 
@@ -323,6 +333,12 @@ namespace MCForge.Gui.Forms {
 
         #region Main Menu
 
+
+        private void serverListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openServers();
+        }
+
         private void portToolsToolStripMenuItem_Click(object sender, EventArgs e) {
             using ( var pTools = new PortToolsDialog() )
                 pTools.ShowDialog();
@@ -346,6 +362,8 @@ namespace MCForge.Gui.Forms {
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e) {
+            txtLog.AppendLog("Restarting!" + Environment.NewLine);
+            txtLog.AppendLog("Please wait..." + Environment.NewLine);
             _restarting = true;
             //Close();
             Program.console.restart();
@@ -507,7 +525,7 @@ namespace MCForge.Gui.Forms {
             }
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
-            //TODO Request ban
+            CurrentPlayer.ipBan(Program.console, reason);
         }
 
         void ban_Click(object sender, EventArgs e)
@@ -519,7 +537,7 @@ namespace MCForge.Gui.Forms {
             }
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
-            //TODO Request ban
+            CurrentPlayer.ban(Program.console, reason);
         }
 
         void kick_Click(object sender, EventArgs e)
