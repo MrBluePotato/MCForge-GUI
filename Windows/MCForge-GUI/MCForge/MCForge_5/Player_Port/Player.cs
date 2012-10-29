@@ -116,12 +116,18 @@ namespace MCForge
         public void ClearBlockchange() 
         {
             blockchange = null;
+            PlayerBlockChangeEvent.getEventList().unregister(this);
         }
 
         public Player(net.mcforge.iomodel.Player parent)
         {
             this.parent = parent;
             this.group = new BC_Group(parent.getGroup());
+        }
+
+        ~Player()
+        {
+            PlayerBlockChangeEvent.getEventList().unregister(this);
         }
 
         [EventHandler()]
