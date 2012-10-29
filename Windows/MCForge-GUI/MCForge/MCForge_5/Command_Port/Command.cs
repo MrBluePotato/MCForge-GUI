@@ -95,8 +95,10 @@ namespace MCForge
                 allowedCommands.Add(allowVar);
             }
             if (File.Exists("properties/command.properties"))
+                File.Move("properties/command.properties", "properties/bc_command.config");
+            if (File.Exists("properties/bc_command.config"))
             {
-                string[] lines = File.ReadAllLines("properties/command.properties");
+                string[] lines = File.ReadAllLines("properties/bc_command.config");
 
                 //if (lines.Length == 0) ; // this is useless?
                 /*else */if (lines[0] == "#Version 2")
@@ -200,12 +202,12 @@ namespace MCForge
         {
             try
             {
-                File.Create("properties/command.properties").Dispose();
-                using (StreamWriter w = File.CreateText("properties/command.properties"))
+                File.Create("properties/bc_command.config").Dispose();
+                using (StreamWriter w = File.CreateText("properties/bc_command.config"))
                 {
                     w.WriteLine("#Version 2");
-                    w.WriteLine("#   This file contains a reference to every command found in the server software");
-                    w.WriteLine("#   Use this file to specify which ranks get which commands");
+                    w.WriteLine("#   This file contains a reference to every custom command from MCForge 5");
+                    w.WriteLine("#   Use this file to specify which ranks get which custom commands");
                     w.WriteLine("#   Disallow and allow can be left empty, just make sure there's 2 spaces between the colons");
                     w.WriteLine("#   This works entirely on permission values, not names. Do not enter a rank name. Use it's permission value");
                     w.WriteLine("#   CommandName : LowestRank : Disallow : Allow");
@@ -219,7 +221,7 @@ namespace MCForge
             }
             catch
             {
-                Server.Log("SAVE FAILED! command.properties");
+                Server.Log("SAVE FAILED! properties/bc_command.config");
             }
         }
         public static string getInts(List<LevelPermission> givenList)
