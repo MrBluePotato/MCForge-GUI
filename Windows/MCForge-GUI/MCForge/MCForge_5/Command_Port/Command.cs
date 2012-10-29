@@ -45,6 +45,11 @@ namespace MCForge
 		public abstract LevelPermission defaultRank { get; }
 		public abstract void Use(Player p, string message);
 		public abstract void Help(Player p);
+        public virtual void Use(net.mcforge.iomodel.Player p, string message)
+        {
+            Player pp = new Player(p);
+            Use(pp, message);
+        }
 		public bool isIntervalized;
 		public int intervalInMinutes;
 		public DateTime nextExecution;

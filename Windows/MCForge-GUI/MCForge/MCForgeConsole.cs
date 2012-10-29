@@ -62,7 +62,7 @@ namespace MCForge.Gui
     /// </summary>
     public class MCForgeConsole : net.mcforge.system.Console, Listener
     {
-        private Server server;
+        private net.mcforge.server.Server server;
         private ISQL sql;
         private Messages chat;
         private string lastmessage;
@@ -70,7 +70,7 @@ namespace MCForge.Gui
         [MethodImpl(MethodImplOptions.NoInlining)]
         public void Start()
         {
-            server = new Server("[MCForge] Default", 25565, "Welcome!");
+            server = new net.mcforge.server.Server("[MCForge] Default", 25565, "Welcome!");
             server.Start(this, false);
             if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
                 sql = new MCForge.Gui.SQL_PORT.SQLite();

@@ -55,7 +55,7 @@ namespace MCForge.Gui.Forms {
             }
         }
                     
-        private static Server Server
+        private static net.mcforge.server.Server Server
         {
             get
             {

@@ -5,11 +5,36 @@ using System.Text;
 using MCForge.Gui;
 using net.mcforge.iomodel;
 using net.mcforge.chat;
+using net.mcforge.API;
+using net.mcforge.API.player;
 
 namespace MCForge
 {
-    public class Player
+    public class Player : Listener
     {
+        public delegate void BlockchangeEventHandler(Player p, ushort x, ushort y, ushort z, byte type);
+        private event BlockchangeEventHandler blockchange = null;
+        public event BlockchangeEventHandler Blockchange
+        {
+            add
+            {
+                lock (this)
+                {
+                    blockchange += value;
+                }
+                Program.console.getServer().getEventSystem().registerEvents(this);
+
+            }
+            remove
+            {
+                lock (this)
+                {
+                    blockchange -= value;
+                }
+                PlayerBlockChangeEvent.getEventList().unregister(this);
+            }
+        }
+
         protected net.mcforge.iomodel.Player parent;
 
         private string Prefix;
@@ -40,9 +65,23 @@ namespace MCForge
         }
         public int ponycount;
         public int rdcount;
+        public BC_Group group;
         public System.Threading.Thread commThread;
         public string title = "";
         public string titlecolor;
+
+        public Level level
+        {
+            get
+            {
+                return new Level(parent.getLevel());
+            }
+            set
+            {
+                net.mcforge.world.Level temp = parent.getServer().getLevelHandler().findLevel(value.name);
+                parent.changeLevel(temp);
+            }
+        }
 
         public string name
         {
@@ -74,9 +113,36 @@ namespace MCForge
             }
         }
 
+        public void ClearBlockchange() 
+        {
+            blockchange = null;
+        }
+
         public Player(net.mcforge.iomodel.Player parent)
         {
             this.parent = parent;
+            this.group = new BC_Group(parent.getGroup());
+        }
+
+        [EventHandler()]
+        public void blockChangeEvent(PlayerBlockChangeEvent eventargs)
+        {
+            if (blockchange != null)
+            {
+                blockchange(this, (ushort)eventargs.getX(), (ushort)(eventargs.getY()), (ushort)(eventargs.getZ()), eventargs.getBlock().getVisableBlock());
+                eventargs.setCancel(true);
+                return;
+            }
+        }
+
+        public void Kick(string message)
+        {
+            parent.kick(message);
+        }
+
+        public void HandleDeath(byte b, string s, bool bool1)
+        {
+            throw new NotImplementedException();
         }
 
         public void SetPrefix()
@@ -119,9 +185,16 @@ namespace MCForge
             UniversalChat(message);
         }
 
-        public static net.mcforge.iomodel.Player Find(string player)
+        public static net.mcforge.iomodel.Player FindPlayer(string player)
         {
             return Program.console.getServer().findPlayer(player);
+        }
+
+        public static Player Find(string name)
+        {
+            net.mcforge.iomodel.Player parent = MCForge.Gui.Program.console.getServer().findPlayer(name);
+            Player p = new Player(parent);
+            return p;
         }
     }
 }

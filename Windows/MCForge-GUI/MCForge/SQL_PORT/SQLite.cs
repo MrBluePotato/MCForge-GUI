@@ -51,9 +51,10 @@ namespace MCForge.Gui.SQL_PORT
 	/// </summary>
 	public class SQLite : net.mcforge.sql.SQLite
 	{
-		private Server server;
+        private net.mcforge.server.Server server;
 		private const string PATH = "jdbc:sqlite:MCForge.db";
-		public override void Connect(Server server) {
+        public override void Connect(net.mcforge.server.Server server)
+        {
 			this.server = server;
 			try {
 				if (!new File("MCForge.db").exists())
