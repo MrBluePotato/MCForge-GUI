@@ -239,6 +239,10 @@
     <Compile Include="FormMainScreen.Designer.cs">
       <DependentUpon>FormMainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MCForge\MCForge_5\Command_Port\Command.cs" />
+    <Compile Include="MCForge\MCForge_5\Command_Port\CommandList.cs" />
+    <Compile Include="MCForge\MCForge_5\Level_Port\Level.cs" />
+    <Compile Include="MCForge\MCForge_5\Player_Port\Player.cs" />
     <Compile Include="OldMethods.cs" />
     <Compile Include="MCForge\MCForgeConsole.cs" />
     <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
@@ -347,5 +351,6 @@
     <Content Include="Fonts\Ubuntu\TRADEMARKS.txt" />
     <Content Include="MCForge.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
