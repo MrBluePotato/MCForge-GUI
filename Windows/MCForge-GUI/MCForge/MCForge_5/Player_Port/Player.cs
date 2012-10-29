@@ -4,12 +4,42 @@ using System.Linq;
 using System.Text;
 using MCForge.Gui;
 using net.mcforge.iomodel;
+using net.mcforge.chat;
 
 namespace MCForge
 {
     public class Player
     {
         protected net.mcforge.iomodel.Player parent;
+
+        private string Prefix;
+
+        public string color
+        {
+            get
+            {
+                return parent.getDisplayColor().toString();
+            }
+            set
+            {
+                parent.setDisplayColor(ChatColor.parse(value));
+            }
+        }
+
+        public string prefix
+        {
+            get
+            {
+                return Prefix;
+            }
+            set
+            {
+                this.Prefix = value;
+                this.parent.setPrefix(Prefix);
+            }
+        }
+        public string title = "";
+        public string titlecolor;
 
         public string name
         {
@@ -19,7 +49,7 @@ namespace MCForge
             }
             set
             {
-                //TODO Setname
+                parent.username = value;
             }
         }
 
@@ -46,9 +76,19 @@ namespace MCForge
             this.parent = parent;
         }
 
+        public void SetPrefix()
+        {
+            prefix = (title == "") ? "" : (titlecolor == "") ? "[" + title + "] " : "[" + titlecolor + title + color + "] ";
+        }
+
         public void SendPos(byte id, ushort x, ushort y, ushort z, byte rotx, byte roty)
         {
             parent.setPos((short)x, (short)y, (short)z, rotx, roty);
+        }
+
+        public net.mcforge.iomodel.Player getParent()
+        {
+            return parent;
         }
 
         public static void SendMessage(Player p, string message)

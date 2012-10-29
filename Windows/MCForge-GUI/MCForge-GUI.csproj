@@ -6,9 +6,10 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MCForge.Gui</RootNamespace>
-    <AssemblyName>MCForge-GUI</AssemblyName>
+    <AssemblyName>MCForge_</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
@@ -241,6 +242,7 @@
     </Compile>
     <Compile Include="MCForge\MCForge_5\Command_Port\Command.cs" />
     <Compile Include="MCForge\MCForge_5\Command_Port\CommandList.cs" />
+    <Compile Include="MCForge\MCForge_5\Command_Port\CommandLoader.cs" />
     <Compile Include="MCForge\MCForge_5\Level_Port\Level.cs" />
     <Compile Include="MCForge\MCForge_5\Player_Port\Player.cs" />
     <Compile Include="OldMethods.cs" />
@@ -329,6 +331,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Fonts\Minecraft\minecraft.ttf" />
     <None Include="Fonts\Ubuntu\Ubuntu.ttf" />
     <None Include="Resource\hirez_mcforge.png" />

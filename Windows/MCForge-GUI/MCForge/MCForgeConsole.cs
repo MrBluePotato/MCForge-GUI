@@ -168,8 +168,12 @@ namespace MCForge.Gui
                 Command c = Command.all.Find(command);
                 Player p = new Player(eventargs.getPlayer());
                 //TODO Check perm
-                string message = eventargs.getOrginalMessage();
-                message = message.Substring(message.IndexOf(' ') + 1);
+                string message = "";
+                if (eventargs.getArgs().size() != 0)
+                {
+                    message = eventargs.getOrginalMessage();
+                    message = message.Substring(message.IndexOf(' ') + 1);
+                }
                 c.Use(p, message);
                 eventargs.setCancel(true);
                 return;

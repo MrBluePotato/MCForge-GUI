@@ -157,7 +157,8 @@ namespace MCForge.Gui
 				BeginInvoke((MethodInvoker)delegate { ServerDone(eventargs); });
 				return;
 			}
-			
+            DrawText("Loading BC Commands");
+            MCForge.CommandLoader.Autoload();
 			DialogResult = DialogResult.OK;
 			this.Close();
 		}
