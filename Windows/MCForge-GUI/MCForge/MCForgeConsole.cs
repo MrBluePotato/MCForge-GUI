@@ -52,6 +52,7 @@ using net.mcforge.world;
 using System.Collections.Generic;
 using java.lang;
 using java.io;
+using net.mcforge.API.player;
 
 namespace MCForge.Gui
 {
@@ -115,7 +116,7 @@ namespace MCForge.Gui
             sendMessage(message);
         }
 
-        public int getPlayerCount(Level l)
+        public int getPlayerCount(net.mcforge.world.Level l)
         {
             int total = 0;
             for (int i = 0; i < Program.console.getServer().players.size(); i++)
@@ -156,6 +157,23 @@ namespace MCForge.Gui
         {
             DialogResult result = MessageBox.Show(lastmessage, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             return result == DialogResult.Yes;
+        }
+
+        [EventHandler()]
+        public void onCommand(PlayerCommandEvent eventargs)
+        {
+            string command = eventargs.getCommand();
+            if (Command.all.Find(command) != null)
+            {
+                Command c = Command.all.Find(command);
+                Player p = new Player(eventargs.getPlayer());
+                //TODO Check perm
+                string message = eventargs.getOrginalMessage();
+                message = message.Substring(message.IndexOf(' ') + 1);
+                c.Use(p, message);
+                eventargs.setCancel(true);
+                return;
+            }
         }
 
         internal void restart()

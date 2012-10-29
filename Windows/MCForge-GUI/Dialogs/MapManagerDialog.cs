@@ -80,7 +80,7 @@ namespace MCForge.Gui.Dialogs {
 
             dtaLoaded.Rows.Clear();
             for ( int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++ ) {
-                dtaLoaded.Rows.Add(GetRowDataFromLevel((Level)Program.console.getServer().getLevelHandler().getLevelList().get(i)));
+                dtaLoaded.Rows.Add(GetRowDataFromLevel((net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i)));
             }
 
 
@@ -88,11 +88,13 @@ namespace MCForge.Gui.Dialogs {
 
         #region Data Grid View Utils
 
-        string[] GetRowDataFromLevel(Level level) {
+        string[] GetRowDataFromLevel(net.mcforge.world.Level level)
+        {
             return new[] {level.name, string.Format("{0} x {1} x  {2}", level.width, level.height, level.depth), "True", Program.console.getPlayerCount(level).ToString() };
         }
 
-        int GetRowIndexFromLevel(Level level) {
+        int GetRowIndexFromLevel(net.mcforge.world.Level level)
+        {
             return GetRowIndexFromLevelName(level.name);
         }
 

@@ -94,7 +94,7 @@ namespace MCForge.Gui.Forms {
             Invalidate();
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
-                Level level = (Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
+                net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
                 lstLevels.Items.Add(level.name);
             }
 
@@ -131,6 +131,7 @@ namespace MCForge.Gui.Forms {
                 return;
             }
             textBox1.Text = url;
+            Logger.Log(ChatColor.Bright_Green + "URL Found: " + ChatColor.White + url);
         }
 
         private void FormMainScreen_Shown(object sender, EventArgs e) {
@@ -159,7 +160,7 @@ namespace MCForge.Gui.Forms {
 
                 if (txtMessage.Text.StartsWith("/"))
                 {
-                    Command cmd = null;
+                    net.mcforge.API.plugin.Command cmd = null;
 
                     var commandSplit = txtMessage.Text.Remove(0, 1).Split(' ');
                     var args = commandSplit.Where((val, index) => index != 0).ToArray();
