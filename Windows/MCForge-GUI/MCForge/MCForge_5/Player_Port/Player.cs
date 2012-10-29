@@ -38,6 +38,9 @@ namespace MCForge
                 this.parent.setPrefix(Prefix);
             }
         }
+        public int ponycount;
+        public int rdcount;
+        public System.Threading.Thread commThread;
         public string title = "";
         public string titlecolor;
 
@@ -109,6 +112,11 @@ namespace MCForge
         public static void UniversalChat(string message)
         {
             Program.console.SendGlobalMessage(message);
+        }
+
+        public static void GlobalMessage(string message)
+        {
+            UniversalChat(message);
         }
 
         public static net.mcforge.iomodel.Player Find(string player)

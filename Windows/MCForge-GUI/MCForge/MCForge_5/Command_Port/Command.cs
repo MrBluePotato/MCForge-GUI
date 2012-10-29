@@ -17,6 +17,9 @@
 */
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using net.mcforge.groups;
 //using MCForge.Commands;
 
 namespace MCForge
@@ -47,288 +50,11 @@ namespace MCForge
 		public DateTime nextExecution;
 		public Player intervalUsingPlayer;
 
+        public static Dictionary<Group, CommandList> permission = new Dictionary<Group, CommandList>();
 		public static CommandList all = new CommandList();
 		//public static CommandList core = new CommandList();
-		/*public static void InitAll()
-		{
-			all.Add(new CmdAbort());
-			all.Add(new CmdAbout());
-			all.Add(new CmdAdminChat());
-			all.Add(new CmdAllowGuns());
-			all.Add(new CmdAfk());
-			all.Add(new CmdAka());
-			all.Add(new CmdAlive());
-			all.Add(new CmdAgree());
-			all.Add(new CmdAscend());
-			all.Add(new CmdAward());
-			all.Add(new CmdAwards());
-			all.Add(new CmdAwardMod());
-			all.Add(new CmdBan());
-			all.Add(new CmdBanEdit());
-			all.Add(new CmdBaninfo());
-			all.Add(new CmdBanip());
-			all.Add(new CmdBanlist());
-			all.Add(new CmdBind());
-			all.Add(new CmdBlocks());
-			all.Add(new CmdBlockSet());
-			all.Add(new CmdBlockSpeed());
-			all.Add(new CmdBotAdd());
-			all.Add(new CmdBotAI());
-			all.Add(new CmdBotRemove());
-			all.Add(new CmdBots());
-			all.Add(new CmdBotSet());
-			all.Add(new CmdBotSummon());
-			all.Add(new CmdC4());
-			all.Add(new CmdCalculate());
-			all.Add(new CmdChain());
-			all.Add(new CmdChangeLog());
-			all.Add(new CmdChatRoom());
-			all.Add(new CmdClearBlockChanges());
-			all.Add(new CmdClick());
-			all.Add(new CmdClones());
-			all.Add(new CmdCmdBind());
-			all.Add(new CmdCmdCreate());
-			all.Add(new CmdCmdLoad());
-			all.Add(new CmdCmdSet());
-			all.Add(new CmdCmdUnload());
-			all.Add(new CmdCompile());
-			all.Add(new CmdCompLoad());
-			all.Add(new CmdColor());
-			all.Add(new CmdCopy());
-			all.Add(new CmdCopyLoadNet());
-			all.Add(new CmdCopyLVL());
-			all.Add(new CmdCopySaveNet());
-			all.Add(new CmdCountdown());
-			all.Add(new CmdCrashServer());
-			all.Add(new CmdCTF());
-			all.Add(new CmdCuboid());
-			all.Add(new CmdDelete());
-			all.Add(new CmdDeleteLvl());
-			all.Add(new CmdDelTempRank());
-			all.Add(new CmdDemote());
-			all.Add(new CmdDevs());
-			all.Add(new CmdDisagree());
-			all.Add(new CmdDescend());
-			all.Add(new CmdDisInfect());
-			all.Add(new CmdDraw());
-			all.Add(new CmdDrill());
-			all.Add(new CmdEconomy());
-			all.Add(new CmdEmote());
-			all.Add(new CmdEndRound());
-			all.Add(new CmdExplode());
-			all.Add(new CmdFakePay());
-			all.Add(new CmdFakeRank());
-			all.Add(new CmdFaq());
-			all.Add(new CmdFetch());
-			all.Add(new CmdFill());
-			all.Add(new CmdFixGrass());
-			all.Add(new CmdFlipHead());
-			all.Add(new CmdFlipHeads());
-			all.Add(new CmdFly());
-			all.Add(new CmdFollow());
-			all.Add(new CmdFreeze());
-			all.Add(new CmdGarbage());
-			all.Add(new CmdGcaccept());
-			all.Add(new CmdGcrules());
-			all.Add(new CmdGcbanlistupdate());
-			all.Add(new CmdGifToCin());
-			all.Add(new CmdGive());
-			all.Add(new CmdGlobal());
-			all.Add(new CmdGlobalCLS());
-			all.Add(new CmdGoto());
-			all.Add(new CmdGun());
-			all.Add(new CmdHackRank());
-			all.Add(new CmdHacks());
-			all.Add(new CmdHasirc());
-			//all.Add(new CmdHeartbeat()); // DEBUG COMMAND DO NOT USE
-			all.Add(new CmdHelp());
-			all.Add(new CmdHide());
-			all.Add(new CmdHigh5());
-			all.Add(new CmdHighlight());
-			all.Add(new CmdHollow());
-			all.Add(new CmdHost());
-			all.Add(new CmdIgnore());
-			all.Add(new CmdImpersonate());
-			all.Add(new CmdImport());
-			all.Add(new CmdImageprint());
-			all.Add(new CmdInbox());
-			all.Add(new CmdInfect());
-			all.Add(new CmdInfected());
-			all.Add(new CmdInfo());
-			all.Add(new CmdInvincible());
-			all.Add(new CmdJail());
-			all.Add(new CmdJoker());
-			all.Add(new CmdKick());
-			all.Add(new CmdKickban());
-			all.Add(new CmdKill());
-			all.Add(new CmdKillPhysics());
-			all.Add(new CmdLastCmd());
-			all.Add(new CmdLavaSurvival());
-			all.Add(new CmdLevels());
-			all.Add(new CmdLimit());
-			all.Add(new CmdLine());
-			all.Add(new CmdLoad());
-			all.Add(new CmdLockdown());
-			all.Add(new CmdLoginMessage());
-			all.Add(new CmdLogoutMessage());
-			all.Add(new CmdLowlag());
-			all.Add(new CmdMain());
-			all.Add(new CmdMap());
-			all.Add(new CmdMapInfo());
-			all.Add(new CmdMaze());
-			all.Add(new CmdMe());
-			all.Add(new CmdMeasure());
-			all.Add(new CmdMegaboid());
-			all.Add(new CmdMessageBlock());
-			all.Add(new CmdMissile());
-			all.Add(new CmdMode());
-			all.Add(new CmdModerate());
-			all.Add(new CmdMoney());
-			all.Add(new CmdMove());
-			all.Add(new CmdMoveAll());
-			all.Add(new CmdMuseum());
-			all.Add(new CmdMute());
-			all.Add(new CmdNewLvl());
-			all.Add(new CmdNews());
-			all.Add(new CmdNyan());
-			all.Add(new CmdOHide());
-			all.Add(new CmdOpChat());
-			all.Add(new CmdOpRules());
-			all.Add(new CmdOpStats());
-			all.Add(new CmdOutline());
-			all.Add(new CmdOverseer());
-			all.Add(new CmdOZone());
-			all.Add(new CmdP2P());
-			all.Add(new CmdPaint());
-			all.Add(new CmdPass());
-			all.Add(new CmdPaste());
-			all.Add(new CmdPatrol());
-			all.Add(new CmdPause());
-			all.Add(new CmdPay());
-			all.Add(new CmdPlayerBlock());
-			all.Add(new CmdpCinema());
-			all.Add(new CmdpCinema2());
-			all.Add(new CmdPCount());
-			all.Add(new CmdPCreate());
-			all.Add(new CmdPerbuildMax());
-			all.Add(new CmdPermissionBuild());
-			all.Add(new CmdPermissionVisit());
-			all.Add(new CmdPervisitMax());
-			all.Add(new CmdPhysics());
-			all.Add(new CmdPlace());
-			all.Add(new CmdPlayerCLS());
-			all.Add(new CmdPlayers());
-			all.Add(new CmdPLoad());
-			all.Add(new CmdPortal());
-			all.Add(new CmdPossess());
-			all.Add(new CmdPromote());
-			all.Add(new CmdPumpkin());
-			all.Add(new CmdPUnload());
-			all.Add(new CmdPyramid());
-			all.Add(new CmdQueue());
-			all.Add(new CmdQuick());
-			all.Add(new CmdRagequit());
-			all.Add(new CmdRainbow());
-			all.Add(new CmdRankInfo());
-			all.Add(new CmdRankMsg());            
-			all.Add(new CmdRedo());
-			all.Add(new CmdReload());
-			all.Add(new CmdReferee());
-			all.Add(new CmdRenameLvl());
-			all.Add(new CmdRepeat());
-			all.Add(new CmdReplace());
-			all.Add(new CmdReplaceAll());
-			all.Add(new CmdReplaceNot());
-			all.Add(new CmdReport());
-			all.Add(new CmdResetBot());
-			all.Add(new CmdResetPass());
-			all.Add(new CmdRestart());
-			all.Add(new CmdRestartPhysics());
-			all.Add(new CmdRestore());
-			all.Add(new CmdRestoreSelection());
-			all.Add(new CmdRetrieve());
-			all.Add(new CmdReveal());
-			all.Add(new CmdReview());
-			all.Add(new CmdRide());
-			all.Add(new CmdRoll());
-			all.Add(new CmdRules());
-			all.Add(new CmdSave());
-			all.Add(new CmdSay());
-			all.Add(new CmdSCinema());
-			all.Add(new CmdSearch());
-			all.Add(new CmdSeen());
-			all.Add(new CmdSend());
-			all.Add(new CmdSendCmd());
-			all.Add(new CmdServerReport());
-			all.Add(new CmdServer());
-			all.Add(new CmdSetPass());
-			all.Add(new CmdSetRank());
-			all.Add(new CmdSetspawn());
-			all.Add(new CmdShutdown());
-			all.Add(new CmdSlap());
-			all.Add(new CmdSpawn());
-			all.Add(new CmdSpheroid());
-			all.Add(new CmdSpin());
-			all.Add(new CmdSPlace());
-			all.Add(new CmdStairs());
-			all.Add(new CmdStatic());
-			all.Add(new CmdStore());
-			all.Add(new CmdSummon());
-			all.Add(new CmdTake());
-			all.Add(new CmdTColor());
-			all.Add(new CmdTempBan());
-			all.Add(new CmdTempRank());
-			all.Add(new CmdTempRankInfo());
-			all.Add(new CmdTempRankList());
-			all.Add(new CmdText());
-			all.Add(new CmdTime());
-			all.Add(new CmdTimer());
-			all.Add(new CmdTitle());
-			all.Add(new CmdTnt());
-			all.Add(new CmdTntWars());
-			all.Add(new CmdTopTen());
-			all.Add(new CmdTp());
-			all.Add(new CmdTpZone());
-			all.Add(new CmdTranslate());
-			all.Add(new CmdTree());
-			all.Add(new CmdTrust());
-			all.Add(new CmdUBan());
-			all.Add(new CmdUnban());
-			all.Add(new CmdUnbanip());
-			all.Add(new CmdUndo());
-			all.Add(new CmdUnflood());
-			all.Add(new CmdUnload());
-			all.Add(new CmdUnloaded());
-			all.Add(new CmdUnlock());
-			all.Add(new CmdUpdate());
-			all.Add(new CmdView());
-			all.Add(new CmdViewRanks());
-			all.Add(new CmdVIP());
-			all.Add(new CmdVoice());
-			all.Add(new CmdVote());
-			all.Add(new CmdVoteKick());
-			all.Add(new CmdVoteResults());
-			all.Add(new CmdWarn());
-			all.Add(new CmdWarp());
-			all.Add(new CmdWaypoint());
-			all.Add(new CmdWhisper());
-			if (Server.useWhitelist) { all.Add(new CmdWhitelist()); }
-			all.Add(new CmdWhoip());
-			all.Add(new CmdWhois());
-			all.Add(new CmdWhowas());
-			all.Add(new CmdWrite());
-			all.Add(new CmdXban());
-			all.Add(new CmdXhide());
-			all.Add(new CmdXJail());
-			all.Add(new CmdXmute());
-			all.Add(new CmdXspawn());
-			all.Add(new CmdXundo());
-			all.Add(new CmdZombieGame());
-			all.Add(new CmdZone());
-			all.Add(new CmdZz());
-			core.commands = new List<Command>(all.commands);
-			Scripting.Autoload();
-		}*/
+
+
 		/// <summary>
 		/// Add a command to the server
 		/// </summary>
@@ -337,5 +63,175 @@ namespace MCForge
 		{
 			all.Add(command);
 		}
+
+        public class rankAllowance { 
+            public string commandName; 
+            public LevelPermission lowestRank;
+            public List<LevelPermission> disallow = new List<LevelPermission>();
+            public List<LevelPermission> allow = new List<LevelPermission>();
+        }
+        public static net.mcforge.server.Server Server = MCForge.Gui.Program.console.getServer();
+        public static List<rankAllowance> allowedCommands;
+        public static List<string> foundCommands = new List<string>();
+
+        public static LevelPermission PermissionFromName(string name)
+        {
+            Group foundGroup = Group.find(name);
+            return foundGroup != null ? (LevelPermission)foundGroup.permissionlevel : LevelPermission.Null;
+        }
+
+        public static void LoadPermissions()
+        {
+            foundCommands = Command.all.commandNames();
+            allowedCommands = new List<rankAllowance>();
+
+            rankAllowance allowVar;
+
+            foreach (Command cmd in Command.all.All())
+            {
+                allowVar = new rankAllowance();
+                allowVar.commandName = cmd.name;
+                allowVar.lowestRank = cmd.defaultRank;
+                allowedCommands.Add(allowVar);
+            }
+            if (File.Exists("properties/command.properties"))
+            {
+                string[] lines = File.ReadAllLines("properties/command.properties");
+
+                //if (lines.Length == 0) ; // this is useless?
+                /*else */if (lines[0] == "#Version 2")
+                {
+                    string[] colon = new[] { " : " };
+                    foreach (string line in lines)
+                    {
+                        allowVar = new rankAllowance();
+                        if (line == "" || line[0] == '#') continue;
+                        //Name : Lowest : Disallow : Allow
+                        string[] command = line.Split(colon, StringSplitOptions.None);
+
+                        if (!foundCommands.Contains(command[0]))
+                        {
+                            Server.Log("Incorrect command name: " + command[0]);
+                            continue;
+                        }
+                        allowVar.commandName = command[0];
+
+                        string[] disallow = new string[0];
+                        if (command[2] != "")
+                            disallow = command[2].Split(',');
+                        string[] allow = new string[0];
+                        if (command[3] != "")
+                            allow = command[3].Split(',');
+
+                        try
+                        {
+                            allowVar.lowestRank = (LevelPermission)int.Parse(command[1]);
+                            foreach (string s in disallow) { allowVar.disallow.Add((LevelPermission)int.Parse(s)); }
+                            foreach (string s in allow) { allowVar.allow.Add((LevelPermission)int.Parse(s)); }
+                        }
+                        catch
+                        {
+                            Server.Log("Hit an error on the command " + line);
+                            continue;
+                        }
+
+                        int current = 0;
+                        foreach (rankAllowance aV in allowedCommands)
+                        {
+                            if (command[0] == aV.commandName)
+                            {
+                                allowedCommands[current] = allowVar;
+                                break;
+                            }
+                            current++;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (string line in lines.Where(line => line != "" && line[0] != '#'))
+                    {
+                        allowVar = new rankAllowance();
+                        string key = line.Split('=')[0].Trim().ToLower();
+                        string value = line.Split('=')[1].Trim().ToLower();
+
+                        if (!foundCommands.Contains(key))
+                        {
+                            Server.Log("Incorrect command name: " + key);
+                        }
+                        else if (PermissionFromName(value) == LevelPermission.Null)
+                        {
+                            Server.Log("Incorrect value given for " + key + ", using default value.");
+                        }
+                        else
+                        {
+                            allowVar.commandName = key;
+                            allowVar.lowestRank = PermissionFromName(value);
+
+                            int current = 0;
+                            foreach (rankAllowance aV in allowedCommands)
+                            {
+                                if (key == aV.commandName)
+                                {
+                                    allowedCommands[current] = allowVar;
+                                    break;
+                                }
+                                current++;
+                            }
+                        }
+                    }
+                }
+                Save(allowedCommands);
+            }
+            else Save(allowedCommands);
+
+            for (int i = 0; i < Group.getGroupList().size(); i++)
+            {
+                Group g = (Group)Group.getGroupList().get(i);
+                CommandList commands = new CommandList();
+
+                foreach (rankAllowance aV in allowedCommands.Where(aV => (aV.lowestRank <= (LevelPermission)g.permissionlevel && !aV.disallow.Contains((LevelPermission)g.permissionlevel)) || aV.allow.Contains((LevelPermission)g.permissionlevel)))
+                    commands.Add(Command.all.Find(aV.commandName));
+                
+                Command.permission.Add(g, commands);
+            }
+        }
+        public static void Save(List<rankAllowance> givenList)
+        {
+            try
+            {
+                File.Create("properties/command.properties").Dispose();
+                using (StreamWriter w = File.CreateText("properties/command.properties"))
+                {
+                    w.WriteLine("#Version 2");
+                    w.WriteLine("#   This file contains a reference to every command found in the server software");
+                    w.WriteLine("#   Use this file to specify which ranks get which commands");
+                    w.WriteLine("#   Disallow and allow can be left empty, just make sure there's 2 spaces between the colons");
+                    w.WriteLine("#   This works entirely on permission values, not names. Do not enter a rank name. Use it's permission value");
+                    w.WriteLine("#   CommandName : LowestRank : Disallow : Allow");
+                    w.WriteLine("#   gun : 60 : 80,67 : 40,41,55");
+                    w.WriteLine("");
+                    foreach (rankAllowance aV in givenList)
+                    {
+                        w.WriteLine(aV.commandName + " : " + (int)aV.lowestRank + " : " + getInts(aV.disallow) + " : " + getInts(aV.allow));
+                    }
+                }
+            }
+            catch
+            {
+                Server.Log("SAVE FAILED! command.properties");
+            }
+        }
+        public static string getInts(List<LevelPermission> givenList)
+        {
+            string returnString = ""; bool foundOne = false;
+            foreach (LevelPermission Perm in givenList)
+            {
+                foundOne = true;
+                returnString += "," + (int)Perm;
+            }
+            if (foundOne) returnString = returnString.Remove(0, 1);
+            return returnString;
+        }
 	}
 }

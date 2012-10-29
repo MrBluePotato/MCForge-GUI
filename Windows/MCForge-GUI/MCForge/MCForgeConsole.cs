@@ -53,6 +53,7 @@ using System.Collections.Generic;
 using java.lang;
 using java.io;
 using net.mcforge.API.player;
+using System.Threading;
 
 namespace MCForge.Gui
 {
@@ -163,18 +164,16 @@ namespace MCForge.Gui
         public void onCommand(PlayerCommandEvent eventargs)
         {
             string command = eventargs.getCommand();
-            if (Command.all.Find(command) != null)
+            if (Command.all.Find(command) != null || isEasterEgg(command))
             {
-                Command c = Command.all.Find(command);
                 Player p = new Player(eventargs.getPlayer());
-                //TODO Check perm
                 string message = "";
                 if (eventargs.getArgs().size() != 0)
                 {
                     message = eventargs.getOrginalMessage();
                     message = message.Substring(message.IndexOf(' ') + 1);
                 }
-                c.Use(p, message);
+                HandleCommand(command, message, p);
                 eventargs.setCancel(true);
                 return;
             }
@@ -186,5 +185,140 @@ namespace MCForge.Gui
             System.Threading.Thread.Sleep(100);
             Start();
         }
+
+        #region MCF5 Command
+        private bool CanExecute(Command c, Player p)
+        {
+            if (Command.permission.ContainsKey(p.getParent().getGroup()))
+                return Command.permission[p.getParent().getGroup()].commands.Contains(c);
+            return false;
+        }
+        private bool isEasterEgg(string cmd)
+        {
+            cmd = cmd.ToLower();
+            return cmd == "care" || cmd == "pony" || cmd == "facepalm" || cmd == "alpaca" || cmd == "rainbowdashlikescoolthings";
+        }
+        private void HandleCommand(string cmd, string message, Player p)
+        {
+            try
+            {
+                /*if (Server.verifyadmins)
+                {
+                    if (cmd.ToLower() == "setpass")
+                    {
+                        Command.all.Find(cmd).Use(this, message);
+                        Server.s.CommandUsed(this.name + " used /setpass");
+                        return;
+                    }
+                    if (cmd.ToLower() == "pass")
+                    {
+                        Command.all.Find(cmd).Use(this, message);
+                        Server.s.CommandUsed(this.name + " used /pass");
+                        return;
+                    }
+                }
+                if (Server.agreetorulesonentry)
+                {
+                    if (cmd.ToLower() == "agree")
+                    {
+                        Command.all.Find(cmd).Use(this, String.Empty);
+                        Server.s.CommandUsed(this.name + " used /agree");
+                        return;
+                    }
+                    if (cmd.ToLower() == "rules")
+                    {
+                        Command.all.Find(cmd).Use(this, String.Empty);
+                        Server.s.CommandUsed(this.name + " used /rules");
+                        return;
+                    }
+                    if (cmd.ToLower() == "disagree")
+                    {
+                        Command.all.Find(cmd).Use(this, String.Empty);
+                        Server.s.CommandUsed(this.name + " used /disagree");
+                        return;
+                    }
+                }
+
+                if (cmd == String.Empty) { SendMessage("No command entered."); return; }
+                if (Server.agreetorulesonentry)
+                {
+                    if (jailed)
+                    {
+                        SendMessage("You must read /rules then agree to them with /agree!");
+                        return;
+                    }
+                }
+                if (jailed)
+                {
+                    SendMessage("You cannot use any commands while jailed.");
+                    return;
+                }
+                if (Server.verifyadmins)
+                {
+                    if (this.adminpen)
+                    {
+                        this.SendMessage("&cYou must use &a/pass [Password]&c to verify!");
+                        return;
+                    }
+                }*/
+                if (cmd.ToLower() == "care") { Player.SendMessage(p, "Dmitchell94 now loves you with all his heart."); return; }
+                if (cmd.ToLower() == "facepalm") { Player.SendMessage(p, "Fenderrock87's bot army just simultaneously facepalm'd at your use of this command."); return; }
+                if (cmd.ToLower() == "alpaca") { Player.SendMessage(p, "Leitrean's Alpaca Army just raped your woman and pillaged your villages!"); return; }
+                //DO NOT REMOVE THE TWO COMMANDS BELOW, /PONY AND /RAINBOWDASHLIKESCOOLTHINGS. -EricKilla
+                if (cmd.ToLower() == "pony")
+                {
+                    if (p.ponycount < 2)
+                    {
+                        Player.GlobalMessage(p.color + p.name + ChatColor.White + " just so happens to be a proud brony! Everyone give " + p.color + p.name + ChatColor.White + " a brohoof!");
+                        p.ponycount += 1;
+                    }
+                    else
+                    {
+                        Player.SendMessage(p, "You have used this command 2 times. You cannot use it anymore! Sorry, Brony!");
+                    }
+                    return;
+                }
+                if (cmd.ToLower() == "rainbowdashlikescoolthings")
+                {
+                    if (p.rdcount < 2)
+                    {
+                        Player.GlobalMessage("&1T&2H&3I&4S &5S&6E&7R&8V&9E&aR &bJ&cU&dS&eT &fG&0O&1T &22&30 &4P&CE&7R&DC&EE&9N&1T &5C&6O&7O&8L&9E&aR&b!");
+                        p.rdcount += 1;
+                    }
+                    else
+                    {
+                        Player.SendMessage(p, "You have used this command 2 times. You cannot use it anymore! Sorry, Brony!");
+                    }
+                    return;
+                }
+                string foundShortcut = Command.all.FindShort(cmd);
+                if (foundShortcut != "") cmd = foundShortcut;
+
+                Command command = Command.all.Find(cmd);
+                if (command != null)
+                {
+                    if (CanExecute(command, p))
+                    {
+                        p.commThread = new System.Threading.Thread(new ThreadStart(delegate
+                        {
+                            try
+                            {
+                                command.Use(p, message);
+                            }
+                            catch (System.Exception e)
+                            {
+                                getServer().Log(e.ToString());
+                                Player.SendMessage(p, "An error occured when using the command!");
+                                Player.SendMessage(p, e.GetType().ToString() + ": " + e.Message);
+                            }
+                        }));
+                        p.commThread.Start();
+                    }
+                    else { Player.SendMessage(p, "You are not allowed to use \"" + cmd + "\"!"); }
+                }
+            }
+            catch (System.Exception e) { getServer().Log(e.ToString()); Player.SendMessage(p, "Command failed."); }
+        }
+        #endregion
     }
 }
