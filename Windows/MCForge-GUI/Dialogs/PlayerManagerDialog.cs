@@ -25,7 +25,7 @@ namespace MCForge.Gui.Dialogs {
             if (lstPlayers.SelectedIndex == -1)
                 return;
 
-            selectedPlayer = Player.Find( lstPlayers.SelectedItem.ToString().Substring( 1 ) );
+            selectedPlayer = Player.FindPlayer( lstPlayers.SelectedItem.ToString().Substring( 1 ) );
 
             bool enabled = true;
 

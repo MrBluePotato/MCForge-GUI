@@ -48,8 +48,8 @@ namespace MCForge.Gui.SQL_PORT
 {
 	public class MySQL : net.mcforge.sql.MySQL
 	{
-		private Server server;
-		public override void Connect(Server server)
+        private net.mcforge.server.Server server;
+		public override void Connect(net.mcforge.server.Server server)
 		{
 			this.server = server;
 			try {

@@ -68,7 +68,7 @@ namespace MCForge.Gui
             SplashScreen ss = new SplashScreen();
 			Application.Run(ss);
             ss.Dispose();
-            while (running)
+            while (running) 
             {
                 LaunchConsole();
             }
