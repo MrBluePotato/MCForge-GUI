@@ -630,5 +630,21 @@ namespace MCForge.Gui.Forms {
             Program.console.SendGlobalMessage("&6Congratulations!");
         }
         #endregion
+
+        private void unloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<net.mcforge.world.Level> tounload = new List<net.mcforge.world.Level>();
+            for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
+            {
+                net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
+                if (level.name != Program.console.getServer().MainLevel)
+                    tounload.Add(level);
+            }
+
+            foreach (net.mcforge.world.Level l in tounload) {
+                Program.console.getServer().getLevelHandler().unloadLevel(l, true);
+            }
+            tounload.Clear();
+        }
     }
 }
