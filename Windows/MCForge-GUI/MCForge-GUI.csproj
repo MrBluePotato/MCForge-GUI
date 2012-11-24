@@ -72,12 +72,6 @@
     <Reference Include="MCForge">
       <HintPath>..\DLL\MCForge.dll</HintPath>
     </Reference>
-    <Reference Include="mysql-connector-java-5.1.21-bin">
-      <HintPath>..\DLL\mysql-connector-java-5.1.21-bin.dll</HintPath>
-    </Reference>
-    <Reference Include="sqlite">
-      <HintPath>..\DLL\sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -264,6 +258,7 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test.cs" />
     <Compile Include="Updater.cs" />
     <Compile Include="WindowsAPI\AeroAPI.cs" />
     <Compile Include="WindowsAPI\Utils\ColorRelation.cs" />
@@ -333,7 +328,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Fonts\Minecraft\minecraft.ttf" />
     <None Include="Fonts\Ubuntu\Ubuntu.ttf" />
     <None Include="Resource\hirez_mcforge.png" />
