@@ -29,12 +29,12 @@ namespace MCForge
 
         public byte GetTile(ushort x, ushort y, ushort z)
         {
-            return parent.getTile(x, y, z).getVisableBlock();
+            return parent.getTile(x, y, z).getVisibleBlock();
         }
 
         public byte GetTile(int index)
         {
-            return parent.getTile(index).getVisableBlock();
+            return parent.getTile(index).getVisibleBlock();
         }
 
         public static Level Find(string levelName)

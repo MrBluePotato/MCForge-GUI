@@ -135,7 +135,7 @@ namespace MCForge
         {
             if (blockchange != null)
             {
-                blockchange(this, (ushort)eventargs.getX(), (ushort)(eventargs.getY()), (ushort)(eventargs.getZ()), eventargs.getBlock().getVisableBlock());
+                blockchange(this, (ushort)eventargs.getX(), (ushort)(eventargs.getY()), (ushort)(eventargs.getZ()), eventargs.getBlock().getVisibleBlock());
                 eventargs.setCancel(true);
                 return;
             }
