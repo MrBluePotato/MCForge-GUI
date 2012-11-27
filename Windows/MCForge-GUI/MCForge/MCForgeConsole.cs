@@ -45,7 +45,6 @@ using net.mcforge.API;
 using net.mcforge.API.io;
 using net.mcforge.sql;
 using net.mcforge.server;
-using MCForge.Gui.SQL_PORT;
 using net.mcforge.chat;
 using MCForge.Gui.Dialogs;
 using net.mcforge.world;
@@ -71,16 +70,7 @@ namespace MCForge.Gui
         public void Start()
         {
             server = new net.mcforge.server.Server("[MCForge] Default", 25565, "Welcome!");
-            server.Start(this, false);
-            if (server.getSystemProperties().getValue("SQL-Driver") == "net.mcforge.sql.SQLite")
-                sql = new MCForge.Gui.SQL_PORT.SQLite();
-            else
-            {
-                sql = new MCForge.Gui.SQL_PORT.MySQL();
-                ((MCForge.Gui.SQL_PORT.MySQL)sql).setUsername(server.getSystemProperties().getValue("MySQL-username"));
-                ((MCForge.Gui.SQL_PORT.MySQL)sql).setPassword(server.getSystemProperties().getValue("MySQL-password"));
-                ((MCForge.Gui.SQL_PORT.MySQL)sql).setDatabase(server.getSystemProperties().getValue("MySQL-database-name"));
-            }
+            server.Start(this, true);
             server.getEventSystem().registerEvents(this);
             server.startSQL(sql);
             chat = new Messages(server);
