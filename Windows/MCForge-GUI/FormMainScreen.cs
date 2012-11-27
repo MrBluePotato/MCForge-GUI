@@ -633,6 +633,56 @@ namespace MCForge.Gui.Forms {
 
         private void unloadAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StartInThread(UnloadAll);
+        }
+
+        private void kickAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            object[] players = Program.console.getServer().players.toArray();
+            for (int i = 0; i < players.Length; i++)
+            {
+                net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)players[i];
+                p.kick("Kicking all players");
+            }
+        }
+
+        private void kickNonopsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            object[] players = Program.console.getServer().players.toArray();
+            for (int i = 0; i < players.Length; i++)
+            {
+                net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)players[i];
+                if (p.getGroup().isOP)
+                    continue;
+                p.kick("Kicking all non-ops");
+            }
+        }
+
+        private void reloadAllToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StartInThread(ReloadAll);
+        }
+
+        private void ReloadAll()
+        {
+            List<net.mcforge.world.Level> toreload = new List<net.mcforge.world.Level>();
+            for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
+            {
+                net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
+                if (level.name != Program.console.getServer().MainLevel)
+                    toreload.Add(level);
+            }
+
+            foreach (net.mcforge.world.Level l in toreload)
+            {
+                l.unload(Program.console.getServer(), true);
+                Program.console.getServer().getLevelHandler().loadLevel("levels/" + l.name + ".ggs");
+            }
+            toreload.Clear();
+        }
+
+        private void UnloadAll()
+        {
             List<net.mcforge.world.Level> tounload = new List<net.mcforge.world.Level>();
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
@@ -641,10 +691,24 @@ namespace MCForge.Gui.Forms {
                     tounload.Add(level);
             }
 
-            foreach (net.mcforge.world.Level l in tounload) {
+            foreach (net.mcforge.world.Level l in tounload)
+            {
                 Program.console.getServer().getLevelHandler().unloadLevel(l, true);
             }
             tounload.Clear();
+        }
+
+        delegate void NewThread();
+
+        private void StartInThread(NewThread launch)
+        {
+            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(launch));
+            t.Start();
+        }
+
+        private void serverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,7 @@ using System.IO;
 using net.mcforge.API;
 using net.mcforge.API.level;
 using net.mcforge.world;
+using System.Threading;
 
 namespace MCForge.Gui.Dialogs {
     public partial class MapManagerDialog : Form, Listener {
@@ -20,11 +21,24 @@ namespace MCForge.Gui.Dialogs {
             Program.console.getServer().getEventSystem().registerEvents(this);
         }
 
+        delegate void NewThread();
+
+        private void StartInThread(NewThread launch)
+        {
+            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(launch));
+            t.Start();
+        }
+
 
 
         //---Level Event Handlers -------------------------------
         [EventHandler()]
         void OnAllLevelsLoad_Normal(LevelLoadEvent eventargs) {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate { OnAllLevelsLoad_Normal(eventargs); });
+                return;
+            }
             if (lstUnloaded.Items.Contains(eventargs.getLevel().name))
                 lstUnloaded.Items.Remove(eventargs.getLevel().name);
 
@@ -35,6 +49,11 @@ namespace MCForge.Gui.Dialogs {
         }
         [EventHandler()]
         void OnAllLevelsUnload_Normal(LevelUnloadEvent eventargs) {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate { OnAllLevelsUnload_Normal(eventargs); });
+                return;
+            }
             if ( !lstUnloaded.Items.Contains(eventargs.getLevel().name) )
                 lstUnloaded.Items.Add(eventargs.getLevel().name);
 
@@ -109,27 +128,34 @@ namespace MCForge.Gui.Dialogs {
         #endregion
 
 
-        private void dtaLoaded_CellClick(object sender, DataGridViewCellEventArgs e) {
-            switch ( e.ColumnIndex ) {
-                case 4: //Unload 
-                    Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                break;
+        private void dtaLoaded_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = e.ColumnIndex;
+            new Thread(new ThreadStart(delegate
+            {
+                switch (i)
+                {
+                    case 4: //Unload
+                        Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                        break;
 
-                case 5: //Reload
-                string name = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(name));
-                Program.console.getServer().getLevelHandler().loadLevel("levels/" + name + ".ggs");
-                break;
+                    case 5: //Reload
+                        string name = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(name));
+                        Program.console.getServer().getLevelHandler().loadLevel("levels/" + name + ".ggs");
+                        break;
 
-                case 6: //Delete
-                if ( MessageBox.Show("Are you sure you want to delete this level?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes ) {
-                    string levelName = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(levelName));
-                    File.Delete("levels/" + levelName + ".ggs");
+                    case 6: //Delete
+                        if (MessageBox.Show("Are you sure you want to delete this level?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            string levelName = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
+                            Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(levelName));
+                            File.Delete("levels/" + levelName + ".ggs");
+                        }
+                        break;
+
                 }
-                break;
-
-            }
+            })).Start();
         }
 
         private void btnCreateLevel_Click(object sender, EventArgs e)
