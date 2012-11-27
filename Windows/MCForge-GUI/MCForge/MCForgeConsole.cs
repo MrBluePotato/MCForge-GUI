@@ -62,7 +62,6 @@ namespace MCForge.Gui
     public class MCForgeConsole : net.mcforge.system.Console, Listener
     {
         private net.mcforge.server.Server server;
-        private ISQL sql;
         private Messages chat;
         private string lastmessage;
 
