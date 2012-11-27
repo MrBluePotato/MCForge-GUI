@@ -71,7 +71,6 @@ namespace MCForge.Gui
             server = new net.mcforge.server.Server("[MCForge] Default", 25565, "Welcome!");
             server.Start(this, true);
             server.getEventSystem().registerEvents(this);
-            server.startSQL(sql);
             chat = new Messages(server);
             Program.running = true;
         }
