@@ -57,18 +57,19 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(338, 236);
+            this.textBox1.Size = new System.Drawing.Size(338, 246);
             this.textBox1.TabIndex = 3;
             // 
             // TextOnlyDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 296);
+            this.ClientSize = new System.Drawing.Size(362, 290);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.aeroButton1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TextOnlyDialog";
             this.Text = "TextOnlyDialog";
             this.Load += new System.EventHandler(this.TextOnlyDialog_Load);

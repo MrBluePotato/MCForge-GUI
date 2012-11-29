@@ -115,29 +115,30 @@ namespace MCForge.Gui.Forms {
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 19);
             this.serverToolStripMenuItem.Text = "Server";
+            this.serverToolStripMenuItem.Click += new System.EventHandler(this.serverToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
@@ -176,21 +177,21 @@ namespace MCForge.Gui.Forms {
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
             // serverListToolStripMenuItem
             // 
             this.serverListToolStripMenuItem.Name = "serverListToolStripMenuItem";
-            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serverListToolStripMenuItem.Text = "Server List";
             this.serverListToolStripMenuItem.Click += new System.EventHandler(this.serverListToolStripMenuItem_Click);
             // 
@@ -212,12 +213,14 @@ namespace MCForge.Gui.Forms {
             this.kickAllToolStripMenuItem.Name = "kickAllToolStripMenuItem";
             this.kickAllToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.kickAllToolStripMenuItem.Text = "Kick all";
+            this.kickAllToolStripMenuItem.Click += new System.EventHandler(this.kickAllToolStripMenuItem_Click);
             // 
             // kickNonopsToolStripMenuItem
             // 
             this.kickNonopsToolStripMenuItem.Name = "kickNonopsToolStripMenuItem";
             this.kickNonopsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.kickNonopsToolStripMenuItem.Text = "Kick non-ops";
+            this.kickNonopsToolStripMenuItem.Click += new System.EventHandler(this.kickNonopsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -275,6 +278,7 @@ namespace MCForge.Gui.Forms {
             this.reloadAllToolStripMenuItem1.Name = "reloadAllToolStripMenuItem1";
             this.reloadAllToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.reloadAllToolStripMenuItem1.Text = "Reload All";
+            this.reloadAllToolStripMenuItem1.Click += new System.EventHandler(this.reloadAllToolStripMenuItem1_Click);
             // 
             // reloadEmptyToolStripMenuItem
             // 

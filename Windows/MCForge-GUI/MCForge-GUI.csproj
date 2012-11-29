@@ -243,8 +243,6 @@
     <Compile Include="MCForge\MCForge_5\Player_Port\Server.cs" />
     <Compile Include="OldMethods.cs" />
     <Compile Include="MCForge\MCForgeConsole.cs" />
-    <Compile Include="MCForge\SQL_PORT\MySQL.cs" />
-    <Compile Include="MCForge\SQL_PORT\SQLite.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

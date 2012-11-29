@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using MCForge.Gui.WindowsAPI.Utils;
 using net.mcforge.iomodel;
 using net.mcforge.API;
+using net.mcforge.chat;
+
 using net.mcforge.API.player;
 
 namespace MCForge.Gui.Dialogs {
@@ -28,6 +30,7 @@ namespace MCForge.Gui.Dialogs {
             selectedPlayer = Player.FindPlayer( lstPlayers.SelectedItem.ToString().Substring( 1 ) );
 
             bool enabled = true;
+            char color = (selectedPlayer.getPrefix() == null || selectedPlayer.getPrefix() == "" || !selectedPlayer.getPrefix().StartsWith("&") ? ChatColor.White.getColor() : selectedPlayer.getPrefix()[1]);
 
 #if !DEBUG
             if ( selectedPlayer == null ) {
@@ -66,7 +69,7 @@ namespace MCForge.Gui.Dialogs {
             btnTitleColor.Relation = ColorRelation.Green;
 #else
             btnColor.Relation = ColorRelation.FindColorRelationByMinecraftCode( selectedPlayer.getDisplayColor().toString() );
-            btnTitleColor.Relation = ColorRelation.FindColorRelationByMinecraftCode(selectedPlayer.getDisplayColor().toString());
+            btnTitleColor.Relation = ColorRelation.FindColorRelationByMinecraftCode("&" + color);
 #endif
             setInfo(selectedPlayer);
             
@@ -76,10 +79,9 @@ namespace MCForge.Gui.Dialogs {
         public void setInfo(net.mcforge.iomodel.Player player)
         {
             this.grpInfo.Text = player.getGroup().name;
-            if (player.hasValue("title"))
-            {
-                this.txtTitle.Text = player.getValue("title").ToString();
-            }
+            this.txtTitle.Text = player.getPrefix();
+            if (txtTitle.Text.StartsWith("&"))
+                txtTitle.Text = txtTitle.Text.Substring(2);
             this.txtMap.Text = player.getLevel().name;
             this.txtIp.Text = player.getIP();
             this.txtName.Text = player.getName();
@@ -91,12 +93,28 @@ namespace MCForge.Gui.Dialogs {
         [EventHandler()]
         public void PlayerConnect(PlayerConnectEvent eventargs)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate { PlayerConnect(eventargs); });
+                return;
+            }
             lstPlayers.AddIfNotExist(eventargs.getPlayer().getDisplayColor().getColor(), eventargs.getPlayer().getName());
         }
 
         [EventHandler()]
         public void PlayerDisconnect(PlayerDisconnectEvent eventargs)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate { PlayerDisconnect(eventargs); });
+                return;
+            }
+            if (selectedPlayer == eventargs.getPlayer())
+            {
+                selectedPlayer = null;
+                lstPlayers.SelectedIndex = -1;
+                lstPlayers_SelectedIndexChanged(null, null);
+            }
             lstPlayers.RemoveIfExists(eventargs.getPlayer().getName());
         }
         #endregion
@@ -156,6 +174,20 @@ namespace MCForge.Gui.Dialogs {
             Program.console.sendMessage("Please provide a reason.");
             string reason = Program.console.next();
             selectedPlayer.ban(Program.console, reason);
+        }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (selectedPlayer == null)
+            {
+                txtTitle.Enabled = false;
+                txtTitle.Text = "";
+            }
+            if (txtTitle.Text != "")
+                selectedPlayer.setShowPrefix(true);
+            else
+                selectedPlayer.setShowPrefix(false);
+            selectedPlayer.setPrefix(btnTitleColor.Relation.MinecraftColorCode + "[" + txtTitle.Text + "]");
         }
 
     }
