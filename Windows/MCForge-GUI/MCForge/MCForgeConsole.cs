@@ -93,6 +93,8 @@ namespace MCForge.Gui
             foreach (File f in list)
             {
                 string name = f.getName().Split('.')[0];
+                if (name == "properties")
+                    continue;
                 if (getServer().getLevelHandler().findLevel(name) == null)
                     levels.Add(name);
             }
