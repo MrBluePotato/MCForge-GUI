@@ -321,7 +321,7 @@ namespace MCForge.Gui.WindowsAPI.Utils {
                         DrawThemeTextEx( renderer.Handle, Memdc, 0, 0, text, -1, uFormat, ref rc2, ref dttOpts );
                         BitBlt( destdc, rc.Left, rc.Top, rc.Right - rc.Left, rc.Bottom - rc.Top, Memdc, 0, 0, SOURCE_COPY );
                     }
-                    catch ( Exception e ) {
+                    catch {
                     	//Logger.Log(e.ToString());
                     }
 

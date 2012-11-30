@@ -292,7 +292,7 @@ namespace MCForge.Gui.WindowsAPI
 			try {
 				Margins m = bounds;
 				DwmExtendFrameIntoClientArea(handle, ref m);
-			} catch (Exception e) {
+			} catch {
 				
 			}
 		}

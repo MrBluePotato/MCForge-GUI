@@ -24,8 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerManagerDialog));
             this.grpPlayerList = new System.Windows.Forms.GroupBox();
             this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnBan = new System.Windows.Forms.Button();
             this.btnKick = new System.Windows.Forms.Button();
@@ -52,6 +54,7 @@
             this.txtChat = new MCForge.Gui.Components.HintedTextbox();
             this.btnColor = new MCForge.Gui.Components.ColorSelectionButton(this.components);
             this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
+            this.btnApply = new System.Windows.Forms.Button();
             this.grpPlayerList.SuspendLayout();
             this.grpInfo.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +71,7 @@
             // 
             // grpInfo
             // 
+            this.grpInfo.Controls.Add(this.label9);
             this.grpInfo.Controls.Add(this.btnTitleColor);
             this.grpInfo.Controls.Add(this.txtUndo);
             this.grpInfo.Controls.Add(this.btnUndo);
@@ -100,13 +104,24 @@
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Enabled = false;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(105, 220);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 13);
+            this.label9.TabIndex = 50;
+            this.label9.Text = "Title color: ";
+            // 
             // btnUndo
             // 
             this.btnUndo.Enabled = false;
             this.btnUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUndo.Location = new System.Drawing.Point(250, 245);
+            this.btnUndo.Location = new System.Drawing.Point(244, 268);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(75, 23);
+            this.btnUndo.Size = new System.Drawing.Size(75, 22);
             this.btnUndo.TabIndex = 47;
             this.btnUndo.Text = "Undo";
             this.btnUndo.UseVisualStyleBackColor = true;
@@ -115,9 +130,9 @@
             // 
             this.btnBan.Enabled = false;
             this.btnBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBan.Location = new System.Drawing.Point(64, 245);
+            this.btnBan.Location = new System.Drawing.Point(64, 268);
             this.btnBan.Name = "btnBan";
-            this.btnBan.Size = new System.Drawing.Size(49, 23);
+            this.btnBan.Size = new System.Drawing.Size(49, 22);
             this.btnBan.TabIndex = 46;
             this.btnBan.Text = "Ban";
             this.btnBan.UseVisualStyleBackColor = true;
@@ -127,9 +142,9 @@
             // 
             this.btnKick.Enabled = false;
             this.btnKick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKick.Location = new System.Drawing.Point(9, 245);
+            this.btnKick.Location = new System.Drawing.Point(9, 268);
             this.btnKick.Name = "btnKick";
-            this.btnKick.Size = new System.Drawing.Size(49, 23);
+            this.btnKick.Size = new System.Drawing.Size(49, 22);
             this.btnKick.TabIndex = 45;
             this.btnKick.Text = "Kick";
             this.btnKick.UseVisualStyleBackColor = true;
@@ -139,9 +154,9 @@
             // 
             this.btnEditRank.Enabled = false;
             this.btnEditRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRank.Location = new System.Drawing.Point(220, 131);
+            this.btnEditRank.Location = new System.Drawing.Point(220, 133);
             this.btnEditRank.Name = "btnEditRank";
-            this.btnEditRank.Size = new System.Drawing.Size(99, 23);
+            this.btnEditRank.Size = new System.Drawing.Size(99, 22);
             this.btnEditRank.TabIndex = 44;
             this.btnEditRank.Text = "Edit Rank";
             this.btnEditRank.UseVisualStyleBackColor = true;
@@ -172,9 +187,9 @@
             // 
             this.btnEditMap.Enabled = false;
             this.btnEditMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditMap.Location = new System.Drawing.Point(220, 105);
+            this.btnEditMap.Location = new System.Drawing.Point(220, 106);
             this.btnEditMap.Name = "btnEditMap";
-            this.btnEditMap.Size = new System.Drawing.Size(99, 23);
+            this.btnEditMap.Size = new System.Drawing.Size(99, 22);
             this.btnEditMap.TabIndex = 41;
             this.btnEditMap.Text = "Edit Map";
             this.btnEditMap.UseVisualStyleBackColor = true;
@@ -182,10 +197,11 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.BackColor = System.Drawing.SystemColors.Control;
             this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(55, 188);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(159, 20);
+            this.txtTitle.Size = new System.Drawing.Size(264, 20);
             this.txtTitle.TabIndex = 40;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
@@ -292,6 +308,7 @@
             this.txtStatus.Enabled = false;
             this.txtStatus.Location = new System.Drawing.Point(55, 14);
             this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(100, 20);
             this.txtStatus.TabIndex = 28;
             this.txtStatus.Text = "Offline";
@@ -310,41 +327,45 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(513, 533);
+            this.btnSave.Location = new System.Drawing.Point(434, 533);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(432, 533);
+            this.btnCancel.Location = new System.Drawing.Point(352, 533);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnTitleColor
             // 
+            this.btnTitleColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnTitleColor.Enabled = false;
-            this.btnTitleColor.Location = new System.Drawing.Point(220, 188);
+            this.btnTitleColor.Location = new System.Drawing.Point(170, 215);
             this.btnTitleColor.Name = "btnTitleColor";
             this.btnTitleColor.Relation = null;
-            this.btnTitleColor.Size = new System.Drawing.Size(97, 23);
+            this.btnTitleColor.Size = new System.Drawing.Size(97, 22);
             this.btnTitleColor.TabIndex = 49;
-            this.btnTitleColor.Text = "colorSelectionButton1";
-            this.btnTitleColor.UseVisualStyleBackColor = true;
+            this.btnTitleColor.Text = "Purple";
+            this.btnTitleColor.UseVisualStyleBackColor = false;
             // 
             // txtUndo
             // 
+            this.txtUndo.BackColor = System.Drawing.SystemColors.Control;
             this.txtUndo.Enabled = false;
             this.txtUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUndo.ForeColor = System.Drawing.Color.Gray;
             this.txtUndo.Hint = "Undo Amount";
             this.txtUndo.HintColor = System.Drawing.Color.Gray;
-            this.txtUndo.Location = new System.Drawing.Point(137, 247);
+            this.txtUndo.Location = new System.Drawing.Point(131, 269);
             this.txtUndo.Name = "txtUndo";
             this.txtUndo.Size = new System.Drawing.Size(107, 20);
             this.txtUndo.TabIndex = 48;
@@ -389,15 +410,30 @@
             this.lstPlayers.TabIndex = 0;
             this.lstPlayers.SelectedIndexChanged += new System.EventHandler(this.lstPlayers_SelectedIndexChanged);
             // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(515, 533);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 4;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
             // PlayerManagerDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 568);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.grpPlayerList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PlayerManagerDialog";
             this.Text = "Player Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlayerManagerDialog_FormClosed);
@@ -439,6 +475,8 @@
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label label1;
         private Components.ColorSelectionButton btnTitleColor;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnApply;
 
     }
 }
