@@ -47,10 +47,10 @@ namespace MCForge.Gui.Dialogs {
                     c = ChatColor.Orange;
                     break;
                 case "Silver":
-                    c = ChatColor.Grey;
+                    c = ChatColor.Gray;
                     break;
                 case "Gray":
-                    c = ChatColor.Dark_Grey;
+                    c = ChatColor.Dark_Gray;
                     break;
                 case "Blue":
                     c = ChatColor.Indigo;
