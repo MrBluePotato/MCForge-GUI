@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.htmlReader1 = new MCForge.Gui.Components.HtmlReader();
+            this.browser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // button1
@@ -48,28 +48,22 @@
             this.checkBox1.Text = "Don\'t show news on startup?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // htmlReader1
+            // browser
             // 
-            this.htmlReader1.AllowNavigation = false;
-            this.htmlReader1.AllowWebBrowserDrop = false;
-            this.htmlReader1.IsWebBrowserContextMenuEnabled = false;
-            this.htmlReader1.Location = new System.Drawing.Point(12, 12);
-            this.htmlReader1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.htmlReader1.Name = "htmlReader1";
-            this.htmlReader1.ScriptErrorsSuppressed = true;
-            this.htmlReader1.ScrollBarsEnabled = false;
-            this.htmlReader1.Size = new System.Drawing.Size(393, 325);
-            this.htmlReader1.TabIndex = 0;
-            this.htmlReader1.Url = new System.Uri("", System.UriKind.Relative);
+            this.browser.Location = new System.Drawing.Point(12, 12);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.Size = new System.Drawing.Size(393, 330);
+            this.browser.TabIndex = 3;
             // 
             // NewsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 383);
+            this.Controls.Add(this.browser);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.htmlReader1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewsDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -82,9 +76,9 @@
 
         #endregion
 
-        private Components.HtmlReader htmlReader1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.WebBrowser browser;
 
     }
 }

@@ -29,8 +29,9 @@ namespace MCForge.Gui.Dialogs {
             if ( e.Cancelled || mNewsFetcher.CancellationPending )
                 return;
 
-            if ( !htmlReader1.IsDisposed )
-                htmlReader1.WriteHtml(InetUtils.GrabWebpage(URL));
+            if (!browser.IsDisposed)
+                browser.Navigate(URL);
+              //htmlReader1.WriteHtml(InetUtils.GrabWebpage(URL));
         }
 
         void mNewsFetcher_DoWork(object sender, DoWorkEventArgs e) {
