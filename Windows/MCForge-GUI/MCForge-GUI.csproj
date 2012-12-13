@@ -157,6 +157,12 @@
     <Compile Include="Components\HtmlReader.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\ImageListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ImageListBox.Designer.cs">
+      <DependentUpon>ImageListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Interfaces\IFormSharer.cs" />
     <Compile Include="Components\MapBrowser.cs">
       <SubType>Component</SubType>
@@ -196,6 +202,12 @@
     </Compile>
     <Compile Include="Dialogs\ErrorDialog.designer.cs">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UpdateReadyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UpdateReadyDialog.Designer.cs">
+      <DependentUpon>UpdateReadyDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\InputDialog.cs">
       <SubType>Form</SubType>
@@ -244,6 +256,12 @@
     </Compile>
     <Compile Include="Dialogs\TextOnlyDialog.Designer.cs">
       <DependentUpon>TextOnlyDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UpdateServiceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UpdateServiceDialog.Designer.cs">
+      <DependentUpon>UpdateServiceDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Fonts\Fonts.cs" />
     <Compile Include="FormMainScreen.cs">
@@ -307,6 +325,9 @@
     <EmbeddedResource Include="Dialogs\ErrorDialog.resx">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UpdateReadyDialog.resx">
+      <DependentUpon>UpdateReadyDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx">
       <DependentUpon>TextOnlyDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UpdateServiceDialog.resx">
+      <DependentUpon>UpdateServiceDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMainScreen.resx">
       <DependentUpon>FormMainScreen.cs</DependentUpon>

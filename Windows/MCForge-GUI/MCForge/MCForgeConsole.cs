@@ -53,6 +53,7 @@ using java.lang;
 using java.io;
 using net.mcforge.API.player;
 using System.Threading;
+using MCForge.Gui.Dialogs;
 
 namespace MCForge.Gui
 {
@@ -73,6 +74,22 @@ namespace MCForge.Gui
             server.getEventSystem().registerEvents(this);
             chat = new Messages(server);
             Program.running = true;
+        }
+
+        public override bool askForUpdate(net.mcforge.system.updater.Updatable u)
+        {
+            UpdateReadyDialog urd = new UpdateReadyDialog(u, server.getUpdateService());
+            DialogResult answer = urd.ShowDialog();
+
+            if (answer == DialogResult.Yes)
+                return true;
+            else if (answer == DialogResult.OK) 
+            { 
+                return false; 
+            }
+            //Add to queue
+            else
+                return false;
         }
 
         public void SendOpMessage(string message)
