@@ -124,7 +124,7 @@ update.
 If you choose to update now, then the plugin will be unloaded 
 and the update will be downloaded.
 
-If you choose to update later, then the updateswill be installed 
+If you choose to update later, then the updates will be installed 
 the next time the server starts up.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

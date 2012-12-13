@@ -17,6 +17,30 @@ namespace MCForge.Gui.Components
             get { return _myImageList; }
             set { _myImageList = value; }
         }
+        /// <summary>
+        /// Gets or sets the currently selected item in the <see cref="T:System.Windows.Forms.ListBox"/>.
+        /// </summary>
+        /// <returns>An object that represents the current selection in the control.</returns>
+        ///   
+        /// <PermissionSet>
+        ///   <IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+        ///   <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+        ///   <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/>
+        ///   <IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+        ///   </PermissionSet>
+        public new string SelectedItem
+        {
+            get
+            {
+                if (base.SelectedItem == null)
+                    return string.Empty;
+                return base.SelectedItem.ToString().Substring(1);
+            }
+            set
+            {
+                base.SelectedItem = value;
+            }
+        }
         public ImageListBox()
         {
             this.DrawMode = DrawMode.OwnerDrawFixed;

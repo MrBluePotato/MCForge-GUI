@@ -710,5 +710,18 @@ namespace MCForge.Gui.Forms {
         {
 
         }
+
+        private void updateServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void updateServiceToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            using (UpdateServiceDialog u = new UpdateServiceDialog())
+            {
+                u.ShowDialog();
+            }
+        }
     }
 }

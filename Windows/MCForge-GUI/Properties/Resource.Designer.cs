@@ -63,6 +63,16 @@ namespace MCForge.Gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _500GallonsOfMilk {
+            get {
+                object obj = ResourceManager.GetObject("_500GallonsOfMilk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hirez_mcforge {
             get {
                 object obj = ResourceManager.GetObject("hirez_mcforge", resourceCulture);
@@ -117,6 +127,16 @@ namespace MCForge.Gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("Ubuntu", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon updateicon {
+            get {
+                object obj = ResourceManager.GetObject("updateicon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

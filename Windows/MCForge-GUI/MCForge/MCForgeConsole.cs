@@ -84,10 +84,10 @@ namespace MCForge.Gui
             if (answer == DialogResult.Yes)
                 return true;
             else if (answer == DialogResult.OK) 
-            { 
+            {
+                server.getUpdateService().addToRestartQueue(u);
                 return false; 
             }
-            //Add to queue
             else
                 return false;
         }

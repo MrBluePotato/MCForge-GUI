@@ -70,6 +70,8 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::MCForge.Gui.Properties.Resources._500GallonsOfMilk;
+            this.pictureBox1.InitialImage = global::MCForge.Gui.Properties.Resources._500GallonsOfMilk;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 128);
@@ -81,7 +83,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(146, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(301, 104);
+            this.label1.Size = new System.Drawing.Size(304, 104);
             this.label1.TabIndex = 4;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -95,7 +97,7 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "An update for BLABLABLA is ready!";
             // 
-            // UpdateService
+            // UpdateReadyDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,7 +110,8 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UpdateService";
+            this.MaximizeBox = false;
+            this.Name = "UpdateReadyDialog";
             this.Text = "MCF Update Service";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
