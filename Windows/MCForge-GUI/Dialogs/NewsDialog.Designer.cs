@@ -1,4 +1,5 @@
-﻿namespace MCForge.Gui.Dialogs {
+﻿using Skybound.Gecko;
+namespace MCForge.Gui.Dialogs {
     partial class NewsDialog {
         /// <summary>
         /// Required designer variable.
@@ -25,7 +26,7 @@
         private void InitializeComponent() {
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.browser = new System.Windows.Forms.WebBrowser();
+            this.browser = new Skybound.Gecko.GeckoWebBrowser();
             this.SuspendLayout();
             // 
             // button1
@@ -51,10 +52,9 @@
             // browser
             // 
             this.browser.Location = new System.Drawing.Point(12, 12);
-            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(393, 330);
-            this.browser.TabIndex = 3;
+            this.browser.Size = new System.Drawing.Size(393, 320);
+            this.browser.TabIndex = 0;
             // 
             // NewsDialog
             // 
@@ -78,7 +78,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.WebBrowser browser;
-
+        private GeckoWebBrowser browser;
     }
 }

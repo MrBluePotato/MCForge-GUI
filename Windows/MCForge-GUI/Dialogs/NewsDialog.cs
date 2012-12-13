@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.IO;
 using MCForge.Gui.WindowsAPI.Utils;
 
 namespace MCForge.Gui.Dialogs {
@@ -17,6 +18,8 @@ namespace MCForge.Gui.Dialogs {
 
         public NewsDialog() {
             InitializeComponent();
+
+            Skybound.Gecko.Xpcom.Initialize(Path.GetDirectoryName(Application.ExecutablePath) + "\\lib\\xulrunner\\");
 
             mNewsFetcher = new BackgroundWorker() {
                 WorkerSupportsCancellation = true
@@ -31,7 +34,6 @@ namespace MCForge.Gui.Dialogs {
 
             if (!browser.IsDisposed)
                 browser.Navigate(URL);
-              //htmlReader1.WriteHtml(InetUtils.GrabWebpage(URL));
         }
 
         void mNewsFetcher_DoWork(object sender, DoWorkEventArgs e) {

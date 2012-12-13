@@ -87,6 +87,9 @@
     <Reference Include="MCForge">
       <HintPath>..\DLL\MCForge.dll</HintPath>
     </Reference>
+    <Reference Include="Skybound.Gecko">
+      <HintPath>..\DLL\Skybound.Gecko.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>

@@ -54,11 +54,20 @@ namespace MCForge.Gui
 		}
 		
 		public bool checkUpdates() {
-			string last = "";
-			using (WebClient wc = new WebClient()) {
-				last = wc.DownloadString("http://update.mcforge.net/VERSION_2/GUI/current.txt");
-			}
-			return last != VERSION;
+            try
+            {
+                string last = "";
+                using (WebClient wc = new WebClient())
+                {
+
+                    last = wc.DownloadString("http://update.mcforge.net/VERSION_2/GUI/current.txt");
+                }
+                return last != VERSION;
+            }
+            catch
+            {
+                return false;
+            }
 		}
 		
 		public void downloadUpdates(SplashScreen parent) {
