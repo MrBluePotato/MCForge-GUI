@@ -146,6 +146,7 @@
             this.Controls.Add(this.btnIgnore);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.txtError);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ErrorDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Oops... :s";
