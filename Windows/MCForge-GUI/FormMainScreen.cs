@@ -110,6 +110,9 @@ namespace MCForge.Gui.Forms {
 #if DEBUG
             Logger.Log("&6Warning: Running MCForge in Debug mode. Results may vary.");
 #endif
+
+            if (!Program.console.getServer().getSystemProperties().getBool("Verify-Names"))
+                Logger.Log(ChatColor.Dark_Red + "Warning: You are running this server in offline-mode (Verify-Names off), it is recommend you turn this option on. If you know what you are doing then ignore this message.");
             new System.Threading.Thread(waitForURL).Start();
 
         }
