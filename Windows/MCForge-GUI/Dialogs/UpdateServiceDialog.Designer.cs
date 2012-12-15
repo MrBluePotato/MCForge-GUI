@@ -38,9 +38,9 @@ namespace MCForge.Gui.Dialogs
             this.button4 = new System.Windows.Forms.Button();
             this.images = new System.Windows.Forms.ImageList(this.components);
             this.button5 = new System.Windows.Forms.Button();
-            this.imageListBox1 = new MCForge.Gui.Components.ImageListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imageListBox1 = new MCForge.Gui.Components.ImageListBox();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -109,20 +109,6 @@ namespace MCForge.Gui.Dialogs
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // imageListBox1
-            // 
-            this.imageListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.imageListBox1.FormattingEnabled = true;
-            this.imageListBox1.ImageList = this.images;
-            this.imageListBox1.Items.AddRange(new object[] {
-            "imagelistbox"});
-            this.imageListBox1.Location = new System.Drawing.Point(2, 0);
-            this.imageListBox1.Name = "imageListBox1";
-            this.imageListBox1.SelectedItem = "";
-            this.imageListBox1.Size = new System.Drawing.Size(208, 264);
-            this.imageListBox1.TabIndex = 5;
-            this.imageListBox1.SelectedIndexChanged += new System.EventHandler(this.imageListBox1_SelectedIndexChanged_1);
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,6 +125,20 @@ namespace MCForge.Gui.Dialogs
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // imageListBox1
+            // 
+            this.imageListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.imageListBox1.FormattingEnabled = true;
+            this.imageListBox1.ImageList = this.images;
+            this.imageListBox1.Items.AddRange(new object[] {
+            "imagelistbox"});
+            this.imageListBox1.Location = new System.Drawing.Point(2, 0);
+            this.imageListBox1.Name = "imageListBox1";
+            this.imageListBox1.SelectedItem = "";
+            this.imageListBox1.Size = new System.Drawing.Size(208, 264);
+            this.imageListBox1.TabIndex = 5;
+            this.imageListBox1.SelectedIndexChanged += new System.EventHandler(this.imageListBox1_SelectedIndexChanged_1);
+            // 
             // UpdateServiceDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,6 +151,8 @@ namespace MCForge.Gui.Dialogs
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "UpdateServiceDialog";
             this.Text = "UpdateService";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateService_FormClosing);
