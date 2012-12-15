@@ -105,7 +105,7 @@ namespace MCForge.Gui.Dialogs
                 txtVersion.Clear();
                 lstPlugins.ClearSelected();
                 string path = p.getFilePath();
-                server.getPluginHandler().loadPlugin(pl, server);
+                server.getPluginHandler().loadPlugin(pl);
             }
             catch(System.Exception ex) {
                 MessageBox.Show(p.getFilePath());
