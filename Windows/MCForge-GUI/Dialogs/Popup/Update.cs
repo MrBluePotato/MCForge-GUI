@@ -70,13 +70,16 @@ namespace MCForge.Gui.Dialogs
             }
             DrawText("Preparing to install .exe..");
             System.Threading.Thread.Sleep(1337);
-            if (!System.IO.File.Exists("exedownload.exe"))
+            if (!System.IO.File.Exists("exedownload.exe") && !System.IO.File.Exists("exedownloader.exe"))
             {
                 MessageBox.Show("Could not locate exedownload.exe!\nTry downloading it from www.mcforge.net and try again!", "Error locating file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(3);
                 return;
             }
-            System.Diagnostics.Process.Start("exedownload.exe", "9ea582c00b878d5589a253d0863b1734");
+            if (!System.IO.File.Exists("exedownload.exe"))
+                System.Diagnostics.Process.Start("exedownloader.exe", "9ea582c00b878d5589a253d0863b1734");
+            else
+                System.Diagnostics.Process.Start("exedownload.exe", "9ea582c00b878d5589a253d0863b1734");
             Environment.Exit(4);
         }
 
