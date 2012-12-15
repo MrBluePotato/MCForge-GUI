@@ -42,12 +42,14 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using MCForge.Gui.Forms;
 using System.IO;
+using MCForge.Gui.Dialogs;
 
 namespace MCForge.Gui
 {
 	internal sealed class Program
 	{
 		private static MCForgeConsole mc = new MCForgeConsole();
+        public static GUISettings guisettings = new GUISettings();
 		public static MCForgeConsole console {
 			get {
 				return mc;
@@ -62,6 +64,7 @@ namespace MCForge.Gui
 		[STAThread]
 		private static void Main(string[] args)
 		{
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             File.Delete("url.txt");
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
@@ -79,6 +82,60 @@ namespace MCForge.Gui
             }
             Environment.Exit(0);
 		}
+
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            DialogResult d;
+            if (hasCrashedBefore((System.Exception)e.ExceptionObject))
+            {
+                d = MessageBox.Show("It seems this is the second time this crash has occured. Would you like me to send a crash report?", "Onoes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (d == DialogResult.Yes)
+                {
+                    using (ErrorDialog ed = new ErrorDialog((System.Exception)e.ExceptionObject, true))
+                        ed.ShowDialog();
+                    MessageBox.Show("This crash has been reported to the MCForge team.\nTry restarting MCForge to fix this problem,\nif the problem is still present, try going to\nhttp://report.mcforge.net and submit a ticket.", "Report sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Environment.Exit(2);
+                    return;
+                }
+                else
+                    File.Delete("system/crash.log");
+            }
+            using (ErrorDialog ed = new ErrorDialog((System.Exception)e.ExceptionObject))
+                d = ed.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                running = false;
+                saveCrash((System.Exception)e.ExceptionObject);
+                Environment.Exit(1);
+            }
+            else if (d == DialogResult.Ignore)
+                return;
+            else if (d == DialogResult.Retry)
+            {
+                running = false;
+                saveCrash((System.Exception)e.ExceptionObject);
+                Application.Restart();
+            }
+            else
+            {
+                MessageBox.Show("This crash has been reported to the MCForge team.\nTry restarting MCForge to fix this problem,\nif the problem is still present, try going to\nhttp://report.mcforge.net and submit a ticket.", "Report sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Environment.Exit(2);
+            }
+        }
+
+        static void saveCrash(Exception e)
+        {
+            File.WriteAllText("system/crash.log", e.ToString());
+        }
+
+        static bool hasCrashedBefore(Exception e)
+        {
+            if (!File.Exists("system/crash.log"))
+                return false;
+            string text = File.ReadAllText("system/crash.log");
+            return text == e.ToString();
+        }
 
         [STAThread]
         public static void LaunchConsole()

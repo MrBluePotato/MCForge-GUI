@@ -53,7 +53,6 @@ using java.lang;
 using java.io;
 using net.mcforge.API.player;
 using System.Threading;
-using MCForge.Gui.Dialogs;
 
 namespace MCForge.Gui
 {
@@ -78,8 +77,13 @@ namespace MCForge.Gui
 
         public override bool askForUpdate(net.mcforge.system.updater.Updatable u)
         {
-            UpdateReadyDialog urd = new UpdateReadyDialog(u, server.getUpdateService());
-            DialogResult answer = urd.ShowDialog();
+            if (!Program.guisettings.showUpdateNotification)
+                return false; 
+            DialogResult answer;
+            using (UpdateReadyDialog urd = new Dialogs.UpdateReadyDialog(u, getServer().getUpdateService()))
+            {
+                answer = urd.ShowDialog();
+            }
 
             if (answer == DialogResult.Yes)
                 return true;
@@ -90,6 +94,17 @@ namespace MCForge.Gui
             }
             else
                 return false;
+        }
+
+        public override void alertOfManualUpdate(net.mcforge.system.updater.Updatable u)
+        {
+            DialogResult answer;
+            using (ManualUpdateReady mur = new Dialogs.ManualUpdateReady(u, getServer().getUpdateService()))
+            {
+                answer = mur.ShowDialog();
+            }
+            if (answer == DialogResult.No)
+                getServer().getUpdateService().ignoreUpdate(u);
         }
 
         public void SendOpMessage(string message)

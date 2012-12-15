@@ -203,6 +203,12 @@
     <Compile Include="Dialogs\ErrorDialog.designer.cs">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ManualUpdateReady.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ManualUpdateReady.Designer.cs">
+      <DependentUpon>ManualUpdateReady.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UpdateReadyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,7 @@
     <Compile Include="FormMainScreen.Designer.cs">
       <DependentUpon>FormMainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MCForge\GUISettings.cs" />
     <Compile Include="MCForge\MCForge_5\Command_Port\Command.cs" />
     <Compile Include="MCForge\MCForge_5\Command_Port\CommandList.cs" />
     <Compile Include="MCForge\MCForge_5\Command_Port\CommandLoader.cs" />
@@ -329,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ErrorDialog.resx">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ManualUpdateReady.resx">
+      <DependentUpon>ManualUpdateReady.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UpdateReadyDialog.resx">
       <DependentUpon>UpdateReadyDialog.cs</DependentUpon>

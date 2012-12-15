@@ -48,7 +48,7 @@ namespace MCForge.Gui.Dialogs {
         private void NewsDialog_Load(object sender, EventArgs e) {
             mNewsFetcher.RunWorkerAsync();
 
-            //checkBox1.Checked = !GuiSettings.GetSettingBoolean(GuiSettings.SHOW_NEWS_KEY);
+            checkBox1.Checked = !Program.guisettings.showNews;
         }
 
         bool PageExists() {
@@ -64,9 +64,12 @@ namespace MCForge.Gui.Dialogs {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            //GuiSettings.SetSetting(GuiSettings.SHOW_NEWS_KEY, null, (!checkBox1.Checked).ToString());
-            //GuiSettings.Save();
             Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.guisettings.showNews = !checkBox1.Checked;
         }
     }
 }

@@ -39,5 +39,19 @@ namespace MCForge.Gui.Dialogs
             this.DialogResult = DialogResult.No;
             this.Close();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                DialogResult d = MessageBox.Show("Disabling update notifications will tell the MCF Update Service\nto ignore all updates that require a notification.\nAre you sure you want to disable notifications?", "MCF Service", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (d == System.Windows.Forms.DialogResult.No)
+                    checkBox1.Checked = false;
+                else
+                    Program.guisettings.showUpdateNotification = !checkBox1.Checked;
+            }
+            else
+                Program.guisettings.showUpdateNotification = !checkBox1.Checked;
+        }
     }
 }

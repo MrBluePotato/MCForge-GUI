@@ -20,6 +20,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
+using System.Threading;
 
 namespace MCForge.Gui.Dialogs {
     /// <summary>
@@ -27,23 +29,77 @@ namespace MCForge.Gui.Dialogs {
     /// </summary>
     public partial class ErrorDialog : Form {
         private string ex;
-        public ErrorDialog(Exception e) {
+        private Exception e;
+        private bool report;
+        private string[] titles = new string[] {
+            "opps..:s",
+            "WHOA WHOA HOLD UP FAGGOTS",
+            "..what just happened?",
+            "y u du dis mcforge",
+            "Exception in sector C",
+            "Error",
+            "4th wall breaking error",
+            "Alem broke it I swear",
+            "Don't hit me master",
+            "It wasnt my fault D:",
+            "#yolo",
+            "#swag",
+            "what I tell ya'll about GOING IN MY SHED?!"
+        };
+        public ErrorDialog(Exception e, bool report)
+        {
             ex = e.Message + "\n\r" + e.StackTrace;
+            this.e = e;
+            this.report = report;
             InitializeComponent();
         }
+        public ErrorDialog(Exception e) : this(e, false) { }
 
-        public ErrorDialog(string e) {
-            ex = e;
-            InitializeComponent();
-        }
+        public ErrorDialog(string e) : this(new Exception(e)) { }
 
         private void PopupError_Load(object sender, EventArgs e) {
             txtError.Text = ex;
+            label2.Visible = false;
+            progressBar1.Visible = false;
+            Random rand = new Random();
+            int max = rand.Next(30);
+            for (int i = 0; i < max; i++)
+                this.Text = titles[rand.Next(titles.Length)];
         }
 
-        private void btnReport_Click(object sender, EventArgs e) {
-            DialogResult = System.Windows.Forms.DialogResult.Retry;
-            Close();
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            ReportCrash();
+        }
+
+        private void ReportCrash()
+        {
+            label1.Visible = false;
+            this.txtError.Visible = false;
+            btnIgnore.Visible = false;
+            btnQuit.Visible = false;
+            btnReport.Visible = false;
+            this.pictureBox1.Visible = false;
+
+            label2.Visible = true;
+            progressBar1.Visible = true;
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            string tosend = "Server Version: " + Program.console.getServer().VERSION + "\n" +
+                            "GUI Version: " + Assembly.GetEntryAssembly().GetName().Version + "\n" +
+                            "Exception Message: " + this.e.Message + "\n" +
+                            "Exception Stacktrace: " + this.e.StackTrace + "\n" +
+                            "Exception Source: " + this.e.Source + "\n" +
+                            "Exception: " + this.e.ToString() + "\n" +
+                            "Error Title: " + this.Text + "\n" +
+                            "Is Princess Luna ruler of the free world?: No";
+            Thread t = new Thread(new ThreadStart(delegate
+            {
+                //report data
+                Thread.Sleep(new Random().Next(6549));
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                Close();
+            }));
+            t.Start();
         }
 
         private void btnQuit_Click(object sender, EventArgs e) {
@@ -54,6 +110,18 @@ namespace MCForge.Gui.Dialogs {
         private void btnIgnore_Click(object sender, EventArgs e) {
             DialogResult = System.Windows.Forms.DialogResult.Ignore;
             Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult = System.Windows.Forms.DialogResult.Retry;
+            Close();
+        }
+
+        private void ErrorDialog_Shown(object sender, EventArgs e)
+        {
+            if (report)
+                ReportCrash();
         }
 
     }

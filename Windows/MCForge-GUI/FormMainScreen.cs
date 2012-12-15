@@ -134,10 +134,11 @@ namespace MCForge.Gui.Forms {
             Logger.Log(ChatColor.Bright_Green + "URL Found: " + ChatColor.White + url);
         }
 
-        private void FormMainScreen_Shown(object sender, EventArgs e) {
-            //if ( GuiSettings.GetSettingBoolean(GuiSettings.SHOW_NEWS_KEY) )
-            using ( var news = new NewsDialog() )
-               news.ShowDialog();
+        private void FormMainScreen_Shown(object sender, EventArgs e)
+        {
+            if (Program.guisettings.showNews)
+                using (var news = new NewsDialog())
+                    news.ShowDialog();
         }
 
         private void openServers()
