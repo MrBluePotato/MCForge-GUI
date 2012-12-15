@@ -727,5 +727,13 @@ namespace MCForge.Gui.Forms {
                 u.ShowDialog();
             }
         }
+
+        private void pluginsManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (PluginManagerDialog p = new PluginManagerDialog(Program.console.getServer()))
+            {
+                p.ShowDialog();
+            }
+        }
     }
 }

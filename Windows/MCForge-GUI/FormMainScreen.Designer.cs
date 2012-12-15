@@ -35,6 +35,7 @@ namespace MCForge.Gui.Forms {
             this.pluginsToolStripMenuItem = new MCForge.Gui.Components.GlassToolStripMenuItem();
             this.pluginsManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.updateServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new MCForge.Gui.Components.GlassToolStripMenuItem();
             this.portToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.makerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,6 @@ namespace MCForge.Gui.Forms {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.updateServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glassMenu.SuspendLayout();
             this.ctxLogStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -159,11 +159,19 @@ namespace MCForge.Gui.Forms {
             this.pluginsManagerToolStripMenuItem.Name = "pluginsManagerToolStripMenuItem";
             this.pluginsManagerToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.pluginsManagerToolStripMenuItem.Text = "Plugins Manager";
+            this.pluginsManagerToolStripMenuItem.Click += new System.EventHandler(this.pluginsManagerToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(160, 6);
+            // 
+            // updateServiceToolStripMenuItem
+            // 
+            this.updateServiceToolStripMenuItem.Name = "updateServiceToolStripMenuItem";
+            this.updateServiceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.updateServiceToolStripMenuItem.Text = "Update Service";
+            this.updateServiceToolStripMenuItem.Click += new System.EventHandler(this.updateServiceToolStripMenuItem_Click_1);
             // 
             // utilitiesToolStripMenuItem
             // 
@@ -179,21 +187,21 @@ namespace MCForge.Gui.Forms {
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
             // serverListToolStripMenuItem
             // 
             this.serverListToolStripMenuItem.Name = "serverListToolStripMenuItem";
-            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.serverListToolStripMenuItem.Text = "Server List";
             this.serverListToolStripMenuItem.Click += new System.EventHandler(this.serverListToolStripMenuItem_Click);
             // 
@@ -513,13 +521,6 @@ namespace MCForge.Gui.Forms {
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Players";
-            // 
-            // updateServiceToolStripMenuItem
-            // 
-            this.updateServiceToolStripMenuItem.Name = "updateServiceToolStripMenuItem";
-            this.updateServiceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.updateServiceToolStripMenuItem.Text = "Update Service";
-            this.updateServiceToolStripMenuItem.Click += new System.EventHandler(this.updateServiceToolStripMenuItem_Click_1);
             // 
             // FormMainScreen
             // 
