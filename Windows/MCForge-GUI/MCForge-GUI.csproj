@@ -209,6 +209,24 @@
     <Compile Include="Dialogs\ManualUpdateReady.Designer.cs">
       <DependentUpon>ManualUpdateReady.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\PluginInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PluginInfo.Designer.cs">
+      <DependentUpon>PluginInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PluginManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PluginManager.Designer.cs">
+      <DependentUpon>PluginManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PluginManagerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PluginManagerDialog.Designer.cs">
+      <DependentUpon>PluginManagerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UpdateReadyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,6 +357,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ManualUpdateReady.resx">
       <DependentUpon>ManualUpdateReady.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PluginInfo.resx">
+      <DependentUpon>PluginInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PluginManager.resx">
+      <DependentUpon>PluginManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PluginManagerDialog.resx">
+      <DependentUpon>PluginManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UpdateReadyDialog.resx">
       <DependentUpon>UpdateReadyDialog.cs</DependentUpon>
