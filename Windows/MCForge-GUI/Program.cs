@@ -64,6 +64,7 @@ namespace MCForge.Gui
 		[STAThread]
 		private static void Main(string[] args)
 		{
+            Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             File.Delete("url.txt");
 			Application.EnableVisualStyles();
@@ -83,16 +84,25 @@ namespace MCForge.Gui
             Environment.Exit(0);
 		}
 
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            handleException(e.Exception);
+        }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            handleException((System.Exception)e.ExceptionObject);
+        }
+
+        static void handleException(Exception e)
+        {
             DialogResult d;
-            if (hasCrashedBefore((System.Exception)e.ExceptionObject))
+            if (hasCrashedBefore(e))
             {
                 d = MessageBox.Show("It seems this is the second time this crash has occured. Would you like me to send a crash report?", "Onoes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (d == DialogResult.Yes)
                 {
-                    using (ErrorDialog ed = new ErrorDialog((System.Exception)e.ExceptionObject, true))
+                    using (ErrorDialog ed = new ErrorDialog(e, true))
                         ed.ShowDialog();
                     MessageBox.Show("This crash has been reported to the MCForge team.\nTry restarting MCForge to fix this problem,\nif the problem is still present, try going to\nhttp://report.mcforge.net and submit a ticket.", "Report sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Environment.Exit(2);
@@ -101,12 +111,12 @@ namespace MCForge.Gui
                 else
                     File.Delete("system/crash.log");
             }
-            using (ErrorDialog ed = new ErrorDialog((System.Exception)e.ExceptionObject))
+            using (ErrorDialog ed = new ErrorDialog(e))
                 d = ed.ShowDialog();
             if (d == DialogResult.Cancel)
             {
                 running = false;
-                saveCrash((System.Exception)e.ExceptionObject);
+                saveCrash(e);
                 Environment.Exit(1);
             }
             else if (d == DialogResult.Ignore)
@@ -114,7 +124,7 @@ namespace MCForge.Gui
             else if (d == DialogResult.Retry)
             {
                 running = false;
-                saveCrash((System.Exception)e.ExceptionObject);
+                saveCrash(e);
                 Application.Restart();
             }
             else
@@ -140,8 +150,9 @@ namespace MCForge.Gui
         [STAThread]
         public static void LaunchConsole()
         {
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Run(new FormMainScreen());
         }
-		
 	}
 }

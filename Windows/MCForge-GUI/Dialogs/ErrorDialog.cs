@@ -29,6 +29,7 @@ namespace MCForge.Gui.Dialogs {
     /// </summary>
     public partial class ErrorDialog : Form {
         private string ex;
+        private bool choose;
         private Exception e;
         private bool report;
         private string[] titles = new string[] {
@@ -58,6 +59,7 @@ namespace MCForge.Gui.Dialogs {
         public ErrorDialog(string e) : this(new Exception(e)) { }
 
         private void PopupError_Load(object sender, EventArgs e) {
+            
             txtError.Text = ex;
             label2.Visible = false;
             progressBar1.Visible = false;
@@ -97,6 +99,7 @@ namespace MCForge.Gui.Dialogs {
                 //report data
                 Thread.Sleep(new Random().Next(6549));
                 DialogResult = System.Windows.Forms.DialogResult.OK;
+                choose = true;
                 Close();
             }));
             t.Start();
@@ -104,17 +107,20 @@ namespace MCForge.Gui.Dialogs {
 
         private void btnQuit_Click(object sender, EventArgs e) {
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            choose = true;
             Close();
         }
 
         private void btnIgnore_Click(object sender, EventArgs e) {
             DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            choose = true;
             Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.Retry;
+            choose = true;
             Close();
         }
 
@@ -122,6 +128,12 @@ namespace MCForge.Gui.Dialogs {
         {
             if (report)
                 ReportCrash();
+        }
+
+        private void ErrorDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!choose)
+                this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
         }
 
     }

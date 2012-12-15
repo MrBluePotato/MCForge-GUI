@@ -146,11 +146,14 @@
             this.Controls.Add(this.btnIgnore);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.txtError);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ErrorDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Oops... :s";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ErrorDialog_FormClosing);
             this.Load += new System.EventHandler(this.PopupError_Load);
             this.Shown += new System.EventHandler(this.ErrorDialog_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
