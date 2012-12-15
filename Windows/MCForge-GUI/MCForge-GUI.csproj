@@ -56,6 +56,9 @@
   <PropertyGroup>
     <ApplicationIcon>MCForge.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MCForge.Starter</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>..\DLL\IKVM.OpenJDK.Core.dll</HintPath>
@@ -179,10 +182,10 @@
     <Compile Include="Components\ToolTipListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\ColorSelectionDialog.cs">
+    <Compile Include="Dialogs\Players\ColorSelectionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ColorSelectionDialog.Designer.cs">
+    <Compile Include="Dialogs\Players\ColorSelectionDialog.Designer.cs">
       <DependentUpon>ColorSelectionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Command\CommandCreatorDialog.cs">
@@ -197,94 +200,100 @@
     <Compile Include="Dialogs\Command\Maker.Designer.cs">
       <DependentUpon>Maker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ErrorDialog.cs">
+    <Compile Include="Dialogs\Popup\ErrorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ErrorDialog.designer.cs">
+    <Compile Include="Dialogs\Popup\ErrorDialog.designer.cs">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ManualUpdateReady.cs">
+    <Compile Include="Dialogs\Popup\ManualUpdateReady.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ManualUpdateReady.Designer.cs">
+    <Compile Include="Dialogs\Popup\ManualUpdateReady.Designer.cs">
       <DependentUpon>ManualUpdateReady.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PluginInfo.cs">
+    <Compile Include="Dialogs\Plugins\PluginInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dialogs\PluginInfo.Designer.cs">
+    <Compile Include="Dialogs\Plugins\PluginInfo.Designer.cs">
       <DependentUpon>PluginInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PluginManager.cs">
+    <Compile Include="Dialogs\Plugins\PluginManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dialogs\PluginManager.Designer.cs">
+    <Compile Include="Dialogs\Plugins\PluginManager.Designer.cs">
       <DependentUpon>PluginManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PluginManagerDialog.cs">
+    <Compile Include="Dialogs\Plugins\PluginManagerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PluginManagerDialog.Designer.cs">
+    <Compile Include="Dialogs\Plugins\PluginManagerDialog.Designer.cs">
       <DependentUpon>PluginManagerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\UpdateReadyDialog.cs">
+    <Compile Include="Dialogs\Popup\Update.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\UpdateReadyDialog.Designer.cs">
+    <Compile Include="Dialogs\Popup\Update.Designer.cs">
+      <DependentUpon>Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Popup\UpdateReadyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Popup\UpdateReadyDialog.Designer.cs">
       <DependentUpon>UpdateReadyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\InputDialog.cs">
+    <Compile Include="Dialogs\Popup\InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\InputDialog.Designer.cs">
+    <Compile Include="Dialogs\Popup\InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\MapManagerDialog.cs">
+    <Compile Include="Dialogs\Maps\MapManagerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\MapManagerDialog.designer.cs">
+    <Compile Include="Dialogs\Maps\MapManagerDialog.designer.cs">
       <DependentUpon>MapManagerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\NewsDialog.cs">
+    <Compile Include="Dialogs\Popup\NewsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\NewsDialog.Designer.cs">
+    <Compile Include="Dialogs\Popup\NewsDialog.Designer.cs">
       <DependentUpon>NewsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PlayerManagerDialog.cs">
+    <Compile Include="Dialogs\Players\PlayerManagerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PlayerManagerDialog.Designer.cs">
+    <Compile Include="Dialogs\Players\PlayerManagerDialog.Designer.cs">
       <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PortToolsDialog.cs">
+    <Compile Include="Dialogs\Utilities\PortToolsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PortToolsDialog.designer.cs">
+    <Compile Include="Dialogs\Utilities\PortToolsDialog.designer.cs">
       <DependentUpon>PortToolsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ServerList.cs">
+    <Compile Include="Dialogs\Utilities\ServerList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ServerList.Designer.cs">
+    <Compile Include="Dialogs\Utilities\ServerList.Designer.cs">
       <DependentUpon>ServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ServerSettingsDialog.cs">
+    <Compile Include="Dialogs\Utilities\ServerSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ServerSettingsDialog.Designer.cs">
+    <Compile Include="Dialogs\Utilities\ServerSettingsDialog.Designer.cs">
       <DependentUpon>ServerSettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TextOnlyDialog.cs">
+    <Compile Include="Dialogs\Popup\TextOnlyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TextOnlyDialog.Designer.cs">
+    <Compile Include="Dialogs\Popup\TextOnlyDialog.Designer.cs">
       <DependentUpon>TextOnlyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\UpdateServiceDialog.cs">
+    <Compile Include="Dialogs\Plugins\UpdateServiceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\UpdateServiceDialog.Designer.cs">
+    <Compile Include="Dialogs\Plugins\UpdateServiceDialog.Designer.cs">
       <DependentUpon>UpdateServiceDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Fonts\Fonts.cs" />
@@ -322,19 +331,20 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Starter.cs" />
     <Compile Include="Updater.cs" />
     <Compile Include="WindowsAPI\AeroAPI.cs" />
-    <Compile Include="WindowsAPI\Utils\ColorRelation.cs" />
-    <Compile Include="WindowsAPI\Utils\Constants.cs" />
-    <Compile Include="WindowsAPI\Utils\GraphicsExtention.cs" />
-    <Compile Include="WindowsAPI\Utils\GuiSettings.cs" />
-    <Compile Include="WindowsAPI\Utils\InetUtils.cs" />
-    <Compile Include="WindowsAPI\Utils\Margins.cs" />
-    <Compile Include="WindowsAPI\Utils\Natives.cs" />
-    <Compile Include="WindowsAPI\Utils\RECT.cs" />
-    <Compile Include="WindowsAPI\Utils\TypeCollection.cs" />
-    <Compile Include="WindowsAPI\Utils\UPnP.cs" />
-    <Compile Include="WindowsAPI\Utils\Utils.cs" />
+    <Compile Include="MCForge\Utils\ColorRelation.cs" />
+    <Compile Include="MCForge\Utils\Constants.cs" />
+    <Compile Include="MCForge\Utils\GraphicsExtention.cs" />
+    <Compile Include="MCForge\Utils\GuiSettings.cs" />
+    <Compile Include="MCForge\Utils\InetUtils.cs" />
+    <Compile Include="MCForge\Utils\Margins.cs" />
+    <Compile Include="MCForge\Utils\Natives.cs" />
+    <Compile Include="MCForge\Utils\RECT.cs" />
+    <Compile Include="MCForge\Utils\TypeCollection.cs" />
+    <Compile Include="MCForge\Utils\UPnP.cs" />
+    <Compile Include="MCForge\Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Components\GlassForm.resx">
@@ -343,7 +353,7 @@
     <EmbeddedResource Include="Components\MapBrowser.resx">
       <DependentUpon>MapBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ColorSelectionDialog.resx">
+    <EmbeddedResource Include="Dialogs\Players\ColorSelectionDialog.resx">
       <DependentUpon>ColorSelectionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Command\CommandCreatorDialog.resx">
@@ -352,49 +362,52 @@
     <EmbeddedResource Include="Dialogs\Command\Maker.resx">
       <DependentUpon>Maker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ErrorDialog.resx">
+    <EmbeddedResource Include="Dialogs\Popup\ErrorDialog.resx">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ManualUpdateReady.resx">
+    <EmbeddedResource Include="Dialogs\Popup\ManualUpdateReady.resx">
       <DependentUpon>ManualUpdateReady.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PluginInfo.resx">
+    <EmbeddedResource Include="Dialogs\Plugins\PluginInfo.resx">
       <DependentUpon>PluginInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PluginManager.resx">
+    <EmbeddedResource Include="Dialogs\Plugins\PluginManager.resx">
       <DependentUpon>PluginManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PluginManagerDialog.resx">
+    <EmbeddedResource Include="Dialogs\Plugins\PluginManagerDialog.resx">
       <DependentUpon>PluginManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UpdateReadyDialog.resx">
+    <EmbeddedResource Include="Dialogs\Popup\Update.resx">
+      <DependentUpon>Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Popup\UpdateReadyDialog.resx">
       <DependentUpon>UpdateReadyDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\InputDialog.resx">
+    <EmbeddedResource Include="Dialogs\Popup\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MapManagerDialog.resx">
+    <EmbeddedResource Include="Dialogs\Maps\MapManagerDialog.resx">
       <DependentUpon>MapManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\NewsDialog.resx">
+    <EmbeddedResource Include="Dialogs\Popup\NewsDialog.resx">
       <DependentUpon>NewsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PlayerManagerDialog.resx">
+    <EmbeddedResource Include="Dialogs\Players\PlayerManagerDialog.resx">
       <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PortToolsDialog.resx">
+    <EmbeddedResource Include="Dialogs\Utilities\PortToolsDialog.resx">
       <DependentUpon>PortToolsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ServerList.resx">
+    <EmbeddedResource Include="Dialogs\Utilities\ServerList.resx">
       <DependentUpon>ServerList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ServerSettingsDialog.resx">
+    <EmbeddedResource Include="Dialogs\Utilities\ServerSettingsDialog.resx">
       <DependentUpon>ServerSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TextOnlyDialog.resx">
+    <EmbeddedResource Include="Dialogs\Popup\TextOnlyDialog.resx">
       <DependentUpon>TextOnlyDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UpdateServiceDialog.resx">
+    <EmbeddedResource Include="Dialogs\Plugins\UpdateServiceDialog.resx">
       <DependentUpon>UpdateServiceDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMainScreen.resx">

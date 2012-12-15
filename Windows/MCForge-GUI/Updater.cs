@@ -40,6 +40,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 using System;
 using System.Threading;
 using System.Net;
+using MCForge.Gui.Dialogs;
 
 namespace MCForge.Gui
 {
@@ -48,7 +49,7 @@ namespace MCForge.Gui
 	/// </summary>
 	public class Updater
 	{
-		private const string VERSION = "6.0.0";
+		private const string VERSION = "6.0.0b5";
 		public Updater()
 		{
 		}
@@ -70,7 +71,7 @@ namespace MCForge.Gui
             }
 		}
 		
-		public void downloadUpdates(SplashScreen parent) {
+		public void downloadUpdates(Update parent) {
 			string[] files;
 			using (WebClient wc = new WebClient()) {
 				parent.DrawText("Getting file list..");
@@ -78,7 +79,7 @@ namespace MCForge.Gui
 				foreach (string s in files) {
 					//FIXME This will throw a error because MCForge.dll is in use. Need to fix
 					parent.DrawText("Downloading " + s.Split('/')[1] + "...");
-					wc.DownloadFile("http://update.mcforge.net/VERSION_2/GUI/" + s, s.Split('/')[1]);
+					wc.DownloadFile("http://update.mcforge.net/VERSION_2/GUI/" + s, "lib/" + s.Split('/')[1]);
 				}
 			}
 		}

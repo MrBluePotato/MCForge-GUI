@@ -129,13 +129,6 @@ namespace MCForge.Gui
 
 			if (!AeroAPI.CanUseAero)
 				return; //Just incase
-			
-			Updater u = new Updater();
-			DrawText("Checking for updates...");
-			if (u.checkUpdates()) {
-				DrawText("Downloading updates...");
-				u.downloadUpdates(this);
-			}
             DrawText("Getting Changelog...");
             using (WebClient c = new WebClient())
             {

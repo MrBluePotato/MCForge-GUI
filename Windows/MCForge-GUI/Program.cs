@@ -62,13 +62,11 @@ namespace MCForge.Gui
 		/// Program entry point.
 		/// </summary>
 		[STAThread]
-		private static void Main(string[] args)
+		internal static void Start(string[] args)
 		{
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             File.Delete("url.txt");
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
             SplashScreen ss = new SplashScreen();
 			Application.Run(ss);
             ss.Dispose();
