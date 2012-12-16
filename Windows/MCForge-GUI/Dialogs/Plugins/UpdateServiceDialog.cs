@@ -58,6 +58,8 @@ namespace MCForge.Gui.Dialogs
                 this.imageListBox1.Items.Clear();
                 foreach (Updatable u in objects)
                 {
+                    if (u.getName() == "MCForge") //Ignore MCForge
+                        continue; 
                     ImageListBoxItem i;
                     if (service.hasUpdate(u))
                         i = new ImageListBoxItem(u.getName(), 0);
