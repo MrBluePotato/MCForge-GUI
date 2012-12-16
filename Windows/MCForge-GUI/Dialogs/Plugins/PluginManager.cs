@@ -9,10 +9,12 @@ using net.mcforge.API.plugin;
 using net.mcforge.system.updater;
 using System;
 using System.Windows.Forms;
+using net.mcforge.API;
+using net.mcforge.API.plugin;
 
 namespace MCForge.Gui.Dialogs
 {
-    public partial class PluginManager : UserControl
+    public partial class PluginManager : UserControl, Listener
     {
         private PluginManagerDialog baseDialog;
         private UpdateService service = Program.console.getServer().getUpdateService();
@@ -24,6 +26,30 @@ namespace MCForge.Gui.Dialogs
             server = serv;
             this.baseDialog = baseDialog;
             initializeList();
+            server.getEventSystem().registerEvents(this);
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+            this.ParentForm.FormClosing += ParentForm_FormClosing;
+        }
+
+        void ParentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PluginLoadEvent.getEventList().unregister(this);
+        }
+
+        [EventHandler()]
+        private void onPluginLoad(PluginLoadEvent eventargs)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate { onPluginLoad(eventargs); });
+                return;
+            }
+            if (!lstPlugins.Items.Contains(eventargs.getPlugin().getName()))
+                lstPlugins.Items.Add(eventargs.getPlugin().getName());
         }
 
         private void initializeList() {
