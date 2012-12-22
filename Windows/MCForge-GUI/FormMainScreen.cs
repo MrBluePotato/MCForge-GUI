@@ -80,9 +80,9 @@ namespace MCForge.Gui.Forms {
                 lstLevels.Items.Add(level.name);
             }
 
-            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            for (int i = 0; i < Program.console.getServer().getPlayers().size(); i++)
             {
-                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().getPlayers().get(i);
                 lstLevels.Items.Add(player.getDisplayColor() + player.getName());
             }
 
@@ -625,7 +625,7 @@ namespace MCForge.Gui.Forms {
 
         private void kickAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object[] players = Program.console.getServer().players.toArray();
+            object[] players = Program.console.getServer().getPlayers().toArray();
             for (int i = 0; i < players.Length; i++)
             {
                 net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)players[i];
@@ -635,7 +635,7 @@ namespace MCForge.Gui.Forms {
 
         private void kickNonopsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object[] players = Program.console.getServer().players.toArray();
+            object[] players = Program.console.getServer().getPlayers().toArray();
             for (int i = 0; i < players.Length; i++)
             {
                 net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)players[i];

@@ -192,9 +192,9 @@ namespace MCForge.Gui.Dialogs {
         private void PlayerManagerDialog_Load(object sender, EventArgs e)
         {
             Program.console.getServer().getEventSystem().registerEvents(this);
-            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            for (int i = 0; i < Program.console.getServer().getPlayers().size(); i++)
             {
-                net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)(Program.console.getServer().players.get(i));
+                net.mcforge.iomodel.Player p = (net.mcforge.iomodel.Player)(Program.console.getServer().getPlayers().get(i));
                 lstPlayers.AddIfNotExist(p.getDisplayColor().getColor(), p.getName());
             }
             this.btnColor.OnColorRelationChanged += btnColor_OnColorRelationChanged;

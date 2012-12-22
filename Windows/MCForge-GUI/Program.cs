@@ -77,7 +77,7 @@ namespace MCForge.Gui
 
             if (mc.getServer().Running && mc.getServer() != null)
             {
-                mc.getServer().Stop();
+                mc.getServer().stop();
             }
             Environment.Exit(0);
 		}

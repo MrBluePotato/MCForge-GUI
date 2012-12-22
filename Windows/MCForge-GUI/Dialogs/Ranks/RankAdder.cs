@@ -57,5 +57,13 @@ namespace MCForge.Gui.Dialogs.Ranks
             baseDialog.Controls.Add(baseControl);
             baseDialog.Controls.Remove(this);
         }
+
+        private void chkIsOp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkIsOp.CheckState == CheckState.Checked)
+                chkIsOp.Text = "TRUE";
+            else
+                chkIsOp.Text = "FALSE";
+        }
     }
 }

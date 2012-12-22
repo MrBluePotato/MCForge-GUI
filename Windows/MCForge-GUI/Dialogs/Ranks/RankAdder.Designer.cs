@@ -107,6 +107,7 @@
             this.chkIsOp.Text = "FALSE";
             this.chkIsOp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkIsOp.UseVisualStyleBackColor = true;
+            this.chkIsOp.CheckedChanged += new System.EventHandler(this.chkIsOp_CheckedChanged);
             // 
             // label5
             // 

@@ -69,7 +69,7 @@ namespace MCForge.Gui
         public void Start()
         {
             server = new net.mcforge.server.Server("[MCForge] Default", 25565, "Welcome!");
-            server.Start(this, true);
+            server.start(this, true);
             server.getEventSystem().registerEvents(this);
             chat = new Messages(server);
             Program.running = true;
@@ -109,9 +109,9 @@ namespace MCForge.Gui
 
         public void SendOpMessage(string message)
         {
-            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            for (int i = 0; i < Program.console.getServer().getPlayers().size(); i++)
             {
-                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().getPlayers().get(i);
                 if (player.getGroup().isOP)
                     chat.sendMessage(message, player.getName());
             }
@@ -142,9 +142,9 @@ namespace MCForge.Gui
         public int getPlayerCount(net.mcforge.world.Level l)
         {
             int total = 0;
-            for (int i = 0; i < Program.console.getServer().players.size(); i++)
+            for (int i = 0; i < Program.console.getServer().getPlayers().size(); i++)
             {
-                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().players.get(i);
+                net.mcforge.iomodel.Player player = (net.mcforge.iomodel.Player)Program.console.getServer().getPlayers().get(i);
                 if (player.getLevel() == l)
                     total++;
             }
@@ -203,7 +203,7 @@ namespace MCForge.Gui
 
         internal void restart()
         {
-            server.Stop();
+            server.stop();
             System.Threading.Thread.Sleep(100);
             Start();
         }
