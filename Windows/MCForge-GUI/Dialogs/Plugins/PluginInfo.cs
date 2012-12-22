@@ -10,7 +10,7 @@ using net.mcforge.system.updater;
 using System.Net;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs
+namespace MCForge.Gui.Dialogs.Panels
 {
     public partial class PluginInfo : UserControl
     {
@@ -23,54 +23,66 @@ namespace MCForge.Gui.Dialogs
             this.baseManager = baseManager;
             lblTitle.Text = p.getName() + " - Information";
             lblName.Text += p.getName();
-            try {
+            try
+            {
                 lblDev.Text += p.getAuthor();
             }
-            catch {
+            catch
+            {
                 lblDev.Text += "Not specified";
             }
-            try {
+            try
+            {
                 lblVersion.Text += p.getVersion();
             }
-            catch {
+            catch
+            {
                 lblVersion.Text += "Not specified";
             }
 
-            if (p is Updatable) {
+            if (p is Updatable)
+            {
                 lblSupportsUpdates.Text = "Plugin supports automatic updates";
                 Updatable u = (Updatable)p;
                 lblCur.Text += u.getCurrentVersion();
-                using (var wc = new WebClient()) {
+                using (var wc = new WebClient())
+                {
                     lblLatest.Text += wc.DownloadString(u.getCheckURL());
                 }
                 UpdateType t = u.getUpdateType();
-                if (t == UpdateType.Ask) {
+                if (t == UpdateType.Ask)
+                {
                     lblType.Text += "Plugin asks before updating";
                     lblNotes.Text += "Not supported";
                     lblRestart.Text += "Not supported";
                 }
-                else if (t == UpdateType.Auto_Notify) {
+                else if (t == UpdateType.Auto_Notify)
+                {
                     lblType.Text += "Plugin updates automatically";
                     lblNotes.Text += "Yes";
                     lblRestart.Text += "No";
                 }
-                else if (t == UpdateType.Auto_Notify_Restart) {
+                else if (t == UpdateType.Auto_Notify_Restart)
+                {
                     lblType.Text += "Plugin updates automatically";
                     lblNotes.Text += "Yes";
                     lblRestart.Text += "Yes";
                 }
-                else if (t == UpdateType.Auto_Silent) {
+                else if (t == UpdateType.Auto_Silent)
+                {
                     lblType.Text += "Plugin updates automatically";
                     lblNotes.Text += "No";
                     lblRestart.Text += "No";
                 }
-                else if (t == UpdateType.Auto_Silent_Restart) {
+                else if (t == UpdateType.Auto_Silent_Restart)
+                {
                     lblType.Text += "Plugin updates automatically";
                     lblNotes.Text += "No";
                     lblRestart.Text += "Yes";
                 }
             }
-            else {
+            else
+            {
                 lblCur.Text += "Not supported";
                 lblLatest.Text += "Not supported";
                 lblType.Text += "Not supported";

@@ -141,7 +141,7 @@ namespace MCForge.Gui.Forms {
         {
             if (Program.guisettings.showNews)
                 using (var news = new NewsDialog())
-                    news.ShowDialog();
+                   news.ShowDialog();
         }
 
         private void openServers()
@@ -733,6 +733,14 @@ namespace MCForge.Gui.Forms {
             using (PluginManagerDialog p = new PluginManagerDialog(Program.console.getServer()))
             {
                 p.ShowDialog();
+            }
+        }
+
+        private void rankManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (RankManagerDialog rmd = new RankManagerDialog()) 
+            {
+                rmd.ShowDialog();
             }
         }
     }

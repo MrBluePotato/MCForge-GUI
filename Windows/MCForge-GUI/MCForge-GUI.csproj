@@ -267,6 +267,42 @@
     <Compile Include="Dialogs\Players\PlayerManagerDialog.Designer.cs">
       <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Ranks\PlayerDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\PlayerDisplay.Designer.cs">
+      <DependentUpon>PlayerDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\PlayerRanker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\PlayerRanker.Designer.cs">
+      <DependentUpon>PlayerRanker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankAdder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankAdder.Designer.cs">
+      <DependentUpon>RankAdder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankEditor.Designer.cs">
+      <DependentUpon>RankEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankManager.Designer.cs">
+      <DependentUpon>RankManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankManagerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Ranks\RankManagerDialog.Designer.cs">
+      <DependentUpon>RankManagerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Utilities\PortToolsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +431,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Players\PlayerManagerDialog.resx">
       <DependentUpon>PlayerManagerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\PlayerDisplay.resx">
+      <DependentUpon>PlayerDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\PlayerRanker.resx">
+      <DependentUpon>PlayerRanker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\RankAdder.resx">
+      <DependentUpon>RankAdder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\RankEditor.resx">
+      <DependentUpon>RankEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\RankManager.resx">
+      <DependentUpon>RankManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Ranks\RankManagerDialog.resx">
+      <DependentUpon>RankManagerDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Utilities\PortToolsDialog.resx">
       <DependentUpon>PortToolsDialog.cs</DependentUpon>

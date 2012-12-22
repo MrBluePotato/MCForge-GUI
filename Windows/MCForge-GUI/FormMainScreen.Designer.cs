@@ -187,21 +187,21 @@ namespace MCForge.Gui.Forms {
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
             // serverListToolStripMenuItem
             // 
             this.serverListToolStripMenuItem.Name = "serverListToolStripMenuItem";
-            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serverListToolStripMenuItem.Text = "Server List";
             this.serverListToolStripMenuItem.Click += new System.EventHandler(this.serverListToolStripMenuItem_Click);
             // 
@@ -249,6 +249,7 @@ namespace MCForge.Gui.Forms {
             this.rankManagerToolStripMenuItem.Name = "rankManagerToolStripMenuItem";
             this.rankManagerToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.rankManagerToolStripMenuItem.Text = "Rank Manager";
+            this.rankManagerToolStripMenuItem.Click += new System.EventHandler(this.rankManagerToolStripMenuItem_Click);
             // 
             // mapsToolStripMenuItem
             // 

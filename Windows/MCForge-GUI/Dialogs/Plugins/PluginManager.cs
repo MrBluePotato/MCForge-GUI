@@ -9,12 +9,10 @@ using net.mcforge.API.plugin;
 using net.mcforge.system.updater;
 using System;
 using System.Windows.Forms;
-using net.mcforge.API;
-using net.mcforge.API.plugin;
 
-namespace MCForge.Gui.Dialogs
+namespace MCForge.Gui.Dialogs.Panels
 {
-    public partial class PluginManager : UserControl, Listener
+    public partial class PluginManager : UserControl
     {
         private PluginManagerDialog baseDialog;
         private UpdateService service = Program.console.getServer().getUpdateService();
@@ -26,33 +24,10 @@ namespace MCForge.Gui.Dialogs
             server = serv;
             this.baseDialog = baseDialog;
             initializeList();
-            server.getEventSystem().registerEvents(this);
         }
 
-        protected override void OnCreateControl()
+        private void initializeList()
         {
-            base.OnCreateControl();
-            this.ParentForm.FormClosing += ParentForm_FormClosing;
-        }
-
-        void ParentForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            PluginLoadEvent.getEventList().unregister(this);
-        }
-
-        [EventHandler()]
-        private void onPluginLoad(PluginLoadEvent eventargs)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate { onPluginLoad(eventargs); });
-                return;
-            }
-            if (!lstPlugins.Items.Contains(eventargs.getPlugin().getName()))
-                lstPlugins.Items.Add(eventargs.getPlugin().getName());
-        }
-
-        private void initializeList() {
             lstPlugins.Items.Clear();
             java.util.List plugins = server.getPluginHandler().getLoadedPlugins();
             for (int i = 0; i < plugins.size(); i++)
@@ -64,31 +39,38 @@ namespace MCForge.Gui.Dialogs
         private void showInfo(object sender, EventArgs e)
         {
             Plugin p = getSelectedPlugin();
-            if (p == null) {
+            if (p == null)
+            {
                 return;
             }
             txtName.Text = p.getName();
-            try {
+            try
+            {
                 txtDev.Text = p.getAuthor();
             }
-            catch {
+            catch
+            {
                 txtDev.Text = "Not specified";
             }
-            try {
+            try
+            {
                 txtVersion.Text = p.getVersion();
             }
-            catch {
+            catch
+            {
                 txtVersion.Text = "Not specified";
             }
         }
 
-        private Plugin getSelectedPlugin() {
+        private Plugin getSelectedPlugin()
+        {
             if (lstPlugins.SelectedItem == null)
                 return null;
             return getPluginByName((string)lstPlugins.SelectedItem);
         }
 
-        private Plugin getPluginByName(string name) {
+        private Plugin getPluginByName(string name)
+        {
             java.util.List plugins = server.getPluginHandler().getLoadedPlugins();
             for (int i = 0; i < plugins.size(); i++)
             {
@@ -102,7 +84,8 @@ namespace MCForge.Gui.Dialogs
         private void unloadPlugin(object sender, EventArgs e)
         {
             Plugin p = getSelectedPlugin();
-            if (p == null) {
+            if (p == null)
+            {
                 MessageBox.Show("Please select a plugin first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -122,7 +105,6 @@ namespace MCForge.Gui.Dialogs
                 MessageBox.Show("Please select a plugin first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Plugin pl = p;
             try
             {
                 server.getPluginHandler().unload(p);
@@ -130,11 +112,10 @@ namespace MCForge.Gui.Dialogs
                 txtDev.Clear();
                 txtVersion.Clear();
                 lstPlugins.ClearSelected();
-                string path = p.getFilePath();
-                server.getPluginHandler().loadPlugin(pl);
+                server.getPluginHandler().loadPlugin(p);
             }
-            catch(System.Exception ex) {
-                MessageBox.Show(p.getFilePath());
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
         }
@@ -147,7 +128,8 @@ namespace MCForge.Gui.Dialogs
                 MessageBox.Show("Please select a plugin first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!(p is Updatable)) {
+            if (!(p is Updatable))
+            {
                 MessageBox.Show("The plugin doesn't support automatic updates!");
                 return;
             }
@@ -157,7 +139,8 @@ namespace MCForge.Gui.Dialogs
             {
                 new UpdateReadyDialog(u, service).ShowDialog();
             }
-            else {
+            else
+            {
                 MessageBox.Show("Your plugin is already up to date!", "Plugin up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -170,7 +153,8 @@ namespace MCForge.Gui.Dialogs
                 MessageBox.Show("Please select a plugin first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!(p is Updatable)) {
+            if (!(p is Updatable))
+            {
                 MessageBox.Show("The plugin doesn't support automatic updates!");
                 return;
             }
