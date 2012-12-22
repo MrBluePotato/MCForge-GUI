@@ -11,7 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace MCForge.Gui.Dialogs.Panels
+namespace MCForge.Gui.Dialogs.Ranks
 {
     public partial class RankManager : UserControl
     {

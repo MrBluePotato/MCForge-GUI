@@ -5,10 +5,9 @@
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  ******************************************************************************/
-using MCForge.Gui.Dialogs.Panels;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs
+namespace MCForge.Gui.Dialogs.Plugins
 {
     public partial class PluginManagerDialog : Form
     {

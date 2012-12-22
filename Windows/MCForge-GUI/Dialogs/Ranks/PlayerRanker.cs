@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs.Panels
+namespace MCForge.Gui.Dialogs.Ranks
 {
     public partial class PlayerRanker : UserControl
     {

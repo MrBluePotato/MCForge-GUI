@@ -5,14 +5,15 @@
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  ******************************************************************************/
+using net.mcforge.API;
 using net.mcforge.API.plugin;
 using net.mcforge.system.updater;
 using System;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs.Panels
+namespace MCForge.Gui.Dialogs.Plugins
 {
-    public partial class PluginManager : UserControl
+    public partial class PluginManager : UserControl, Listener
     {
         private PluginManagerDialog baseDialog;
         private UpdateService service = Program.console.getServer().getUpdateService();
@@ -24,6 +25,30 @@ namespace MCForge.Gui.Dialogs.Panels
             server = serv;
             this.baseDialog = baseDialog;
             initializeList();
+            server.getEventSystem().registerEvents(this);
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+            this.ParentForm.FormClosing += ParentForm_FormClosing;
+        }
+
+        void ParentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PluginLoadEvent.getEventList().unregister(this);
+        }
+
+        [EventHandler()]
+        private void onPluginLoad(PluginLoadEvent eventargs)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate { onPluginLoad(eventargs); });
+                return;
+            }
+            if (!lstPlugins.Items.Contains(eventargs.getPlugin().getName()))
+                lstPlugins.Items.Add(eventargs.getPlugin().getName());
         }
 
         private void initializeList()

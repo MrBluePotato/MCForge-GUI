@@ -1,4 +1,4 @@
-﻿namespace MCForge.Gui.Dialogs.Panels
+﻿namespace MCForge.Gui.Dialogs.Plugins
 {
     partial class PluginInfo
     {

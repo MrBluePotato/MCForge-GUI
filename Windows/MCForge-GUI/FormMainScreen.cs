@@ -1,39 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-//using MCForge.Gui.Utils;
-//using MCForge.Gui.Components;
-//using MCForge.Gui.Components.Interfaces;
-//using MCForge.Entity;
-//using MCForge.Interface.Command;
-//using MCForge.Interfaces;
-//using MCForge.Utils;
-//using MCForge.Gui.Dialogs;
-using System.Diagnostics;
-//using MCForge.Core;
-//using MCForge.World;
-using System.Reflection;
-using MCForge.Gui.Components;
+﻿using MCForge.Gui.Components;
 using MCForge.Gui.Components.Interfaces;
-using MCForge.Gui.Forms;
 using MCForge.Gui.Dialogs;
+using MCForge.Gui.Dialogs.Plugins;
+using MCForge.Gui.Dialogs.Ranks;
 using MCForge.Gui.WindowsAPI;
 using net.mcforge.API;
-using net.mcforge.API.server;
-using net.mcforge.API.player;
-using net.mcforge.API.level;
 using net.mcforge.API.io;
-using net.mcforge.world;
-using net.mcforge.iomodel;
-using net.mcforge.server;
-using net.mcforge.API.plugin;
-using net.mcforge.groups;
+using net.mcforge.API.level;
+using net.mcforge.API.player;
 using net.mcforge.chat;
+using net.mcforge.groups;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace MCForge.Gui.Forms {
     public partial class  FormMainScreen : AeroForm, IFormSharer, Listener {
@@ -138,10 +120,11 @@ namespace MCForge.Gui.Forms {
         }
 
         private void FormMainScreen_Shown(object sender, EventArgs e)
-        {
+        {/*
             if (Program.guisettings.showNews)
                 using (var news = new NewsDialog())
-                   news.ShowDialog();
+                    news.ShowDialog();*/
+               
         }
 
         private void openServers()

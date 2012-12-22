@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using MCForge.Gui.Components;
 using net.mcforge.system.updater;
-using net.mcforge.server;
-using MCForge.Gui.Components;
+using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs
+namespace MCForge.Gui.Dialogs.Plugins
 {
     public partial class UpdateServiceDialog : Form
     {

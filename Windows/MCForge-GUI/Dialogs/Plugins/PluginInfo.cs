@@ -10,7 +10,7 @@ using net.mcforge.system.updater;
 using System.Net;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs.Panels
+namespace MCForge.Gui.Dialogs.Plugins
 {
     public partial class PluginInfo : UserControl
     {

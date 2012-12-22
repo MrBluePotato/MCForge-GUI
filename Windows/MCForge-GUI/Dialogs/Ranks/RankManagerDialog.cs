@@ -5,12 +5,11 @@
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  ******************************************************************************/
-using MCForge.Gui.Dialogs.Panels;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs
+namespace MCForge.Gui.Dialogs.Ranks
 {
     public partial class RankManagerDialog : Form
     {

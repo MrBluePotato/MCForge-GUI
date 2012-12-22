@@ -11,7 +11,7 @@ using net.mcforge.groups;
 using System;
 using System.Windows.Forms;
 
-namespace MCForge.Gui.Dialogs.Panels
+namespace MCForge.Gui.Dialogs.Ranks
 {
     public partial class RankEditor : UserControl
     {

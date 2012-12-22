@@ -1,4 +1,4 @@
-﻿namespace MCForge.Gui.Dialogs
+﻿namespace MCForge.Gui.Dialogs.Plugins
 {
     partial class PluginManagerDialog
     {
