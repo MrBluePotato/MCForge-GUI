@@ -49,7 +49,7 @@ namespace MCForge.Gui
 	/// </summary>
 	public class Updater
 	{
-		private const string VERSION = "6.0.0b5";
+		private const string VERSION = "6.0.0b6";
 		public Updater()
 		{
 		}
@@ -77,7 +77,7 @@ namespace MCForge.Gui
 				parent.DrawText("Getting file list..");
 				files = wc.DownloadString("http://update.mcforge.net/VERSION_2/GUI/files.txt").Split(':');
 				foreach (string s in files) {
-					//FIXME This will throw a error because MCForge.dll is in use. Need to fix
+					//FIXME This will throw a  error because MCForge.dll is in use. Need to fix
 					parent.DrawText("Downloading " + s.Split('/')[1] + "...");
 					wc.DownloadFile("http://update.mcforge.net/VERSION_2/GUI/" + s, "lib/" + s.Split('/')[1]);
 				}
