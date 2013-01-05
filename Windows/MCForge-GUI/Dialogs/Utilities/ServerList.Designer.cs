@@ -94,6 +94,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ServerList";
             this.Text = "ServerList";
             this.Load += new System.EventHandler(this.ServerList_Load);

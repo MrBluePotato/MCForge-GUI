@@ -333,7 +333,7 @@
     <Compile Include="Dialogs\Plugins\UpdateServiceDialog.Designer.cs">
       <DependentUpon>UpdateServiceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fonts\Fonts.cs" />
+    <Compile Include="Dialogs\Fonts\Fonts.cs" />
     <Compile Include="FormMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,8 +482,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Fonts\Minecraft\minecraft.ttf" />
-    <None Include="Fonts\Ubuntu\Ubuntu.ttf" />
+    <None Include="Dialogs\Fonts\Minecraft\minecraft.ttf" />
+    <None Include="Dialogs\Fonts\Ubuntu\Ubuntu.ttf" />
     <None Include="Resource\hirez_mcforge.png" />
   </ItemGroup>
   <ItemGroup>
@@ -496,12 +496,12 @@
     <None Include="Resource\preview_image.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fonts\Minecraft\LICENSE.txt" />
-    <Content Include="Fonts\Minecraft\README.txt" />
-    <Content Include="Fonts\Ubuntu\CONTRIBUTING.txt" />
-    <Content Include="Fonts\Ubuntu\copyright.txt" />
-    <Content Include="Fonts\Ubuntu\LICENCE.txt" />
-    <Content Include="Fonts\Ubuntu\TRADEMARKS.txt" />
+    <Content Include="Dialogs\Fonts\Minecraft\LICENSE.txt" />
+    <Content Include="Dialogs\Fonts\Minecraft\README.txt" />
+    <Content Include="Dialogs\Fonts\Ubuntu\CONTRIBUTING.txt" />
+    <Content Include="Dialogs\Fonts\Ubuntu\copyright.txt" />
+    <Content Include="Dialogs\Fonts\Ubuntu\LICENCE.txt" />
+    <Content Include="Dialogs\Fonts\Ubuntu\TRADEMARKS.txt" />
     <Content Include="MCForge.ico" />
     <None Include="Resource\updateicon.ico" />
     <None Include="Resource\icon.ico" />

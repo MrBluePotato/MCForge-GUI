@@ -238,7 +238,7 @@ namespace MCForge.Gui
                         curr += len;
                     }
                 }
-
+		    compiledString = compiledString.Replace("bemacized", "BeMacized");
             return compiledString;
         }
 		#endregion

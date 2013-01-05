@@ -304,6 +304,9 @@
             this.Controls.Add(this.btnDarkGreen);
             this.Controls.Add(this.btnDarkBlue);
             this.Controls.Add(this.btnBlack);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ColorSelectionDialog";
             this.Text = "Select color";
             this.Load += new System.EventHandler(this.ColorSelectionDialog_Load);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommandCreatorDialog));
             this.aeroButton1 = new MCForge.Gui.Components.AeroButton(this.components);
             this.cmdName = new MCForge.Gui.Components.ColoredTextBox();
             this.cmdType = new System.Windows.Forms.ComboBox();
@@ -153,6 +154,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CommandCreatorDialog";
             this.Text = "CommandCreatorDialog";
             this.Load += new System.EventHandler(this.CommandCreatorDialog_Load);
