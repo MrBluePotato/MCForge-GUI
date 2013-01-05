@@ -74,7 +74,7 @@ namespace MCForge.Gui
 	public partial class SplashScreen : AeroForm, Listener
 	{
 		private string LogMessage;
-		private string[] devlist = new string[] { "Dmitchell", "501st_commander", "Lavoaster", "Alem_Zupa", "bemacized", "Shade2010", "edh649", "hypereddie10", "Gamemakergm", "Serado", "Wouto1997", "cazzar", "givo" };
+		private string[] devlist = new string[] { "Dmitchell", "501st_commander", "Lavoaster", "Alem_Zupa", "BeMacized", "Shade2010", "edh649", "hypereddie10", "Gamemakergm", "Serado", "Wouto1997", "cazzar", "givo" };
 		private string devs;
 		private readonly static Font DrawingFont;
 		private readonly static Bitmap HammerBitmap;
@@ -238,7 +238,6 @@ namespace MCForge.Gui
                         curr += len;
                     }
                 }
-		    compiledString = compiledString.Replace("bemacized", "BeMacized");
             return compiledString;
         }
 		#endregion
