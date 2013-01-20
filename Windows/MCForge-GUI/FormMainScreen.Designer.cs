@@ -72,13 +72,17 @@ namespace MCForge.Gui.Forms {
             this.txtMessage = new MCForge.Gui.Components.HintedTextbox();
             this.lstPlayers = new MCForge.Gui.Components.ColoredListBox();
             this.lstLevels = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.ctxLinkStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.glassMenu.SuspendLayout();
             this.ctxLogStrip.SuspendLayout();
+            this.ctxLinkStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -187,21 +191,21 @@ namespace MCForge.Gui.Forms {
             // portToolsToolStripMenuItem
             // 
             this.portToolsToolStripMenuItem.Name = "portToolsToolStripMenuItem";
-            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.portToolsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.portToolsToolStripMenuItem.Text = "Port Tools";
             this.portToolsToolStripMenuItem.Click += new System.EventHandler(this.portToolsToolStripMenuItem_Click);
             // 
             // makerToolStripMenuItem
             // 
             this.makerToolStripMenuItem.Name = "makerToolStripMenuItem";
-            this.makerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.makerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.makerToolStripMenuItem.Text = "Maker";
             this.makerToolStripMenuItem.Click += new System.EventHandler(this.makerToolStripMenuItem_Click);
             // 
             // serverListToolStripMenuItem
             // 
             this.serverListToolStripMenuItem.Name = "serverListToolStripMenuItem";
-            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverListToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.serverListToolStripMenuItem.Text = "Server List";
             this.serverListToolStripMenuItem.Click += new System.EventHandler(this.serverListToolStripMenuItem_Click);
             // 
@@ -475,14 +479,37 @@ namespace MCForge.Gui.Forms {
             this.lstLevels.Size = new System.Drawing.Size(238, 244);
             this.lstLevels.TabIndex = 11;
             // 
-            // textBox1
+            // txtUrl
             // 
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(13, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(488, 21);
-            this.textBox1.TabIndex = 12;
+            this.txtUrl.ContextMenuStrip = this.ctxLinkStrip;
+            this.txtUrl.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUrl.Location = new System.Drawing.Point(13, 44);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.ReadOnly = true;
+            this.txtUrl.Size = new System.Drawing.Size(488, 21);
+            this.txtUrl.TabIndex = 12;
+            // 
+            // ctxLinkStrip
+            // 
+            this.ctxLinkStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToClipboardToolStripMenuItem,
+            this.playToolStripMenuItem});
+            this.ctxLinkStrip.Name = "ctxLinkStrip";
+            this.ctxLinkStrip.Size = new System.Drawing.Size(170, 70);
+            // 
+            // copyToClipboardToolStripMenuItem
+            // 
+            this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.copyToClipboardToolStripMenuItem.Text = "Copy to clipboard";
+            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToClipboardToolStripMenuItem_Click);
+            // 
+            // playToolStripMenuItem
+            // 
+            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.playToolStripMenuItem.Text = "Join server";
+            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -528,7 +555,7 @@ namespace MCForge.Gui.Forms {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 572);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.cmbChatType);
             this.Controls.Add(this.glassMenu);
@@ -539,6 +566,7 @@ namespace MCForge.Gui.Forms {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMainScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MCForge 6";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMainScreen_FormClosed);
             this.Load += new System.EventHandler(this.FormMainScreen_Load);
@@ -546,6 +574,7 @@ namespace MCForge.Gui.Forms {
             this.glassMenu.ResumeLayout(false);
             this.glassMenu.PerformLayout();
             this.ctxLogStrip.ResumeLayout(false);
+            this.ctxLinkStrip.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -601,13 +630,16 @@ namespace MCForge.Gui.Forms {
         private Components.ColoredListBox lstPlayers;
         private System.Windows.Forms.ListBox lstLevels;
         private System.Windows.Forms.ToolStripMenuItem makerToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ToolStripMenuItem serverListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateServiceToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ctxLinkStrip;
+        private System.Windows.Forms.ToolStripMenuItem copyToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
 
 
     }

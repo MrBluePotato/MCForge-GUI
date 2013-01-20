@@ -14,11 +14,11 @@ namespace MCForge
         {
             get
             {
-                return parent.name;
+                return parent.getName();
             }
             set
             {
-                parent.name = value;
+                parent.setName(value);
             }
         }
 

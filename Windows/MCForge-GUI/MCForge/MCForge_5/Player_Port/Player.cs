@@ -60,7 +60,7 @@ namespace MCForge
             set
             {
                 this.Prefix = value;
-                this.parent.setPrefix(Prefix);
+                this.parent.setRawPrefix(Prefix);
             }
         }
         public int ponycount;

@@ -152,7 +152,7 @@ namespace MCForge.Gui.Dialogs {
             this.txtTitle.Text = player.getPrefix();
             if (txtTitle.Text.StartsWith("&"))
                 txtTitle.Text = txtTitle.Text.Substring(2);
-            this.txtMap.Text = player.getLevel().name;
+            this.txtMap.Text = player.getLevel().getName();
             this.txtIp.Text = player.getIP();
             this.txtName.Text = player.getName();
             this.txtStatus.Text = "Online"; //lolwut ?
@@ -281,7 +281,7 @@ namespace MCForge.Gui.Dialogs {
             if (txtTitle.Text != "")
             {
                 selectedPlayer.setShowPrefix(true);
-                selectedPlayer.setPrefix(btnTitleColor.Relation.MinecraftColorCode + "[" + txtTitle.Text + "]");
+                selectedPlayer.setRawPrefix(btnTitleColor.Relation.MinecraftColorCode + "[" + txtTitle.Text + "]");
             }
             else
                 selectedPlayer.setShowPrefix(false);

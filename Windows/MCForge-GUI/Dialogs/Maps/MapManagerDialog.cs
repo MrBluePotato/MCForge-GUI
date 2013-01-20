@@ -39,8 +39,8 @@ namespace MCForge.Gui.Dialogs {
                 BeginInvoke((MethodInvoker)delegate { OnAllLevelsLoad_Normal(eventargs); });
                 return;
             }
-            if (lstUnloaded.Items.Contains(eventargs.getLevel().name))
-                lstUnloaded.Items.Remove(eventargs.getLevel().name);
+            if (lstUnloaded.Items.Contains(eventargs.getLevel().getName()))
+                lstUnloaded.Items.Remove(eventargs.getLevel().getName());
 
             int index = GetRowIndexFromLevel(eventargs.getLevel());
             if ( index == -1 ) {
@@ -54,8 +54,8 @@ namespace MCForge.Gui.Dialogs {
                 BeginInvoke((MethodInvoker)delegate { OnAllLevelsUnload_Normal(eventargs); });
                 return;
             }
-            if ( !lstUnloaded.Items.Contains(eventargs.getLevel().name) )
-                lstUnloaded.Items.Add(eventargs.getLevel().name);
+            if ( !lstUnloaded.Items.Contains(eventargs.getLevel().getName()) )
+                lstUnloaded.Items.Add(eventargs.getLevel().getName());
 
             int index = GetRowIndexFromLevel(eventargs.getLevel());
             if ( index != -1 ) {
@@ -109,12 +109,12 @@ namespace MCForge.Gui.Dialogs {
 
         string[] GetRowDataFromLevel(net.mcforge.world.Level level)
         {
-            return new[] {level.name, string.Format("{0} x {1} x  {2}", level.width, level.height, level.depth), "True", Program.console.getPlayerCount(level).ToString() };
+            return new[] {level.getName(), string.Format("{0} x {1} x  {2}", level.getWidth(), level.getHeight(), level.getDepth()), "True", Program.console.getPlayerCount(level).ToString() };
         }
 
         int GetRowIndexFromLevel(net.mcforge.world.Level level)
         {
-            return GetRowIndexFromLevelName(level.name);
+            return GetRowIndexFromLevelName(level.getName());
         }
 
         int GetRowIndexFromLevelName(string name) {
@@ -142,7 +142,7 @@ namespace MCForge.Gui.Dialogs {
                     case 5: //Reload
                         string name = dtaLoaded.Rows[e.RowIndex].Cells[0].Value.ToString();
                         Program.console.getServer().getLevelHandler().unloadLevel(Program.console.getServer().getLevelHandler().findLevel(name));
-                        Program.console.getServer().getLevelHandler().loadLevel("levels/" + name + ".ggs");
+                        Program.console.getServer().getLevelHandler().loadClassicLevel("levels/" + name + ".ggs");
                         break;
 
                     case 6: //Delete
@@ -162,11 +162,13 @@ namespace MCForge.Gui.Dialogs {
         {
             string name = InputDialog.showDialog("Name?", "What will the level name be?", "Submit");
             while (Program.console.getServer().getLevelHandler().findLevel(name) != null)
-                name = InputDialog.showDialog("Name?", "A level with that name already exists..Try a different name.", "Try again");
+                name = InputDialog.showDialog("Name?", "A level with that name already exists. Try a different name.", "Try again");
+            while(name.Contains(" ")) //do we have an invalid chars method somewhere? 
+                name = InputDialog.showDialog("Name?", "Level names cannot contain spaces. Try a different name.", "Try again");
             int x = int.Parse(InputDialog.showDialog("Size?", "What will the width be?", "Submit"));
             int y = int.Parse(InputDialog.showDialog("Size?", "What will the height be?", "Submit"));
             int z = int.Parse(InputDialog.showDialog("Size?", "What will the depth be?", "Submit"));
-            Program.console.getServer().getLevelHandler().newLevel(name, (short)x, (short)y, (short)z);
+            Program.console.getServer().getLevelHandler().newClassicLevel(name, (short)x, (short)y, (short)z);
             MessageBox.Show("Success! The level " + name + " was created!", "Level created", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -178,7 +180,7 @@ namespace MCForge.Gui.Dialogs {
                 return;
             }
             string file = "levels/" + lstUnloaded.Items[lstUnloaded.SelectedIndex] + ".ggs";
-            Program.console.getServer().getLevelHandler().loadLevel(file);
+            Program.console.getServer().getLevelHandler().loadClassicLevel(file);
         }
 
         private void lstUnloaded_SelectedIndexChanged(object sender, EventArgs e)

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MCForge.Gui.Forms {
@@ -77,7 +78,7 @@ namespace MCForge.Gui.Forms {
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
                 net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
-                lstLevels.Items.Add(level.name);
+                lstLevels.Items.Add(level.getName());
             }
 
             for (int i = 0; i < Program.console.getServer().getPlayers().size(); i++)
@@ -115,7 +116,7 @@ namespace MCForge.Gui.Forms {
                 this.BeginInvoke((MethodInvoker)delegate { setURL(url); });
                 return;
             }
-            textBox1.Text = url;
+            txtUrl.Text = url;
             Logger.Log(ChatColor.Bright_Green + "URL Found: " + ChatColor.White + url);
         }
 
@@ -138,7 +139,7 @@ namespace MCForge.Gui.Forms {
 
         private void textBox1_DoubleClick(object sender, System.EventArgs e)
         {
-            textBox1.SelectAll();
+            txtUrl.SelectAll();
         }
 
         private void txtMessage_KeyDown(object sender, KeyEventArgs e) {
@@ -224,8 +225,8 @@ namespace MCForge.Gui.Forms {
                 BeginInvoke((MethodInvoker)delegate { OnLevelLoad(eventargs); });
                 return;
             }
-            if (!lstLevels.Items.Contains(eventargs.getLevel().name))
-                lstLevels.Items.Add(eventargs.getLevel().name);
+            if (!lstLevels.Items.Contains(eventargs.getLevel().getName()))
+                lstLevels.Items.Add(eventargs.getLevel().getName());
         }
 
         [EventHandler()]
@@ -236,8 +237,8 @@ namespace MCForge.Gui.Forms {
                 BeginInvoke((MethodInvoker)delegate { OnLevelUnload(eventargs); });
                 return;
             }
-            if (lstLevels.Items.Contains(eventargs.getLevel().name))
-                lstLevels.Items.Remove(eventargs.getLevel().name);
+            if (lstLevels.Items.Contains(eventargs.getLevel().getName()))
+                lstLevels.Items.Remove(eventargs.getLevel().getName());
         }
 
         [EventHandler()]
@@ -656,14 +657,14 @@ namespace MCForge.Gui.Forms {
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
                 net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
-                if (level.name != Program.console.getServer().MainLevel)
+                if (level.getName() != Program.console.getServer().MainLevel)
                     toreload.Add(level);
             }
 
             foreach (net.mcforge.world.Level l in toreload)
             {
                 l.unload(Program.console.getServer(), true);
-                Program.console.getServer().getLevelHandler().loadLevel("levels/" + l.name + ".ggs");
+                Program.console.getServer().getLevelHandler().loadClassicLevel("levels/" + l.getName() + ".ggs");
             }
             toreload.Clear();
         }
@@ -674,7 +675,7 @@ namespace MCForge.Gui.Forms {
             for (int i = 0; i < Program.console.getServer().getLevelHandler().getLevelList().size(); i++)
             {
                 net.mcforge.world.Level level = (net.mcforge.world.Level)Program.console.getServer().getLevelHandler().getLevelList().get(i);
-                if (level.name != Program.console.getServer().MainLevel)
+                if (level.getName() != Program.console.getServer().MainLevel)
                     tounload.Add(level);
             }
 
@@ -725,6 +726,24 @@ namespace MCForge.Gui.Forms {
             {
                 rmd.ShowDialog();
             }
+        }
+
+        private void copyToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (txtUrl.Text == "") { return; }
+            Clipboard.SetText(txtUrl.Text);
+            new Thread((ThreadStart)delegate {
+                string temp = txtUrl.Text;
+                txtUrl.BeginInvoke((MethodInvoker)delegate { txtUrl.Text = "Copied!"; });
+                Thread.Sleep(750);
+                txtUrl.BeginInvoke((MethodInvoker)delegate { txtUrl.Text = temp; });
+            }).Start();
+        }
+
+        private void playToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (txtUrl.Text == "") { return; }
+            Process.Start(txtUrl.Text);
         }
     }
 }

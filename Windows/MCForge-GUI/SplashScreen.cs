@@ -37,33 +37,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
  * 
  */
 #endregion
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms.VisualStyles;
-using System.Diagnostics;
-using System.Threading;
 using MCForge.Gui.Components;
 using MCForge.Gui.Properties;
-using net.mcforge.API.plugin;
-using net.mcforge.API.io;
-using net.mcforge.server;
-using net.mcforge.API;
-using net.mcforge.API.server;
-using net.mcforge.groups;
-using MCForge.Gui.Dialogs;
 using MCForge.Gui.WindowsAPI;
 using MCForge.Gui.WindowsAPI.Utils;
+using net.mcforge.API;
+using net.mcforge.API.io;
+using net.mcforge.API.plugin;
+using net.mcforge.API.server;
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Net;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Windows.Forms;
 
 
 namespace MCForge.Gui
@@ -79,12 +67,14 @@ namespace MCForge.Gui
 		private readonly static Font DrawingFont;
 		private readonly static Bitmap HammerBitmap;
 		private readonly static Bitmap MCForgeBitmap;
+        private const int WS_SYSMENU = 0x80000;
+
 		static SplashScreen() {
 			DrawingFont = new Font("Arial", Constants.DEV_TEXT_SIZE, FontStyle.Regular);
             HammerBitmap = Resource.hirez_mcforge;
             MCForgeBitmap = Resource.mcforge_text;
 		}
-		
+
 		public SplashScreen() {
 			InitializeComponent();
 			GlassArea = ClientRectangle;
@@ -239,6 +229,16 @@ namespace MCForge.Gui
                     }
                 }
             return compiledString;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style &= ~WS_SYSMENU;
+                return cp;
+            }
         }
 		#endregion
 		
