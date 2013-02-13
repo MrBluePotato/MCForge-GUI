@@ -19,8 +19,6 @@ namespace MCForge.Gui.Dialogs {
         public NewsDialog() {
             InitializeComponent();
 
-            Skybound.Gecko.Xpcom.Initialize(Path.GetDirectoryName(Application.ExecutablePath) + "\\lib\\xulrunner\\");
-
             mNewsFetcher = new BackgroundWorker() {
                 WorkerSupportsCancellation = true
             };
@@ -37,7 +35,7 @@ namespace MCForge.Gui.Dialogs {
         }
 
         void mNewsFetcher_DoWork(object sender, DoWorkEventArgs e) {
-            if ( PageExists() ) {
+            if ( !PageExists() ) {
                 e.Result = "Cannot find news :(";
                 return;
             }
@@ -70,6 +68,11 @@ namespace MCForge.Gui.Dialogs {
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             Program.guisettings.showNews = !checkBox1.Checked;
+        }
+
+        private void browser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

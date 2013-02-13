@@ -121,10 +121,12 @@ namespace MCForge.Gui.Forms {
         }
 
         private void FormMainScreen_Shown(object sender, EventArgs e)
-        {/*
+        {
+#if !DEBUG
             if (Program.guisettings.showNews)
                 using (var news = new NewsDialog())
-                    news.ShowDialog();*/
+                    news.ShowDialog();
+#endif
                
         }
 

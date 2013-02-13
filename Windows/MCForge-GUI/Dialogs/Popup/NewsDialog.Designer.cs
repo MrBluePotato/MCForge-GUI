@@ -1,5 +1,4 @@
-﻿using Skybound.Gecko;
-namespace MCForge.Gui.Dialogs {
+﻿namespace MCForge.Gui.Dialogs {
     partial class NewsDialog {
         /// <summary>
         /// Required designer variable.
@@ -27,7 +26,7 @@ namespace MCForge.Gui.Dialogs {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewsDialog));
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.browser = new Skybound.Gecko.GeckoWebBrowser();
+            this.browser = new WebKit.WebKitBrowser();
             this.SuspendLayout();
             // 
             // button1
@@ -53,10 +52,12 @@ namespace MCForge.Gui.Dialogs {
             // 
             // browser
             // 
+            this.browser.BackColor = System.Drawing.Color.White;
             this.browser.Location = new System.Drawing.Point(12, 12);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(393, 320);
-            this.browser.TabIndex = 0;
+            this.browser.Size = new System.Drawing.Size(393, 330);
+            this.browser.TabIndex = 3;
+            this.browser.Url = null;
             // 
             // NewsDialog
             // 
@@ -82,6 +83,6 @@ namespace MCForge.Gui.Dialogs {
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private GeckoWebBrowser browser;
+        private WebKit.WebKitBrowser browser;
     }
 }

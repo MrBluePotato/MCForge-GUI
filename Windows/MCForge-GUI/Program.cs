@@ -71,14 +71,10 @@ namespace MCForge.Gui
 			Application.Run(ss);
             ss.Dispose();
             while (running) 
-            {
                 LaunchConsole();
-            }
 
             if (mc.getServer().Running && mc.getServer() != null)
-            {
                 mc.getServer().stop();
-            }
             Environment.Exit(0);
 		}
 
@@ -134,6 +130,8 @@ namespace MCForge.Gui
 
         static void saveCrash(Exception e)
         {
+            if (!Directory.Exists("system"))
+                Directory.CreateDirectory("system");
             File.WriteAllText("system/crash.log", e.ToString());
         }
 
