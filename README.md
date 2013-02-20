@@ -2,7 +2,7 @@ MCForge GUI
 ===========
 ![MCForge Logo](http://www.mcforge.net/community/public/style_images/4_logo.png)
 
-Java based and C# based GUI for [MCForge][4]
+C# based GUI for [MCForge][4]
 
 ##Issues and Pull requests
 - Found a bug? [Report it](https://github.com/MCForge/MCForge-GUI/issues)
