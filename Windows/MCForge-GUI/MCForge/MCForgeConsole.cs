@@ -89,7 +89,8 @@ namespace MCForge.Gui
                 return true;
             else if (answer == DialogResult.OK) 
             {
-                server.getUpdateService().addToRestartQueue(u);
+                net.mcforge.system.updater.Update update = server.getUpdateService().getUpdate(u);
+                server.getUpdateService().addToRestartQueue(u, update);
                 return false; 
             }
             else

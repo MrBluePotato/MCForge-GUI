@@ -47,7 +47,7 @@ namespace MCForge.Gui.Dialogs.Plugins
                 lblCur.Text += u.getCurrentVersion();
                 using (var wc = new WebClient())
                 {
-                    lblLatest.Text += wc.DownloadString(u.getCheckURL());
+                    lblLatest.Text += wc.DownloadString(u.getInfoURL());
                 }
                 UpdateType t = u.getUpdateType();
                 if (t == UpdateType.Ask)

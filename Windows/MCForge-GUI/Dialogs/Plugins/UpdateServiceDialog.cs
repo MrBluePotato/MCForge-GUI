@@ -162,7 +162,8 @@ namespace MCForge.Gui.Dialogs.Plugins
                 button3.Enabled = false;
             else
             {
-                service.addToRestartQueue(u);
+                net.mcforge.system.updater.Update update = service.getUpdate(u);
+                service.addToRestartQueue(u, update);
                 MessageBox.Show(u.getName() + " will be updated after a server restart!", "MCF Update Service", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 button3.Enabled = false;
             }

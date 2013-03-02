@@ -86,7 +86,7 @@ namespace MCForge.Gui.Dialogs {
             label2.Visible = true;
             progressBar1.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
-            string tosend = "Server Version: " + Program.console.getServer().VERSION + "\n" +
+            string tosend = "Server Version: " + net.mcforge.server.Server.CORE_VERSION + "\n" +
                             "GUI Version: " + Assembly.GetEntryAssembly().GetName().Version + "\n" +
                             "Exception Message: " + this.e.Message + "\n" +
                             "Exception Stacktrace: " + this.e.StackTrace + "\n" +

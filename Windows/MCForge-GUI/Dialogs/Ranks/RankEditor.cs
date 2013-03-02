@@ -46,7 +46,7 @@ namespace MCForge.Gui.Dialogs.Ranks
             }
             editGroup.setPermission(perm);
             editGroup.setIsOp(chkIsOp.CheckState == CheckState.Checked);
-            editGroup.setColor(ChatColor.parse(btnColor.Relation.MinecraftColorCode));
+            editGroup.setColor(ChatColor.parse(btnColor.Relation.MinecraftColorCode), Program.console.getServer());
             Group.saveGroups();
             changed = false;
             baseManager.initializeRanks();

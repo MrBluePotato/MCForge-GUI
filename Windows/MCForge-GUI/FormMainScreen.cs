@@ -88,7 +88,7 @@ namespace MCForge.Gui.Forms {
             }
 
 
-            Logger.Log("&0MCForge Version: &7" + Server.VERSION + "  &0Start Time: &7" + DateTime.Now.ToString("T"));
+            Logger.Log("&0MCForge Version: &7" + net.mcforge.server.Server.CORE_VERSION + "  &0Start Time: &7" + DateTime.Now.ToString("T"));
 
 #if DEBUG
             Logger.Log("&6Warning: Running MCForge in Debug mode. Results may vary.");

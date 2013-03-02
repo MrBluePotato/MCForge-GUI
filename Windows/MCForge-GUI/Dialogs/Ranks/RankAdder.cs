@@ -44,8 +44,7 @@ namespace MCForge.Gui.Dialogs.Ranks
             }
             Group.add(new Group(txtName.Text, perm, 
                                 chkIsOp.CheckState == CheckState.Checked,
-                                ChatColor.parse(btnColor.Relation.MinecraftColorCode), 
-                                Program.console.getServer()
+                                ChatColor.parse(btnColor.Relation.MinecraftColorCode)
                                 ));
             baseControl.initializeRanks();
             baseDialog.Controls.Add(baseControl);

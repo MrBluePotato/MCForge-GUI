@@ -30,7 +30,7 @@ namespace MCForge.Gui.Dialogs
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Process.Start(u.getDownloadURL());
+            Process.Start(u.getWebsite());
             DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.Close();
         }
