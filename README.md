@@ -4,6 +4,8 @@ MCForge GUI
 
 C# based GUI for [MCForge][4]
 
+#This repo is no longer being updated and will be deleted on 4/1/13
+
 ##Issues and Pull requests
 - Found a bug? [Report it](https://github.com/MCForge/MCForge-GUI/issues)
 - [Make a pull request](https://github.com/MCForge/MCForge-GUI/pulls)
